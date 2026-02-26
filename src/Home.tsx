@@ -3,12 +3,17 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import DarkVeil from './DarkVeil';
 import Navbar from './Navbar';
 import ContinuumSection from './ContinuumSection';
-import EvolveSection from './EvolveSection';
-import FounderConcepts from './FounderConcepts';
-import PathwaysConcepts from './PathwaysConcepts';
 import PrismSection from './PrismSection';
-import MovesConcepts from './MovesConcepts';
-import InvitationSection from './InvitationSection';
+import AboutSection from './AboutSection';
+import SkillsSection from './SkillsSection';
+import TalentSection from './TalentSection';
+import ContentSection from './ContentSection';
+import ExperiencesSection from './ExperiencesSection';
+import ApproachSection from './ApproachSection';
+import CustomSolutionsSection from './CustomSolutionsSection';
+import ClientsSection from './ClientsSection';
+import ContactSection from './ContactSection';
+import Footer from './Footer';
 
 export default function Home() {
   const containerVariants: Variants = {
@@ -186,19 +191,39 @@ export default function Home() {
         <ContinuumSection />
       </motion.div>
       {/* ----------------------------- */}
-      {/* SECTION 3: EVOLVE WITH FUTURE */}
+      {/* SECTION 3: ABOUT              */}
       {/* ----------------------------- */}
-      <EvolveSection />
+      <AboutSection />
 
       {/* ----------------------------- */}
-      {/* SECTION 4 PREVIEWS            */}
+      {/* SECTION 4: SKILLS             */}
       {/* ----------------------------- */}
-      <FounderConcepts />
+      <SkillsSection />
 
       {/* ----------------------------- */}
-      {/* SECTION 5 PREVIEWS            */}
+      {/* SECTION 5: TALENT             */}
       {/* ----------------------------- */}
-      <PathwaysConcepts />
+      <TalentSection />
+
+      {/* ----------------------------- */}
+      {/* SECTION 6: CONTENT            */}
+      {/* ----------------------------- */}
+      <ContentSection />
+
+      {/* ----------------------------- */}
+      {/* SECTION 7: EXPERIENCES        */}
+      {/* ----------------------------- */}
+      <ExperiencesSection />
+
+      {/* ----------------------------- */}
+      {/* SECTION 8: APPROACH           */}
+      {/* ----------------------------- */}
+      <ApproachSection />
+
+      {/* ----------------------------- */}
+      {/* SECTION 9: CUSTOM SOLUTIONS   */}
+      {/* ----------------------------- */}
+      <CustomSolutionsSection />
 
       {/* ----------------------------- */}
       {/* SECTION 5.5: PRISM FRAMEWORK  */}
@@ -206,14 +231,19 @@ export default function Home() {
       <PrismSection />
 
       {/* ----------------------------- */}
-      {/* SECTION 6: MOVES              */}
+      {/* SECTION 10: CLIENTS           */}
       {/* ----------------------------- */}
-      <MovesConcepts />
+      <ClientsSection />
 
       {/* ----------------------------- */}
-      {/* SECTION 7: INVITATION         */}
+      {/* SECTION 11: CONTACT           */}
       {/* ----------------------------- */}
-      <InvitationSection />
+      <ContactSection />
+
+      {/* ----------------------------- */}
+      {/* SECTION 12: FOOTER            */}
+      {/* ----------------------------- */}
+      <Footer />
 
 
     </div>
