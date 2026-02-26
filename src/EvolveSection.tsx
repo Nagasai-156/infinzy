@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { HeartPulse, Cpu } from 'lucide-react';
 
 const content = {
@@ -24,7 +24,7 @@ const content = {
 };
 
 // Variants for staggered children
-const containerVariants = {
+const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
@@ -32,7 +32,7 @@ const containerVariants = {
     }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
 };
@@ -47,7 +47,7 @@ export default function EvolveSection() {
                     initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
                     whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 1.2, ease: "easeOut" }}
                     className="text-center w-full max-w-4xl"
                 >
                     <h3 className="text-zinc-500 tracking-[0.2em] text-[10px] sm:text-xs font-bold uppercase mb-4 sm:mb-6">{content.title}</h3>
@@ -62,7 +62,7 @@ export default function EvolveSection() {
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 1, ease: "easeOut" }}
                     className="lg:w-1/2 relative p-10 sm:p-16 lg:p-24 flex flex-col justify-end min-h-[50vh] lg:min-h-screen border-b lg:border-b-0 lg:border-r border-white/5 group overflow-hidden"
                 >
                     <div className="absolute inset-0 bg-gradient-to-br from-[#1a1005] to-black z-0 opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />
@@ -101,7 +101,7 @@ export default function EvolveSection() {
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 1, ease: "easeOut" }}
                     className="lg:w-1/2 relative p-10 sm:p-16 lg:p-24 flex flex-col justify-end min-h-[50vh] lg:min-h-screen group overflow-hidden"
                 >
                     <div className="absolute inset-0 bg-gradient-to-bl from-[#05101a] to-black z-0 opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />

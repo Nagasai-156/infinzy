@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import DarkVeil from './DarkVeil';
 import Navbar from './Navbar';
@@ -10,7 +10,7 @@ import MovesConcepts from './MovesConcepts';
 import InvitationSection from './InvitationSection';
 
 export default function App() {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -21,20 +21,20 @@ export default function App() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.16, 1, 0.3, 1] // sleek, smooth ease-out (no bounces, no blurs)
+        ease: [0.16, 1, 0.3, 1] as any // sleek, smooth ease-out (no bounces, no blurs)
       }
     },
   };
 
   // Advanced Text Masking Animation
-  const textAnimationContainer = {
+  const textAnimationContainer: Variants = {
     hidden: {},
     visible: {
       transition: {
@@ -44,11 +44,11 @@ export default function App() {
     }
   };
 
-  const textMaskItem = {
+  const textMaskItem: Variants = {
     hidden: { y: "120%" },
     visible: {
       y: "0%",
-      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
+      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as any }
     }
   };
 
@@ -180,7 +180,7 @@ export default function App() {
         initial={{ opacity: 0, y: 150 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] as any }}
       >
         <ContinuumSection />
       </motion.div>
