@@ -6,6 +6,7 @@ import ContinuumSection from './ContinuumSection';
 import EvolveSection from './EvolveSection';
 import FounderConcepts from './FounderConcepts';
 import PathwaysConcepts from './PathwaysConcepts';
+import PrismSection from './PrismSection';
 import MovesConcepts from './MovesConcepts';
 import InvitationSection from './InvitationSection';
 
@@ -198,6 +199,11 @@ export default function App() {
       {/* SECTION 5 PREVIEWS            */}
       {/* ----------------------------- */}
       <PathwaysConcepts />
+
+      {/* ----------------------------- */}
+      {/* SECTION 5.5: PRISM FRAMEWORK  */}
+      {/* ----------------------------- */}
+      <PrismSection />
 
       {/* ----------------------------- */}
       {/* SECTION 6: MOVES              */}
