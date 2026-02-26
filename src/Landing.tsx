@@ -1,6 +1,6 @@
 import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Stars, Float } from '@react-three/drei';
+import { OrbitControls, Stars, Text } from '@react-three/drei';
 import * as THREE from 'three';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,59 +23,92 @@ function CenterSphere() {
     );
 }
 
-// Orbiting floating objects
-function OrbitingObjects() {
+// Individual Orbiting Item to handle its own calculation
+function OrbitItem({ geometry, index, total, item }: { geometry: any, index: number, total: number, item: string }) {
     const groupRef = useRef<THREE.Group>(null);
+    const meshRef = useRef<THREE.Mesh>(null);
     const navigate = useNavigate();
 
-    // Create 8 different geometries
-    const geometries = useMemo(() => [
-        <icosahedronGeometry args={[0.2, 0]} />,
-        <octahedronGeometry args={[0.2, 0]} />,
-        <dodecahedronGeometry args={[0.2, 0]} />,
-        <boxGeometry args={[0.25, 0.25, 0.25]} />,
-        <sphereGeometry args={[0.15, 16, 16]} />,
-        <coneGeometry args={[0.2, 0.4, 8]} />,
-        <torusGeometry args={[0.15, 0.05, 8, 16]} />,
-        <tetrahedronGeometry args={[0.25, 0]} />
-    ], []);
-
     useFrame((state) => {
+        const time = state.clock.getElapsedTime();
+        // Orbit speed and path
+        const speed = -0.05; // clockwise rotation
+        const angle = (index / total) * Math.PI * 2 + time * speed;
+        const radius = 4.5; // Fixed circle radius
+
         if (groupRef.current) {
-            groupRef.current.rotation.z = state.clock.getElapsedTime() * 0.05;
+            groupRef.current.position.x = Math.cos(angle) * radius;
+            groupRef.current.position.y = Math.sin(angle) * radius;
+        }
+
+        if (meshRef.current) {
+            // Self-rotation of the geometric shape
+            meshRef.current.rotation.x = time * 0.5;
+            meshRef.current.rotation.y = time * 0.5;
         }
     });
 
     return (
         <group ref={groupRef}>
-            {geometries.map((geometry, i) => {
-                const radius = 4 + Math.random() * 1.5;
-                const angle = (i / geometries.length) * Math.PI * 2;
-                const x = Math.cos(angle) * radius;
-                const y = Math.sin(angle) * radius;
+            <mesh
+                ref={meshRef}
+                onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/home#${item.toLowerCase()}`);
+                }}
+                onPointerOver={() => document.body.style.cursor = 'pointer'}
+                onPointerOut={() => document.body.style.cursor = 'auto'}
+            >
+                {geometry}
+                <meshBasicMaterial color="#ffffff" wireframe={true} transparent opacity={0.6} />
+            </mesh>
+            <Text
+                position={[0, -0.6, 0]}
+                fontSize={0.18}
+                color="#ffffff"
+                anchorX="center"
+                anchorY="middle"
+                letterSpacing={0.1}
+            >
+                {item.toUpperCase()}
+            </Text>
+        </group>
+    );
+}
 
-                return (
-                    <Float
-                        key={i}
-                        speed={2}
-                        rotationIntensity={2}
-                        floatIntensity={2}
-                        position={[x, y, 0]}
-                    >
-                        <mesh
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                navigate('/home');
-                            }}
-                            onPointerOver={() => document.body.style.cursor = 'pointer'}
-                            onPointerOut={() => document.body.style.cursor = 'auto'}
-                        >
-                            {geometry}
-                            <meshBasicMaterial color="#ffffff" wireframe={true} transparent opacity={0.6} />
-                        </mesh>
-                    </Float>
-                );
-            })}
+// Orbiting floating objects wrapper
+function OrbitingObjects() {
+    const navItems = [
+        "Home", "About", "Skills", "Talent", "Content",
+        "Corporate Experiences", "Approach", "Custom Solutions",
+        "Clients", "Contact"
+    ];
+
+    // Create 10 different geometries for the 10 nav items
+    const geometries = useMemo(() => [
+        <icosahedronGeometry args={[0.2, 0]} />,
+        <octahedronGeometry args={[0.2, 0]} />,
+        <dodecahedronGeometry args={[0.25, 0]} />,
+        <boxGeometry args={[0.25, 0.25, 0.25]} />,
+        <sphereGeometry args={[0.2, 8, 8]} />,
+        <coneGeometry args={[0.2, 0.4, 4]} />,
+        <torusGeometry args={[0.15, 0.05, 8, 16]} />,
+        <tetrahedronGeometry args={[0.25, 0]} />,
+        <cylinderGeometry args={[0.15, 0.15, 0.3, 8]} />,
+        <octahedronGeometry args={[0.15, 1]} /> // subdivided octahedron
+    ], []);
+
+    return (
+        <group>
+            {navItems.map((item, i) => (
+                <OrbitItem
+                    key={i}
+                    geometry={geometries[i]}
+                    index={i}
+                    total={navItems.length}
+                    item={item}
+                />
+            ))}
         </group>
     );
 }
