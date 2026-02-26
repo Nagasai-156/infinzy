@@ -8,10 +8,15 @@ import { useNavigate } from 'react-router-dom';
 function CenterSphere() {
     const meshRef = useRef<THREE.Mesh>(null);
 
-    useFrame(() => {
+    useFrame((state) => {
         if (meshRef.current) {
             meshRef.current.rotation.y += 0.001;
             meshRef.current.rotation.x += 0.0005;
+
+            // Responsive scaling
+            const isMobile = state.size.width < 768;
+            const scale = isMobile ? 0.6 : 1;
+            meshRef.current.scale.set(scale, scale, scale);
         }
     });
 
@@ -31,14 +36,19 @@ function OrbitItem({ geometry, index, total, item }: { geometry: any, index: num
 
     useFrame((state) => {
         const time = state.clock.getElapsedTime();
-        // Orbit speed and path
+        // Orbit speed, path and responsive radius
+        const isMobile = state.size.width < 768;
+        const radius = isMobile ? 2.2 : 4.5;
         const speed = -0.05; // clockwise rotation
         const angle = (index / total) * Math.PI * 2 + time * speed;
-        const radius = 4.5; // Fixed circle radius
 
         if (groupRef.current) {
             groupRef.current.position.x = Math.cos(angle) * radius;
             groupRef.current.position.y = Math.sin(angle) * radius;
+
+            // Scale down icons on mobile
+            const scale = isMobile ? 0.7 : 1;
+            groupRef.current.scale.set(scale, scale, scale);
         }
 
         if (meshRef.current) {
@@ -119,16 +129,7 @@ export default function Landing() {
     return (
         <div className="w-full h-screen bg-[#0a0a0a] relative overflow-hidden font-sans">
 
-            {/* Absolute overlay for top text */}
-            <div className="absolute top-0 left-0 w-full p-8 flex justify-between items-start z-10 pointer-events-none">
-                <div className="text-white text-xs font-bold tracking-widest flex items-center gap-2 mix-blend-difference">
-                    <span className="opacity-50">MUTE</span>
-                    <span>SOUND</span>
-                </div>
-                <div className="text-white text-xs font-bold tracking-widest mix-blend-difference">
-                    F.A.Q
-                </div>
-            </div>
+            {/* Removed Mute Sound and FAQ based on user request */}
 
             {/* 3D Canvas Background */}
             <div className="absolute inset-0 z-0">
@@ -145,23 +146,19 @@ export default function Landing() {
             </div>
 
             {/* Center Text Overlay */}
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none text-center">
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none text-center px-4">
                 <h1
-                    className="text-white text-7xl md:text-9xl font-serif tracking-tight cursor-pointer pointer-events-auto transition-transform hover:scale-105 duration-700 select-none drop-shadow-2xl"
+                    className="text-white text-5xl sm:text-7xl md:text-9xl font-serif tracking-tight cursor-pointer pointer-events-auto transition-transform hover:scale-105 duration-700 select-none drop-shadow-2xl"
                     onClick={() => navigate('/home')}
                 >
                     infinizy.
                 </h1>
-                <p className="text-white/60 text-xs md:text-sm tracking-[0.3em] font-medium mt-4 ml-1 md:ml-2">
+                <p className="text-white/60 text-[10px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.3em] font-medium mt-2 sm:mt-4 ml-1 md:ml-2">
                     PHOTOGRAPHIC SERIE.
                 </p>
             </div>
 
-            {/* Footer Text */}
-            <div className="absolute bottom-8 left-8 z-10 flex items-center gap-3 text-white/50 text-xs tracking-wider cursor-pointer hover:text-white transition-colors">
-                <span className="font-bold text-lg">f</span>
-                <span>follow project status on Facebook</span>
-            </div>
+            {/* Removed Footer Facebook text based on user request */}
 
         </div>
     );
