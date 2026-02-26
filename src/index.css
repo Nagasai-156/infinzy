@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-100: #f5d6ea;
+  --color-brand-300: #e57bc5;
+  --color-brand-500: #be2891;
+  --color-brand-900: #55123d;
+  --color-brand-950: #34002b;
+
+  --color-silver-300: #e2e8f0;
+  --color-silver-400: #cbd5e1;
+  --color-silver-500: #C0C0C0;
+  --color-silver-600: #94a3b8;
+}
+
+@layer base {
+  body {
+    @apply bg-black text-white antialiased selection:bg-[#34002b] selection:text-white;
+  }
+}
+
+.text-gradient-premium {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-200 to-zinc-400;
+}
