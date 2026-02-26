@@ -97,15 +97,6 @@ export default function PrismSection() {
                     <motion.text initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 1.2, duration: 1 }} x="600" y="320" fill="white" fontSize="22" fontWeight="500" textAnchor="middle">Design</motion.text>
                     <motion.text initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 1.4, duration: 1 }} x="750" y="320" fill="white" fontSize="22" fontWeight="500" textAnchor="middle">Technology</motion.text>
 
-                    {/* Subtle circle in middle representing focal alignment */}
-                    <motion.circle
-                        initial={{ opacity: 0, y: -20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 1.6, duration: 1 }}
-                        cx="625" cy="480" r="6" stroke="#facc15" strokeWidth="2" fill="none" opacity="0.6"
-                    />
-
                     {/* Massive Blur Core (Rainbow smudge inside) */}
                     <motion.ellipse
                         initial={{ opacity: 0 }}
