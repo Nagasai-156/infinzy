@@ -29,11 +29,37 @@ export default function Navbar() {
             >
                 {/* Logo */}
                 <div className="flex items-center gap-2">
-                    {/* A simple placeholder logo geometric shape to look premium */}
-                    <div className="h-6 w-6 bg-white shrink-0" style={{ clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)' }} />
-                    <span className="text-lg font-bold tracking-widest text-white uppercase">
-                        Infinizy
-                    </span>
+                    {/* Infinizy Logo Mark SVG */}
+                    <a href="/" className="flex items-center gap-3 group">
+                        <svg width="36" height="36" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+                            {/* Outer globe circle clip */}
+                            <defs>
+                                <clipPath id="globeClip">
+                                    <circle cx="100" cy="100" r="88" />
+                                </clipPath>
+                            </defs>
+                            {/* Flowing S-curve bands (the globe body) */}
+                            <g clipPath="url(#globeClip)">
+                                {/* Band 1 - left outer */}
+                                <path d="M 10 30 C 40 20, 80 50, 70 100 C 60 150, 20 160, 10 190" stroke="white" strokeWidth="28" fill="none" strokeLinecap="round" />
+                                {/* Band 2 - center upper arch */}
+                                <path d="M 70 5 C 120 0, 160 30, 155 80 C 150 120, 110 140, 90 155" stroke="white" strokeWidth="28" fill="none" strokeLinecap="round" />
+                                {/* Band 3 - right lower */}
+                                <path d="M 120 80 C 150 90, 185 130, 175 175" stroke="white" strokeWidth="28" fill="none" strokeLinecap="round" />
+                                {/* Band 4 - bottom sweep */}
+                                <path d="M 40 140 C 70 170, 120 185, 160 195" stroke="white" strokeWidth="22" fill="none" strokeLinecap="round" />
+                            </g>
+                            {/* Globe circle outline */}
+                            <circle cx="100" cy="100" r="88" stroke="white" strokeWidth="8" fill="none" />
+                            {/* Diagonal ring / orbit ellipse */}
+                            <ellipse cx="100" cy="105" rx="130" ry="28" stroke="white" strokeWidth="7" fill="none" transform="rotate(-20 100 105)" />
+                            {/* Ring tips to give pointed look */}
+                            <ellipse cx="100" cy="105" rx="130" ry="28" stroke="none" fill="none" transform="rotate(-20 100 105)" />
+                        </svg>
+                        <span className="text-lg font-bold tracking-widest text-white uppercase group-hover:text-[#FFD700] transition-colors">
+                            Infinizy
+                        </span>
+                    </a>
                 </div>
 
                 {/* Desktop Links (Hidden on screens smaller than lg) */}
@@ -41,7 +67,7 @@ export default function Navbar() {
                     {navItems.map((item) => (
                         <a
                             key={item}
-                            href={`#${item.toLowerCase()}`}
+                            href={item === "Home" ? "/" : item === "About" ? "/about" : item === "Skills" ? "/skills" : item === "Talent" ? "/talent" : item === "Content" ? "/content" : item === "Corporate Experiences" ? "/corporate-experiences" : item === "Approach" ? "/approach" : item === "Custom Solutions" ? "/custom-solutions" : item === "Clients" ? "/clients" : item === "Contact" ? "/contact" : `/#${item.toLowerCase().replace(/\s+/g, '-')}`}
                             className="text-[11px] font-medium uppercase tracking-[0.15em] text-zinc-400 transition-colors hover:text-white"
                         >
                             {item}
@@ -72,10 +98,33 @@ export default function Navbar() {
                 className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl lg:hidden flex flex-col justify-center items-center"
             >
                 <div className="flex flex-col items-center gap-6 overflow-y-auto py-20">
+                    {/* Logo Centerpiece */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={isOpen ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                        className="mb-8"
+                    >
+                        <svg width="120" height="120" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <clipPath id="globeClipMenu">
+                                    <circle cx="100" cy="100" r="88" />
+                                </clipPath>
+                            </defs>
+                            <g clipPath="url(#globeClipMenu)">
+                                <path d="M 10 30 C 40 20, 80 50, 70 100 C 60 150, 20 160, 10 190" stroke="#FFD700" strokeWidth="28" fill="none" strokeLinecap="round" />
+                                <path d="M 70 5 C 120 0, 160 30, 155 80 C 150 120, 110 140, 90 155" stroke="#FFD700" strokeWidth="28" fill="none" strokeLinecap="round" />
+                                <path d="M 120 80 C 150 90, 185 130, 175 175" stroke="#FFD700" strokeWidth="28" fill="none" strokeLinecap="round" />
+                                <path d="M 40 140 C 70 170, 120 185, 160 195" stroke="#FFD700" strokeWidth="22" fill="none" strokeLinecap="round" />
+                            </g>
+                            <circle cx="100" cy="100" r="88" stroke="#FFD700" strokeWidth="6" fill="none" />
+                            <ellipse cx="100" cy="105" rx="130" ry="28" stroke="white" strokeWidth="6" fill="none" transform="rotate(-20 100 105)" />
+                        </svg>
+                    </motion.div>
                     {navItems.map((item, index) => (
                         <motion.a
                             key={item}
-                            href={`#${item.toLowerCase()}`}
+                            href={item === "Home" ? "/" : item === "About" ? "/about" : item === "Skills" ? "/skills" : item === "Talent" ? "/talent" : item === "Content" ? "/content" : item === "Corporate Experiences" ? "/corporate-experiences" : item === "Approach" ? "/approach" : item === "Custom Solutions" ? "/custom-solutions" : item === "Clients" ? "/clients" : item === "Contact" ? "/contact" : `/#${item.toLowerCase().replace(/\s+/g, '-')}`}
                             initial={{ y: 20, opacity: 0 }}
                             animate={isOpen ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
                             transition={{ delay: isOpen ? index * 0.05 : 0 }}

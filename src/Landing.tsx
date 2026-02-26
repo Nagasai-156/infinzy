@@ -13,9 +13,9 @@ function CenterSphere() {
             meshRef.current.rotation.y += 0.001;
             meshRef.current.rotation.x += 0.0005;
 
-            // Responsive scaling
-            const isMobile = state.size.width < 768;
-            const scale = isMobile ? 0.6 : 1;
+            // Responsive scaling - mobile / tablet / desktop
+            const w = state.size.width;
+            const scale = w < 768 ? 0.6 : w < 1024 ? 0.78 : 1;
             meshRef.current.scale.set(scale, scale, scale);
         }
     });
@@ -37,8 +37,10 @@ function OrbitItem({ geometry, index, total, item }: { geometry: any, index: num
     useFrame((state) => {
         const time = state.clock.getElapsedTime();
         // Orbit speed, path and responsive radius
-        const isMobile = state.size.width < 768;
-        const radius = isMobile ? 2.2 : 4.5;
+        const w = state.size.width;
+        const isMobile = w < 768;
+        const isTablet = w >= 768 && w < 1024;
+        const radius = isMobile ? 2.2 : isTablet ? 3.3 : 4.5;
         const speed = -0.05; // clockwise rotation
         const angle = (index / total) * Math.PI * 2 + time * speed;
 
@@ -46,8 +48,8 @@ function OrbitItem({ geometry, index, total, item }: { geometry: any, index: num
             groupRef.current.position.x = Math.cos(angle) * radius;
             groupRef.current.position.y = Math.sin(angle) * radius;
 
-            // Scale down icons on mobile
-            const scale = isMobile ? 0.7 : 1;
+            // Scale down icons on mobile & tablet
+            const scale = isMobile ? 0.7 : isTablet ? 0.85 : 1;
             groupRef.current.scale.set(scale, scale, scale);
         }
 
@@ -148,12 +150,12 @@ export default function Landing() {
             {/* Center Text Overlay */}
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none text-center px-4">
                 <h1
-                    className="text-white text-5xl sm:text-7xl md:text-9xl font-serif tracking-tight cursor-pointer pointer-events-auto transition-transform hover:scale-105 duration-700 select-none drop-shadow-2xl"
+                    className="text-white text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-serif tracking-tight cursor-pointer pointer-events-auto transition-transform hover:scale-105 duration-700 select-none drop-shadow-2xl"
                     onClick={() => navigate('/home')}
                 >
                     infinizy.
                 </h1>
-                <p className="text-white/60 text-[10px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.3em] font-medium mt-2 sm:mt-4 ml-1 md:ml-2">
+                <p className="text-white/60 text-[10px] sm:text-xs md:text-xs lg:text-sm tracking-[0.2em] sm:tracking-[0.3em] font-medium mt-2 sm:mt-4 ml-1 md:ml-2">
                     PHOTOGRAPHIC SERIE.
                 </p>
             </div>
