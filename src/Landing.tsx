@@ -66,7 +66,19 @@ function OrbitItem({ geometry, index, total, item }: { geometry: any, index: num
                 ref={meshRef}
                 onClick={(e) => {
                     e.stopPropagation();
-                    navigate(`/home#${item.toLowerCase()}`);
+                    const routes: Record<string, string> = {
+                        'Home': '/home',
+                        'About': '/about',
+                        'Skills': '/skills',
+                        'Talent': '/talent',
+                        'Content': '/content',
+                        'Corporate Experiences': '/corporate-experiences',
+                        'Approach': '/approach',
+                        'Custom Solutions': '/custom-solutions',
+                        'Clients': '/clients',
+                        'Contact': '/contact',
+                    };
+                    navigate(routes[item] ?? '/home');
                 }}
                 onPointerOver={() => document.body.style.cursor = 'pointer'}
                 onPointerOut={() => document.body.style.cursor = 'auto'}
