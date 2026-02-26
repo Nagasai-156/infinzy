@@ -168,7 +168,7 @@ export default function Landing() {
                     infinizy.
                 </h1>
                 <p className="text-white/60 text-[10px] sm:text-xs md:text-xs lg:text-sm tracking-[0.2em] sm:tracking-[0.3em] font-medium mt-2 sm:mt-4 ml-1 md:ml-2">
-                    PHOTOGRAPHIC SERIE.
+                    CONTINUUM
                 </p>
             </div>
 
