@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Twitter, Linkedin, Github, Instagram, ArrowUpRight } from 'lucide-react';
 import { SparklesCore } from './components/ui/sparkles';
@@ -38,7 +39,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
                     {/* Logo & Statement Column */}
                     <div className="lg:col-span-1">
-                        <div className="flex items-center gap-3 mb-8 group cursor-pointer" onClick={() => window.location.href = '/'}>
+                        <Link to="/" className="flex items-center gap-3 mb-8 group cursor-pointer">
                             <svg width="40" height="40" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0 transition-transform duration-500 group-hover:rotate-12">
                                 <defs>
                                     <clipPath id="footerGlobeClip">
@@ -55,7 +56,7 @@ const Footer = () => {
                                 <ellipse cx="100" cy="105" rx="130" ry="28" stroke="white" strokeWidth="7" fill="none" transform="rotate(-20 100 105)" />
                             </svg>
                             <span className="text-2xl font-black tracking-tighter text-white uppercase italic">Infinizy.</span>
-                        </div>
+                        </Link>
                         <p className="text-zinc-400 font-light leading-relaxed mb-8 max-w-sm">
                             Built at the convergence of human intelligence and advanced AI — continuously evolving with the future.
                         </p>
@@ -78,10 +79,10 @@ const Footer = () => {
                         <h4 className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--color-brand-500)]">Ecosystem</h4>
                         <div className="flex flex-col gap-4">
                             {navLinks.map((link) => (
-                                <a key={link.name} href={link.href} className="group flex items-center gap-2 text-zinc-400 hover:text-white transition-colors duration-300">
+                                <Link key={link.name} to={link.href} className="group flex items-center gap-2 text-zinc-400 hover:text-white transition-colors duration-300">
                                     <span className="text-sm font-light tracking-wide">{link.name}</span>
                                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -translate-y-1 group-hover:translate-y-0 transition-all" />
-                                </a>
+                                </Link>
                             ))}
                         </div>
                     </div>
@@ -90,10 +91,10 @@ const Footer = () => {
                         <h4 className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--color-brand-500)]">Solutions</h4>
                         <div className="flex flex-col gap-4">
                             {secondaryLinks.map((link) => (
-                                <a key={link.name} href={link.href} className="group flex items-center gap-2 text-zinc-400 hover:text-white transition-colors duration-300">
+                                <Link key={link.name} to={link.href} className="group flex items-center gap-2 text-zinc-400 hover:text-white transition-colors duration-300">
                                     <span className="text-sm font-light tracking-wide">{link.name}</span>
                                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -translate-y-1 group-hover:translate-y-0 transition-all" />
-                                </a>
+                                </Link>
                             ))}
                         </div>
                     </div>

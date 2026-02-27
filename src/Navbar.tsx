@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
@@ -18,6 +19,11 @@ const navItems = [
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
+    const getPath = (item: string) => {
+        if (item === "Home") return "/home";
+        return `/${item.toLowerCase().replace(/\s+/g, '-')}`;
+    };
+
     return (
         <>
             {/* Desktop & Tablet Navigation */}
@@ -29,49 +35,38 @@ export default function Navbar() {
             >
                 {/* Logo */}
                 <div className="flex items-center gap-2">
-                    {/* Infinizy Logo Mark SVG */}
-                    <a href="/" className="flex items-center gap-3 group">
+                    <Link to="/" className="flex items-center gap-3 group">
                         <svg width="36" height="36" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
-                            {/* Outer globe circle clip */}
                             <defs>
                                 <clipPath id="globeClip">
                                     <circle cx="100" cy="100" r="88" />
                                 </clipPath>
                             </defs>
-                            {/* Flowing S-curve bands (the globe body) */}
                             <g clipPath="url(#globeClip)">
-                                {/* Band 1 - left outer */}
                                 <path d="M 10 30 C 40 20, 80 50, 70 100 C 60 150, 20 160, 10 190" stroke="white" strokeWidth="28" fill="none" strokeLinecap="round" />
-                                {/* Band 2 - center upper arch */}
                                 <path d="M 70 5 C 120 0, 160 30, 155 80 C 150 120, 110 140, 90 155" stroke="white" strokeWidth="28" fill="none" strokeLinecap="round" />
-                                {/* Band 3 - right lower */}
                                 <path d="M 120 80 C 150 90, 185 130, 175 175" stroke="white" strokeWidth="28" fill="none" strokeLinecap="round" />
-                                {/* Band 4 - bottom sweep */}
                                 <path d="M 40 140 C 70 170, 120 185, 160 195" stroke="white" strokeWidth="22" fill="none" strokeLinecap="round" />
                             </g>
-                            {/* Globe circle outline */}
                             <circle cx="100" cy="100" r="88" stroke="white" strokeWidth="8" fill="none" />
-                            {/* Diagonal ring / orbit ellipse */}
                             <ellipse cx="100" cy="105" rx="130" ry="28" stroke="white" strokeWidth="7" fill="none" transform="rotate(-20 100 105)" />
-                            {/* Ring tips to give pointed look */}
-                            <ellipse cx="100" cy="105" rx="130" ry="28" stroke="none" fill="none" transform="rotate(-20 100 105)" />
                         </svg>
                         <span className="text-lg font-bold tracking-widest text-[var(--color-brand-500)] uppercase group-hover:text-[#FFD700] transition-colors">
                             Infinizy
                         </span>
-                    </a>
+                    </Link>
                 </div>
 
-                {/* Desktop Links (Hidden on screens smaller than lg) */}
+                {/* Desktop Links */}
                 <div className="hidden lg:flex items-center gap-6 xl:gap-8">
                     {navItems.map((item) => (
-                        <a
+                        <Link
                             key={item}
-                            href={item === "Home" ? "/" : item === "About" ? "/about" : item === "Skills" ? "/skills" : item === "Talent" ? "/talent" : item === "Content" ? "/content" : item === "Corporate Experiences" ? "/corporate-experiences" : item === "Approach" ? "/approach" : item === "Custom Solutions" ? "/custom-solutions" : item === "Clients" ? "/clients" : item === "Contact" ? "/contact" : `/#${item.toLowerCase().replace(/\s+/g, '-')}`}
+                            to={getPath(item)}
                             className="text-[11px] font-medium uppercase tracking-[0.15em] text-zinc-400 transition-colors hover:text-white"
                         >
                             {item}
-                        </a>
+                        </Link>
                     ))}
                 </div>
 
@@ -82,7 +77,7 @@ export default function Navbar() {
                     </button>
                 </div>
 
-                {/* Mobile/Tablet Hamburger Menu Toggle */}
+                {/* Mobile/Tablet Menu Toggle */}
                 <button
                     className="lg:hidden p-2 text-zinc-300 transition-colors hover:text-white"
                     onClick={() => setIsOpen(!isOpen)}
@@ -97,7 +92,7 @@ export default function Navbar() {
                 animate={isOpen ? { opacity: 1, pointerEvents: "auto" } : { opacity: 0, pointerEvents: "none" }}
                 className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl lg:hidden flex flex-col justify-center items-center"
             >
-                <div className="flex flex-col items-center gap-6 overflow-y-auto py-20">
+                <div className="flex flex-col items-center gap-6 overflow-y-auto w-full py-20">
                     {/* Logo Centerpiece */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
@@ -121,19 +116,24 @@ export default function Navbar() {
                             <ellipse cx="100" cy="105" rx="130" ry="28" stroke="white" strokeWidth="6" fill="none" transform="rotate(-20 100 105)" />
                         </svg>
                     </motion.div>
+
                     {navItems.map((item, index) => (
-                        <motion.a
+                        <motion.div
                             key={item}
-                            href={item === "Home" ? "/" : item === "About" ? "/about" : item === "Skills" ? "/skills" : item === "Talent" ? "/talent" : item === "Content" ? "/content" : item === "Corporate Experiences" ? "/corporate-experiences" : item === "Approach" ? "/approach" : item === "Custom Solutions" ? "/custom-solutions" : item === "Clients" ? "/clients" : item === "Contact" ? "/contact" : `/#${item.toLowerCase().replace(/\s+/g, '-')}`}
                             initial={{ y: 20, opacity: 0 }}
                             animate={isOpen ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
                             transition={{ delay: isOpen ? index * 0.05 : 0 }}
-                            className="text-lg sm:text-2xl font-light tracking-wide text-zinc-400 transition-colors hover:text-white"
-                            onClick={() => setIsOpen(false)}
                         >
-                            {item}
-                        </motion.a>
+                            <Link
+                                to={getPath(item)}
+                                className="text-xl sm:text-2xl font-light tracking-wide text-zinc-400 transition-colors hover:text-white"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                {item}
+                            </Link>
+                        </motion.div>
                     ))}
+
                     <motion.button
                         initial={{ y: 20, opacity: 0 }}
                         animate={isOpen ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
