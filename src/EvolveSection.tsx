@@ -143,7 +143,9 @@ export default function EvolveSection() {
                 transition={{ delay: 0.5, duration: 0.8 }}
                 className="w-full bg-zinc-950 border-t border-white/5 p-8 sm:p-10 lg:p-12 text-center relative z-20"
             >
-                <p className="text-zinc-300 font-light text-base sm:text-lg lg:text-xl max-w-4xl mx-auto leading-relaxed">{content.footer}</p>
+                <p className="text-zinc-300 font-light text-base sm:text-lg lg:text-xl max-w-4xl mx-auto leading-relaxed">
+                    {content.footer}
+                </p>
             </motion.div>
 
         </section>

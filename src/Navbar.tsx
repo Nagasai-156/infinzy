@@ -56,7 +56,7 @@ export default function Navbar() {
                             {/* Ring tips to give pointed look */}
                             <ellipse cx="100" cy="105" rx="130" ry="28" stroke="none" fill="none" transform="rotate(-20 100 105)" />
                         </svg>
-                        <span className="text-lg font-bold tracking-widest text-white uppercase group-hover:text-[#FFD700] transition-colors">
+                        <span className="text-lg font-bold tracking-widest text-[var(--color-brand-500)] uppercase group-hover:text-[#FFD700] transition-colors">
                             Infinizy
                         </span>
                     </a>
@@ -77,7 +77,7 @@ export default function Navbar() {
 
                 {/* Desktop CTA */}
                 <div className="hidden lg:block">
-                    <button className="rounded-full bg-white px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-black transition-transform hover:scale-105">
+                    <button className="rounded-full bg-[#34002b] px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-white transition-transform hover:scale-105">
                         Enter the Continuum
                     </button>
                 </div>
@@ -138,7 +138,7 @@ export default function Navbar() {
                         initial={{ y: 20, opacity: 0 }}
                         animate={isOpen ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
                         transition={{ delay: isOpen ? navItems.length * 0.05 : 0 }}
-                        className="mt-8 rounded-full bg-white px-8 py-4 text-sm font-bold uppercase tracking-widest text-black"
+                        className="mt-8 rounded-full bg-[#34002b] px-8 py-4 text-sm font-bold uppercase tracking-widest text-white"
                         onClick={() => setIsOpen(false)}
                     >
                         Enter the Continuum

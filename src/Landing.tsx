@@ -3,6 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Stars, Text } from '@react-three/drei';
 import * as THREE from 'three';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 // Center complex wireframe sphere
 function CenterSphere() {
@@ -13,9 +14,15 @@ function CenterSphere() {
             meshRef.current.rotation.y += 0.001;
             meshRef.current.rotation.x += 0.0005;
 
-            // Responsive scaling - mobile / tablet / desktop
+            // Responsive scaling - mobile / tablet / desktop / portrait
             const w = state.size.width;
-            const scale = w < 768 ? 0.6 : w < 1024 ? 0.78 : 1;
+            const isPortrait = state.size.width < state.size.height;
+
+            let scale = 1;
+            if (w < 768) scale = 0.5;
+            else if (w < 1024) scale = 0.65;
+            else if (w <= 1366 || isPortrait) scale = 0.75; // iPad Pro size
+
             meshRef.current.scale.set(scale, scale, scale);
         }
     });
@@ -38,9 +45,22 @@ function OrbitItem({ geometry, index, total, item }: { geometry: any, index: num
         const time = state.clock.getElapsedTime();
         // Orbit speed, path and responsive radius
         const w = state.size.width;
-        const isMobile = w < 768;
-        const isTablet = w >= 768 && w < 1024;
-        const radius = isMobile ? 2.2 : isTablet ? 3.3 : 4.5;
+        const isPortrait = state.size.width < state.size.height;
+
+        let radius = 4.2;
+        let scale = 1;
+
+        if (w < 768) {
+            radius = isPortrait ? 1.8 : 2.4;
+            scale = 0.55;
+        } else if (w < 1024) {
+            radius = isPortrait ? 2.5 : 3.0;
+            scale = 0.7;
+        } else if (w <= 1366 || isPortrait) {
+            radius = isPortrait ? 2.8 : 3.4;
+            scale = 0.8;
+        }
+
         const speed = -0.05; // clockwise rotation
         const angle = (index / total) * Math.PI * 2 + time * speed;
 
@@ -48,8 +68,7 @@ function OrbitItem({ geometry, index, total, item }: { geometry: any, index: num
             groupRef.current.position.x = Math.cos(angle) * radius;
             groupRef.current.position.y = Math.sin(angle) * radius;
 
-            // Scale down icons on mobile & tablet
-            const scale = isMobile ? 0.7 : isTablet ? 0.85 : 1;
+            // Apply responsive scale to the orbiting item
             groupRef.current.scale.set(scale, scale, scale);
         }
 
@@ -160,16 +179,24 @@ export default function Landing() {
             </div>
 
             {/* Center Text Overlay */}
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none text-center px-4">
-                <h1
-                    className="text-white text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-serif tracking-tight cursor-pointer pointer-events-auto transition-transform hover:scale-105 duration-700 select-none drop-shadow-2xl"
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none text-center px-4 leading-none gap-1 sm:gap-2">
+                <motion.h1
+                    initial={{ opacity: 0, y: 20, filter: "blur(20px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="text-[var(--color-brand-500)] text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif tracking-tighter cursor-pointer pointer-events-auto transition-transform hover:scale-105 duration-1000 select-none drop-shadow-[0_0_40px_rgba(190,40,145,0.2)]"
                     onClick={() => navigate('/home')}
                 >
                     infinizy.
-                </h1>
-                <p className="text-white/60 text-[10px] sm:text-xs md:text-xs lg:text-sm tracking-[0.2em] sm:tracking-[0.3em] font-medium mt-2 sm:mt-4 ml-1 md:ml-2">
+                </motion.h1>
+                <motion.p
+                    initial={{ opacity: 0, y: 20, filter: "blur(20px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="text-white/80 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif tracking-tighter select-none"
+                >
                     CONTINUUM
-                </p>
+                </motion.p>
             </div>
 
             {/* Removed Footer Facebook text based on user request */}

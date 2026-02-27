@@ -1,52 +1,43 @@
-import { motion, type Variants } from 'framer-motion';
-import { ArrowRight, BrainCircuit, Activity, LineChart, Target, Compass, Sparkles } from 'lucide-react';
+import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
+import { BrainCircuit, Activity, LineChart, Target, Compass, Sparkles } from 'lucide-react';
+import { useRef } from 'react';
 import Navbar from './Navbar';
 import Approach3D from './Approach3D';
+import { Typewriter } from './components/ui/typewriter';
+import Footer from './Footer';
 
 export default function Approach() {
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
     };
-
     const itemVariants: Variants = {
         hidden: { opacity: 0, y: 30 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as any } },
     };
 
-    const textAnimationContainer: Variants = {
-        hidden: {},
-        visible: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } }
-    };
-
-    const textMaskItem: Variants = {
-        hidden: { y: "120%" },
-        visible: { y: "0%", transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as any } }
-    };
-
-    const headlineText = "Transformation is structured.";
-
     const processSteps = [
-        { title: "Understand", icon: Compass, color: "text-[var(--color-brand-100)]" },
-        { title: "Assess", icon: Activity, color: "text-[var(--color-brand-200)]" },
-        { title: "Design", icon: BrainCircuit, color: "text-[var(--color-brand-300)]" },
-        { title: "Implement", icon: Target, color: "text-[var(--color-brand-400)]" },
-        { title: "Reinforce", icon: Sparkles, color: "text-[var(--color-brand-500)]" },
-        { title: "Measure", icon: LineChart, color: "text-[var(--color-brand-100)]" },
+        { title: "Understand", icon: Compass, desc: "Deeply map context, goals and constraints before anything else." },
+        { title: "Assess", icon: Activity, desc: "Diagnose the gap between current state and desired transformation." },
+        { title: "Design", icon: BrainCircuit, desc: "Architect a bespoke intervention — no templates, no shortcuts." },
+        { title: "Implement", icon: Target, desc: "Deploy with precision, ensuring alignment at every layer." },
+        { title: "Reinforce", icon: Sparkles, desc: "Embed the change so it holds and compounds over time." },
+        { title: "Measure", icon: LineChart, desc: "Track outcomes with data-informed frameworks that prove impact." },
     ];
+
+    const scrollRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({ target: scrollRef, offset: ["start end", "end start"] });
+    const lineWidth = useTransform(scrollYProgress, [0, 0.6], ["0%", "100%"]);
 
     return (
         <div className="bg-black text-white font-sans w-full overflow-hidden">
             <Navbar />
 
-            {/* ----------------------------- */}
-            {/* SECTION 1: HERO */}
-            {/* ----------------------------- */}
+            {/* ============================= */}
+            {/* HERO — unchanged             */}
+            {/* ============================= */}
             <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
-                {/* Embedded 3D Shader Background */}
                 <Approach3D />
-
-                {/* Main Hero Content */}
                 <main className="relative z-10 flex flex-col items-center justify-center px-4 w-full h-full sm:px-6 lg:px-8 mt-20">
                     <motion.div
                         variants={containerVariants}
@@ -55,122 +46,219 @@ export default function Approach() {
                         className="flex w-full max-w-4xl flex-col items-center text-center"
                     >
                         <motion.div variants={itemVariants} className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 backdrop-blur-md">
-                            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-brand-300)]">
-                                Methodology
-                            </span>
+                            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-brand-300)]">Methodology</span>
                         </motion.div>
-
-                        <motion.h2
-                            variants={textAnimationContainer}
-                            initial="hidden"
-                            animate="visible"
-                            className="text-gradient-premium text-5xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl md:leading-[1.15] flex flex-wrap justify-center overflow-hidden py-2"
-                        >
-                            {headlineText.split(" ").map((word, index) => (
-                                <span key={index} className="inline-block overflow-hidden pb-2 mr-[0.25em]">
-                                    <motion.span variants={textMaskItem} className="inline-block">
-                                        {word}
-                                    </motion.span>
-                                </span>
-                            ))}
-                        </motion.h2>
+                        <Typewriter
+                            text={[
+                                "Transformation is structured.",
+                                "The Architecture of Growth.",
+                                "A deliberate approach."
+                            ]}
+                            loop={true}
+                            speed={70}
+                            delay={2000}
+                            className="text-gradient-premium relative z-20 text-5xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl md:leading-[1.15] text-center block min-h-[140px]"
+                        />
                     </motion.div>
                 </main>
             </section>
 
-            {/* ----------------------------- */}
-            {/* SECTION 2: PROCESS */}
-            {/* ----------------------------- */}
-            <section className="relative z-10 py-32 px-6 lg:px-10 bg-zinc-950 border-t border-white/5">
-                <div className="max-w-7xl mx-auto text-center">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={containerVariants} className="mb-20">
-                        <motion.h2 variants={itemVariants} className="text-sm font-bold tracking-[0.25em] text-zinc-500 uppercase mb-4">
-                            Framework
-                        </motion.h2>
-                        <motion.h3 variants={itemVariants} className="text-4xl md:text-5xl font-medium text-white">
-                            Process
-                        </motion.h3>
+            {/* ============================= */}
+            {/* PROCESS — scroll-driven line  */}
+            {/* ============================= */}
+            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5" ref={scrollRef}>
+                <div className="max-w-6xl mx-auto">
+
+                    {/* Header */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className="mb-20"
+                    >
+                        <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">Framework</p>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white">The Process</h2>
                     </motion.div>
 
-                    {/* Timeline Grid */}
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={containerVariants} className="grid grid-cols-2 lg:grid-cols-6 gap-6 relative">
-                        {/* Connecting Line (Desktop) */}
-                        <div className="hidden lg:block absolute top-[28%] left-[8%] right-[8%] h-[1px] bg-gradient-to-r from-transparent via-[var(--color-brand-300)] to-transparent" />
+                    {/* Scroll-driven progress line */}
+                    <div className="hidden lg:block relative h-px bg-white/5 mb-0 mx-8 overflow-hidden">
+                        <motion.div
+                            style={{ width: lineWidth }}
+                            className="absolute inset-y-0 left-0 bg-gradient-to-r from-[var(--color-brand-900)] via-[var(--color-brand-500)] to-[var(--color-brand-300)]"
+                        />
+                    </div>
 
+                    {/* Step cards */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-px bg-white/5 rounded-3xl overflow-hidden mt-0">
                         {processSteps.map((step, idx) => (
-                            <motion.div key={idx} variants={itemVariants} className="relative z-10 flex flex-col items-center group">
-                                <div className="w-16 h-16 rounded-2xl bg-black border border-white/10 flex items-center justify-center mb-6 group-hover:border-[var(--color-brand-500)]/50 group-hover:-translate-y-2 transition-all duration-300 shadow-xl shadow-black">
-                                    <step.icon className={`w-6 h-6 ${step.color} transition-colors`} />
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+                                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                                viewport={{ once: true, margin: "-30px" }}
+                                transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                                whileHover={{ backgroundColor: "rgba(255,255,255,0.03)", y: -4 }}
+                                className="group relative bg-black flex flex-col items-start p-8 cursor-default transition-colors duration-300"
+                            >
+                                {/* Number */}
+                                <span className="text-xs font-black text-white/10 group-hover:text-[var(--color-brand-800)] tracking-widest mb-6 transition-colors duration-500">
+                                    {String(idx + 1).padStart(2, "0")}
+                                </span>
+
+                                {/* Icon */}
+                                <div className="w-12 h-12 rounded-2xl bg-zinc-950 border border-white/5 group-hover:border-[var(--color-brand-800)] flex items-center justify-center mb-6 transition-all duration-500 group-hover:-translate-y-1">
+                                    <step.icon className="w-5 h-5 text-zinc-600 group-hover:text-[var(--color-brand-400)] transition-colors duration-300" />
                                 </div>
-                                <span className="text-lg font-light text-zinc-300 group-hover:text-white transition-colors">{step.title}</span>
-                                <span className="text-xs font-bold text-zinc-700 mt-2">0{idx + 1}</span>
+
+                                {/* Title */}
+                                <h3 className="text-lg font-bold text-white mb-3">{step.title}</h3>
+
+                                {/* Desc */}
+                                <p className="text-xs text-zinc-600 group-hover:text-zinc-400 font-light leading-relaxed transition-colors duration-300">
+                                    {step.desc}
+                                </p>
+
+                                {/* Bottom animated bar */}
+                                <motion.div
+                                    initial={{ scaleX: 0 }}
+                                    whileInView={{ scaleX: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.8, delay: 0.3 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                                    style={{ originX: 0 }}
+                                    className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-[var(--color-brand-900)] to-transparent"
+                                />
                             </motion.div>
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
-            {/* ----------------------------- */}
-            {/* SECTION 3: AI-ENHANCED */}
-            {/* ----------------------------- */}
-            <section className="relative z-10 py-32 px-6 lg:px-10 bg-black overflow-hidden group">
-                {/* Subtle bg glow */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--color-brand-500)]/10 rounded-full blur-[120px] pointer-events-none group-hover:bg-[var(--color-brand-400)]/20 transition-all duration-1000"></div>
+            {/* ============================= */}
+            {/* AI-ENHANCED                   */}
+            {/* ============================= */}
+            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5 overflow-hidden">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[var(--color-brand-900)]/20 rounded-full blur-[100px] pointer-events-none" />
 
-                <div className="max-w-4xl mx-auto relative z-10">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={containerVariants} className="text-center">
-                        <motion.h2 variants={itemVariants} className="text-sm font-bold tracking-[0.25em] text-[var(--color-brand-300)] uppercase mb-6">
-                            AI-Enhanced Transformation Design
-                        </motion.h2>
-
-                        <motion.p variants={itemVariants} className="text-xl md:text-2xl font-light leading-relaxed text-zinc-300 mb-8">
-                            Every transformation journey within the Infinizy Continuum is supported by <span className="text-white font-medium">intelligent analysis, adaptive learning systems, and data-informed decision frameworks.</span>
-                        </motion.p>
-
-                        <motion.p variants={itemVariants} className="text-lg md:text-xl font-light leading-relaxed text-zinc-400 mb-8">
-                            Artificial intelligence helps identify patterns, predict needs, and optimize outcomes — while human expertise ensures strategic alignment, ethical direction, and contextual understanding.
-                        </motion.p>
-
-                        <motion.div variants={itemVariants} className="inline-block border border-[var(--color-brand-500)]/30 bg-[var(--color-brand-900)]/20 rounded-2xl px-8 py-6">
-                            <p className="text-xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-white to-[var(--color-brand-200)]">
-                                This hybrid model enables precision, agility, and continuous evolution.
+                <div className="max-w-5xl mx-auto relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className="grid md:grid-cols-2 gap-16 items-start"
+                    >
+                        {/* Left */}
+                        <div>
+                            <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-4">AI-Enhanced</p>
+                            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                                Transformation Design
+                            </h2>
+                            <p className="text-lg text-zinc-400 font-light leading-relaxed">
+                                Every transformation journey within the Infinizy Continuum is supported by intelligent analysis, adaptive learning systems, and data-informed decision frameworks.
                             </p>
-                        </motion.div>
+                        </div>
+
+                        {/* Right — 3 feature rows */}
+                        <div className="flex flex-col gap-0">
+                            {[
+                                { label: "Pattern Recognition", text: "AI identifies what humans miss in complex transformations." },
+                                { label: "Predictive Needs", text: "Anticipate friction points before they become failures." },
+                                { label: "Human-Led Direction", text: "Strategic alignment, ethics, and context remain human." },
+                            ].map((item, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, x: 30 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6, delay: 0.2 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                                    className="group flex gap-5 py-7 border-b border-white/5 last:border-0"
+                                >
+                                    <div className="w-1 rounded-full bg-[var(--color-brand-900)] group-hover:bg-[var(--color-brand-600)] transition-colors duration-500 shrink-0 self-stretch" />
+                                    <div>
+                                        <p className="text-base font-semibold text-white mb-1">{item.label}</p>
+                                        <p className="text-sm text-zinc-500 font-light">{item.text}</p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+
+                    {/* Callout box */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.96, filter: "blur(8px)" }}
+                        whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                        viewport={{ once: true, margin: "-40px" }}
+                        transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        className="mt-16 border border-[var(--color-brand-800)]/40 bg-[var(--color-brand-900)]/10 rounded-2xl px-8 py-7"
+                    >
+                        <p className="text-xl md:text-2xl font-medium text-white text-center leading-relaxed">
+                            This hybrid model enables <span className="text-[var(--color-brand-300)]">precision</span>, <span className="text-[var(--color-brand-300)]">agility</span>, and <span className="text-[var(--color-brand-300)]">continuous evolution</span>.
+                        </p>
                     </motion.div>
                 </div>
             </section>
 
-            {/* ----------------------------- */}
-            {/* SECTION 4: CONTINUOUS IMPROVEMENT */}
-            {/* ----------------------------- */}
-            <section className="relative z-10 py-32 px-6 lg:px-10 bg-zinc-950 border-t border-white/5">
-                <div className="max-w-5xl mx-auto text-center">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={containerVariants}>
-                        <motion.h2 variants={itemVariants} className="text-sm font-bold tracking-[0.25em] text-zinc-500 uppercase mb-8">
-                            Continuous Improvement
-                        </motion.h2>
-                        <motion.p variants={itemVariants} className="text-3xl md:text-5xl font-light leading-snug text-white">
-                            Growth is sustained through <br className="hidden md:block" />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-brand-300)] to-white font-medium">reinforcement, monitoring, and evolution.</span>
-                        </motion.p>
+            {/* ============================= */}
+            {/* CONTINUOUS IMPROVEMENT        */}
+            {/* ============================= */}
+            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+                <div className="max-w-5xl mx-auto">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className="grid md:grid-cols-2 gap-16 items-center"
+                    >
+                        <div>
+                            <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">Continuous Improvement</p>
+                            <p className="text-4xl md:text-5xl font-light text-white leading-snug">
+                                Growth is sustained.
+                            </p>
+                        </div>
+                        <div className="border-l border-white/10 pl-10">
+                            <p className="text-2xl md:text-3xl font-bold text-white leading-snug">
+                                Through reinforcement, monitoring, and evolution.
+                            </p>
+                        </div>
                     </motion.div>
                 </div>
             </section>
 
-            {/* ----------------------------- */}
-            {/* CTA */}
-            {/* ----------------------------- */}
-            <section className="relative z-10 py-32 bg-black border-t border-white/10 flex justify-center">
-                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={containerVariants}>
-                    <button className="flex items-center justify-center gap-3 rounded-full bg-white px-10 py-4 text-sm font-bold uppercase tracking-widest text-black transition-transform hover:scale-105">
-                        <span>Start Transformation</span>
-                        <ArrowRight className="h-4 w-4" />
-                    </button>
+            {/* ============================= */}
+            {/* CTA                           */}
+            {/* ============================= */}
+            <section className="relative py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
+                <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">
+                    <span className="text-[clamp(5rem,18vw,14rem)] font-black text-[#222222] tracking-widest whitespace-nowrap leading-none">
+                        INFINIZY
+                    </span>
+                </div>
+
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={containerVariants}
+                    className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl"
+                >
+                    <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">
+                        Start Transformation
+                    </motion.h2>
+                    <motion.p variants={itemVariants} className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">
+                        A structured, intelligent, and human-led path to lasting change.
+                    </motion.p>
+                    <motion.button
+                        variants={itemVariants}
+                        className="px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)]"
+                    >
+                        Start Transformation
+                    </motion.button>
                 </motion.div>
             </section>
 
-            {/* Footer minimal spacer */}
-            <div className="h-24 bg-black w-full" />
+            <Footer />
         </div>
     );
 }

@@ -1,180 +1,181 @@
 import { motion, type Variants } from 'framer-motion';
-import { Sparkles, ArrowRight, FileText, Settings, GraduationCap, TrendingUp, Video, PenTool } from 'lucide-react';
+import { FileText, Settings, GraduationCap, TrendingUp, Video, PenTool, Sparkles } from 'lucide-react';
 import { GLSLHills } from './components/ui/glsl-hills';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 export default function Content() {
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.1 } },
+        visible: { opacity: 1, transition: { staggerChildren: 0.18, delayChildren: 0.15 } },
     };
-
     const itemVariants: Variants = {
-        hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as any } },
+        hidden: { opacity: 0, y: 32 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] as any } },
     };
-
-    // Advanced Text Masking Animation exactly from Home page
-    const textAnimationContainer: Variants = {
-        hidden: {},
-        visible: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } }
+    const heroTitleContainer: Variants = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.5 } },
     };
-
-    const textMaskItem: Variants = {
-        hidden: { y: "120%" },
-        visible: { y: "0%", transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as any } }
+    const wordVariant: Variants = {
+        hidden: { opacity: 0, y: 24, filter: 'blur(6px)' },
+        visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] as any } },
     };
-
-    const headlineLines = [
-        "Ideas matter when",
-        "they move people."
-    ];
 
     const contentTypes = [
-        { title: "Business Documentation", icon: FileText, desc: "Clear, authoritative documentation driving organizational alignment." },
-        { title: "Technical Content", icon: Settings, desc: "Precision engineering of complex technical information." },
-        { title: "Learning Design", icon: GraduationCap, desc: "Architected pathways for sustained capability expansion." },
-        { title: "Digital Marketing Content", icon: TrendingUp, desc: "Strategic narrative design to capture and sustain attention." },
-        { title: "Video Production", icon: Video, desc: "Cinematic, high-impact visual storytelling for scale." },
-        { title: "Brand Storytelling", icon: PenTool, desc: "Crafting resonant narratives that define modern brands." },
+        { title: "Business Documentation", icon: FileText },
+        { title: "Technical Content", icon: Settings },
+        { title: "Learning Design", icon: GraduationCap },
+        { title: "Digital Marketing Content", icon: TrendingUp },
+        { title: "Video Production", icon: Video },
+        { title: "Brand Storytelling", icon: PenTool },
     ];
+
+    const heroWords1 = ["Ideas", "matter", "when"];
+    const heroWords2 = ["they", "move", "people."];
 
     return (
         <div className="bg-black text-white font-sans w-full overflow-hidden">
             <Navbar />
 
-            {/* ----------------------------- */}
-            {/* SECTION 1: HERO */}
-            {/* ----------------------------- */}
-            <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
-
-                {/* Advanced GLSL Hills Background */}
-                <div className="absolute inset-0 z-0">
+            {/* ============================= */}
+            {/* HERO — unchanged             */}
+            {/* ============================= */}
+            <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black">
+                <div className="absolute inset-0 z-0 pointer-events-none">
                     <GLSLHills speed={0.5} />
                 </div>
+                <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/70 via-black/50 to-black pointer-events-none" />
 
-                {/* Main Hero Content */}
-                <main className="relative z-10 flex flex-col items-center justify-center px-4 w-full h-full sm:px-6 lg:px-8 mt-20">
-                    <motion.div
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="visible"
-                        className="flex w-full max-w-3xl flex-col items-center text-center"
-                    >
-                        <motion.div variants={itemVariants} className="mb-6">
-                            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 backdrop-blur-md">
-                                <Sparkles className="h-4 w-4 text-[var(--color-brand-300)]" />
-                                <span className="text-xs font-medium uppercase tracking-widest text-[var(--color-brand-100)]">
-                                    Knowledge & Intelligence
-                                </span>
-                            </div>
-                        </motion.div>
-
-                        <motion.div className="mb-6 flex flex-col items-center gap-2">
-                            <motion.h1 variants={itemVariants} className="text-lg font-light tracking-wide text-zinc-400 sm:text-xl md:text-2xl">
-                                Strategic Content Generation.
-                            </motion.h1>
-
-                            <motion.h2
-                                variants={textAnimationContainer}
-                                initial="hidden"
-                                animate="visible"
-                                className="text-gradient-premium text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl md:leading-[1.15] flex flex-col items-center"
-                            >
-                                {headlineLines.map((line, lineIndex) => (
-                                    <span key={lineIndex} className="block overflow-hidden py-1">
-                                        {line.split(" ").map((word, wordIndex) => (
-                                            <span key={wordIndex} className="inline-block overflow-hidden">
-                                                <motion.span
-                                                    variants={textMaskItem}
-                                                    className="inline-block mr-[0.25em]"
-                                                >
-                                                    {word}
-                                                </motion.span>
-                                            </span>
-                                        ))}
-                                    </span>
-                                ))}
-                            </motion.h2>
-                        </motion.div>
+                <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 sm:px-10 w-full max-w-5xl mx-auto mt-20">
+                    <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="mb-10">
+                        <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 backdrop-blur-md">
+                            <Sparkles className="h-3.5 w-3.5 text-[var(--color-brand-300)]" />
+                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-brand-400)]">Knowledge & Intelligence</span>
+                        </div>
                     </motion.div>
-                </main>
-            </section>
 
-            {/* ----------------------------- */}
-            {/* SECTION 2: INTRO */}
-            {/* ----------------------------- */}
-            <section className="relative z-10 py-32 px-6 lg:px-10 bg-zinc-950 border-t border-white/5">
-                <div className="max-w-4xl mx-auto text-center">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={containerVariants}>
-                        <motion.p variants={itemVariants} className="text-3xl md:text-5xl font-light leading-snug text-white mb-8">
-                            Content is not produced here.<br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-brand-300)] to-white font-medium">It is engineered.</span>
-                        </motion.p>
-                        <motion.p variants={itemVariants} className="text-xl text-zinc-400 font-light leading-relaxed max-w-2xl mx-auto">
-                            To inform, influence, and sustain engagement.
-                        </motion.p>
-                    </motion.div>
+                    <motion.h1 variants={heroTitleContainer} initial="hidden" animate="visible" className="text-5xl sm:text-6xl md:text-7xl lg:text-[80px] font-bold tracking-tight text-white leading-[1.1] mb-10">
+                        <span className="flex flex-wrap justify-center gap-x-[0.25em] mb-2">
+                            {heroWords1.map((word, idx) => (
+                                <motion.span key={idx} variants={wordVariant} className="inline-block">{word}</motion.span>
+                            ))}
+                        </span>
+                        <span className="flex flex-wrap justify-center gap-x-[0.25em]">
+                            {heroWords2.map((word, idx) => (
+                                <motion.span key={idx} variants={wordVariant} className="inline-block">{word}</motion.span>
+                            ))}
+                        </span>
+                    </motion.h1>
+
+                    <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.6, ease: [0.16, 1, 0.3, 1] }} className="text-lg md:text-xl text-zinc-400 font-light max-w-xl leading-relaxed">
+                        Strategic content engineered to inform, influence, and sustain engagement.
+                    </motion.p>
                 </div>
-            </section>
 
-            {/* ----------------------------- */}
-            {/* SECTION 3: CONTENT SERVICES */}
-            {/* ----------------------------- */}
-            <section className="relative z-10 py-32 px-6 lg:px-10 bg-black">
-                <div className="max-w-7xl mx-auto">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={containerVariants} className="text-center mb-20">
-                        <motion.h2 variants={itemVariants} className="text-sm font-bold tracking-[0.25em] text-[var(--color-brand-500)] uppercase mb-4">
-                            Structural Solutions
-                        </motion.h2>
-                        <motion.h3 variants={itemVariants} className="text-4xl md:text-5xl font-medium text-white mb-6">
-                            Content Services
-                        </motion.h3>
-                    </motion.div>
-
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={containerVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {contentTypes.map((type, idx) => (
-                            <motion.div key={idx} variants={itemVariants} className="group relative w-full rounded-3xl bg-zinc-950 border border-white/5 p-10 hover:border-white/20 transition-all duration-300 flex gap-6 items-start">
-                                <div className="w-16 h-16 shrink-0 rounded-2xl bg-black border border-white/10 flex items-center justify-center group-hover:border-[var(--color-brand-500)]/50 transition-colors">
-                                    <type.icon className="text-zinc-500 group-hover:text-[var(--color-brand-300)] w-8 h-8 transition-colors" />
-                                </div>
-                                <div>
-                                    <h4 className="text-2xl font-light text-white mb-3">{type.title}</h4>
-                                    <p className="text-base text-zinc-400 font-light leading-relaxed">{type.desc}</p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* ----------------------------- */}
-            {/* SECTION 4: IMPACT */}
-            {/* ----------------------------- */}
-            <section className="relative z-10 py-32 px-6 lg:px-10 bg-zinc-950 border-t border-white/5">
-                <div className="max-w-5xl mx-auto text-center">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={containerVariants}>
-                        <motion.p variants={itemVariants} className="text-2xl md:text-4xl font-light leading-relaxed text-zinc-300">
-                            Clear communication strengthens decisions, accelerates adoption, and sustains transformation.
-                        </motion.p>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* ----------------------------- */}
-            {/* CTA */}
-            {/* ----------------------------- */}
-            <section className="relative z-10 py-32 bg-black border-t border-white/10 flex justify-center">
-                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={containerVariants}>
-                    <button className="flex items-center justify-center gap-3 rounded-full bg-white px-10 py-4 text-sm font-bold uppercase tracking-widest text-black transition-transform hover:scale-105">
-                        <span>Architect Your Content</span>
-                        <ArrowRight className="h-4 w-4" />
-                    </button>
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.2 }} className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
+                    <div className="h-10 w-px bg-gradient-to-b from-white/30 to-transparent animate-pulse" />
                 </motion.div>
             </section>
 
-            {/* Footer minimal spacer */}
-            <div className="h-24 bg-black w-full" />
+            {/* ============================= */}
+            {/* INTRO — 2-col split           */}
+            {/* ============================= */}
+            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+                <div className="max-w-5xl mx-auto">
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={containerVariants} className="grid md:grid-cols-2 gap-16 items-center">
+                        <motion.div variants={itemVariants}>
+                            <p className="text-4xl md:text-5xl font-light text-white leading-snug">Content is not produced here.</p>
+                        </motion.div>
+                        <motion.div variants={itemVariants} className="border-l border-white/10 pl-10">
+                            <p className="text-2xl md:text-3xl font-bold text-white leading-snug">
+                                It is engineered — to inform, influence, and sustain engagement.
+                            </p>
+                        </motion.div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* ============================= */}
+            {/* CONTENT SERVICES — numbered   */}
+            {/* ============================= */}
+            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+                <div className="max-w-6xl mx-auto">
+                    <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="flex items-end justify-between mb-16 flex-wrap gap-6">
+                        <div>
+                            <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">Structural Solutions</p>
+                            <h2 className="text-4xl md:text-5xl font-bold text-white">Content Services</h2>
+                        </div>
+                        <p className="text-zinc-500 text-sm font-light max-w-xs leading-relaxed">Six disciplines. One purpose — content that drives transformation.</p>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
+                        {contentTypes.map((type, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+                                whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                                viewport={{ once: true, margin: "-40px" }}
+                                transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                                className="group relative bg-zinc-950 border border-white/5 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-500)]/40 md:col-span-2"
+                            >
+                                {/* Glowing orb on hover */}
+                                <div className="absolute -top-24 -right-24 w-60 h-60 bg-gradient-to-br from-[var(--color-brand-400)] to-[var(--color-brand-800)] rounded-full blur-[80px] opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none" />
+
+                                <div className="relative z-10 mb-10 sm:mb-16">
+                                    <div className="w-14 h-14 rounded-2xl bg-black border border-white/10 group-hover:border-[var(--color-brand-500)]/50 flex items-center justify-center transition-colors duration-500 shadow-inner group-hover:-translate-y-1 transform ease-out duration-500">
+                                        <type.icon className="w-6 h-6 text-zinc-400 group-hover:text-[var(--color-brand-300)] transition-colors duration-500" />
+                                    </div>
+                                </div>
+                                <div className="relative z-10">
+                                    <h3 className="text-2xl font-bold text-white mb-3 tracking-wide">{type.title}</h3>
+                                </div>
+
+                                {/* Bottom gradient line on hover */}
+                                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--color-brand-500)] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center" />
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ============================= */}
+            {/* IMPACT STATEMENT              */}
+            {/* ============================= */}
+            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={containerVariants} className="max-w-4xl mx-auto">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.96, filter: "blur(8px)" }}
+                        whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                        className="border border-[var(--color-brand-800)]/40 bg-[var(--color-brand-900)]/10 rounded-2xl px-8 py-10"
+                    >
+                        <motion.div variants={itemVariants} className="w-10 h-px bg-[var(--color-brand-500)] mb-8" />
+                        <p className="text-2xl md:text-4xl text-zinc-200 font-light leading-relaxed">
+                            "Clear communication strengthens decisions, accelerates adoption, and sustains transformation."
+                        </p>
+                    </motion.div>
+                </motion.div>
+            </section>
+
+            {/* ============================= */}
+            {/* CTA                           */}
+            {/* ============================= */}
+            <section className="relative py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
+                <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">
+                    <span className="text-[clamp(5rem,18vw,14rem)] font-black text-[#222222] tracking-widest whitespace-nowrap leading-none">INFINIZY</span>
+                </div>
+                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants} className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl">
+                    <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">Architect Your Content</motion.h2>
+                    <motion.p variants={itemVariants} className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">Engineer communications that inform, influence, and sustain transformation.</motion.p>
+                    <motion.button variants={itemVariants} className="px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)]">
+                        Architect Your Content
+                    </motion.button>
+                </motion.div>
+            </section>
+
+            <Footer />
         </div>
     );
 }

@@ -1,55 +1,34 @@
 import { motion, type Variants } from 'framer-motion';
-import {
-    Sparkles,
-    UserPlus,
-    FileText,
-    FileCheck,
-    CheckCircle,
-    GraduationCap,
-    Briefcase,
-    TrendingUp,
-    ShieldCheck,
-    Maximize,
-    Layout,
-    ArrowRight
-} from 'lucide-react';
+import { ShieldCheck, Briefcase, GraduationCap, CheckCircle, FileCheck, FileText, UserPlus, TrendingUp, Maximize, Layout } from 'lucide-react';
 import Talent3D from './Talent3D';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 export default function Talent() {
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.1 } },
     };
-
     const itemVariants: Variants = {
         hidden: { opacity: 0, y: 30 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as any } },
     };
-
-    // Advanced Text Masking Animation exactly from Home page
-    const textAnimationContainer: Variants = {
-        hidden: {},
-        visible: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } }
+    const heroTitleContainer: Variants = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.3 } },
     };
-
-    const textMaskItem: Variants = {
-        hidden: { y: "120%" },
-        visible: { y: "0%", transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as any } }
+    const wordVariant: Variants = {
+        hidden: { opacity: 0, y: 20, filter: 'blur(4px)' },
+        visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as any } },
     };
-
-    const headlineLines = [
-        "Talent is not hired here.",
-        "It is aligned."
-    ];
 
     const services = [
-        { title: "Freshers to Leadership", icon: UserPlus, desc: "End-to-end recruitment across all organizational levels." },
-        { title: "Contract Staffing", icon: FileText, desc: "Flexible workforce solutions to meet dynamic demands." },
-        { title: "Contract-to-Hire", icon: FileCheck, desc: "Evaluate and transition talent seamlessly into permanent roles." },
-        { title: "Permanent Placements", icon: CheckCircle, desc: "Strategic hiring for long-term organizational fit." },
-        { title: "Hire-Train-Deploy", icon: GraduationCap, desc: "Customized capability building aligned to specific project needs." },
-        { title: "Project Deployments", icon: Briefcase, desc: "Targeted skill provisioning for critical initiatives." },
+        { title: "Freshers to Leadership Hiring", icon: UserPlus },
+        { title: "Contract Staffing", icon: FileText },
+        { title: "Contract-to-Hire", icon: FileCheck },
+        { title: "Permanent Placements", icon: CheckCircle },
+        { title: "Hire-Train-Deploy", icon: GraduationCap },
+        { title: "Project-Based Deployment", icon: Briefcase },
     ];
 
     const outcomes = [
@@ -63,146 +42,154 @@ export default function Talent() {
         <div className="bg-black text-white font-sans w-full overflow-hidden">
             <Navbar />
 
-            {/* ----------------------------- */}
-            {/* SECTION 1: HERO */}
-            {/* ----------------------------- */}
+            {/* ============================= */}
+            {/* HERO — unchanged             */}
+            {/* ============================= */}
             <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
-
-                {/* Advanced 2035 3D WebGL Background representing Workforce Architecture */}
                 <Talent3D />
-
-                {/* Main Hero Content */}
                 <main className="relative z-10 flex flex-col items-center justify-center px-4 w-full h-full sm:px-6 lg:px-8 mt-20">
-                    <motion.div variants={containerVariants} initial="hidden" animate="visible" className="flex w-full max-w-3xl flex-col items-center text-center">
-
-                        {/* Eyebrow Label */}
-                        <motion.div variants={itemVariants} className="mb-6">
-                            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 backdrop-blur-md">
-                                <Sparkles className="h-4 w-4 text-[var(--color-brand-300)]" />
-                                <span className="text-xs font-medium uppercase tracking-widest text-[var(--color-brand-100)]">
-                                    Talent & Workforce
-                                </span>
+                    <motion.div variants={containerVariants} initial="hidden" animate="visible" className="flex w-full max-w-4xl flex-col items-center text-center">
+                        <motion.div variants={itemVariants} className="mb-8">
+                            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 backdrop-blur-md">
+                                <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-400)] shadow-[0_0_8px_var(--color-brand-500)]" />
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-brand-400)]">Talent & Workforce</span>
                             </div>
                         </motion.div>
-
-                        {/* Main Hero Typography */}
-                        <motion.div className="mb-6 flex flex-col items-center gap-2">
-                            <motion.h1 variants={itemVariants} className="text-lg font-light tracking-wide text-zinc-400 sm:text-xl md:text-2xl">
-                                Workforce Architecture.
-                            </motion.h1>
-
-                            {/* Advanced Masked Sentence Reveal */}
-                            <motion.h2
-                                variants={textAnimationContainer}
-                                initial="hidden"
-                                animate="visible"
-                                className="text-gradient-premium text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl md:leading-[1.15] flex flex-col items-center"
-                            >
-                                {headlineLines.map((line, lineIndex) => (
-                                    <span key={lineIndex} className="block overflow-hidden py-1">
-                                        {line.split(" ").map((word, wordIndex) => (
-                                            <span key={wordIndex} className="inline-block overflow-hidden">
-                                                <motion.span variants={textMaskItem} className="inline-block mr-[0.25em]">
-                                                    {word}
-                                                </motion.span>
-                                            </span>
-                                        ))}
-                                    </span>
+                        <motion.h1 variants={heroTitleContainer} initial="hidden" animate="visible" className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-bold tracking-tight text-white leading-[1.15] text-center mb-6">
+                            <span className="block mb-2">
+                                {["Talent", "is", "not", "hired", "here."].map((word, idx) => (
+                                    <motion.span key={idx} variants={wordVariant} className="inline-block mr-[0.25em]">{word}</motion.span>
                                 ))}
-                            </motion.h2>
-                        </motion.div>
+                            </span>
+                            <span className="block">
+                                {["It", "is", "aligned."].map((word, idx) => (
+                                    <motion.span key={idx} variants={wordVariant} className="inline-block mr-[0.25em]">{word}</motion.span>
+                                ))}
+                            </span>
+                        </motion.h1>
                     </motion.div>
                 </main>
-            </section >
+            </section>
 
-            {/* ----------------------------- */}
-            {/* SECTION 2: INTRO */}
-            {/* ----------------------------- */}
-            <section className="relative z-10 py-32 px-6 lg:px-10 bg-zinc-950 border-t border-white/5">
-                <div className="max-w-4xl mx-auto text-center">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={containerVariants}>
-                        <motion.p variants={itemVariants} className="text-3xl md:text-5xl font-light leading-snug text-white mb-8">
-                            Organizations do not need more people.<br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-brand-300)] to-white font-medium">They need aligned capability.</span>
-                        </motion.p>
-                        <motion.p variants={itemVariants} className="text-xl text-zinc-400 font-light leading-relaxed max-w-2xl mx-auto">
-                            Workforce architecture is designed to position the right capability where it creates the greatest momentum.
-                        </motion.p>
+            {/* ============================= */}
+            {/* INTRO — 2-col split           */}
+            {/* ============================= */}
+            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+                <div className="max-w-5xl mx-auto">
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={containerVariants} className="grid md:grid-cols-2 gap-16 items-center">
+                        <motion.div variants={itemVariants}>
+                            <p className="text-4xl md:text-5xl font-light text-white leading-snug">
+                                Organizations do not need more people.
+                            </p>
+                        </motion.div>
+                        <motion.div variants={itemVariants} className="border-l border-white/10 pl-10">
+                            <p className="text-2xl md:text-3xl font-bold text-white leading-snug">
+                                They need aligned capability — positioned where it creates the greatest momentum.
+                            </p>
+                        </motion.div>
                     </motion.div>
                 </div>
             </section>
 
-            {/* ----------------------------- */}
-            {/* SECTION 3: TALENT SERVICES */}
-            {/* ----------------------------- */}
-            <section className="relative z-10 py-32 px-6 lg:px-10 bg-black">
-                <div className="max-w-7xl mx-auto">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={containerVariants} className="text-center mb-20">
-                        <motion.h2 variants={itemVariants} className="text-sm font-bold tracking-[0.25em] text-[var(--color-brand-500)] uppercase mb-4">
-                            Structural Solutions
-                        </motion.h2>
-                        <motion.h3 variants={itemVariants} className="text-4xl md:text-5xl font-medium text-white mb-6">
-                            Talent Services
-                        </motion.h3>
+            {/* ============================= */}
+            {/* TALENT SERVICES — numbered    */}
+            {/* ============================= */}
+            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+                <div className="max-w-6xl mx-auto">
+                    <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="flex items-end justify-between mb-16 flex-wrap gap-6">
+                        <div>
+                            <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">Structural Solutions</p>
+                            <h2 className="text-4xl md:text-5xl font-bold text-white">Talent Services</h2>
+                        </div>
+                        <p className="text-zinc-500 text-sm font-light max-w-xs leading-relaxed">Six structured pathways. One objective — aligned capability.</p>
                     </motion.div>
 
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={containerVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
                         {services.map((service, idx) => (
-                            <motion.div key={idx} variants={itemVariants} className="group relative w-full rounded-3xl bg-zinc-950 border border-white/5 p-10 hover:border-white/20 transition-all duration-300">
-                                <div className="relative z-10">
-                                    <div className="w-14 h-14 rounded-2xl bg-black border border-white/10 flex items-center justify-center mb-8 group-hover:border-[var(--color-brand-500)]/50 transition-colors">
-                                        <service.icon className="text-zinc-500 group-hover:text-[var(--color-brand-300)] w-6 h-6 transition-colors" />
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+                                whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                                viewport={{ once: true, margin: "-40px" }}
+                                transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                                className={`group relative bg-zinc-950 border border-white/5 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-500)]/40 ${idx < 2 ? 'md:col-span-3' : 'md:col-span-2'
+                                    }`}
+                            >
+                                {/* Glowing orb on hover */}
+                                <div className="absolute -top-24 -right-24 w-60 h-60 bg-gradient-to-br from-[var(--color-brand-400)] to-[var(--color-brand-800)] rounded-full blur-[80px] opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none" />
+
+                                <div className="relative z-10 mb-10 sm:mb-16">
+                                    <div className="w-14 h-14 rounded-2xl bg-black border border-white/10 group-hover:border-[var(--color-brand-500)]/50 flex items-center justify-center transition-colors duration-500 shadow-inner group-hover:-translate-y-1 transform ease-out duration-500">
+                                        <service.icon className="w-6 h-6 text-zinc-400 group-hover:text-[var(--color-brand-300)] transition-colors duration-500" />
                                     </div>
-                                    <h4 className="text-2xl font-light text-white mb-4">{service.title}</h4>
-                                    <p className="text-base text-zinc-400 font-light leading-relaxed">{service.desc}</p>
                                 </div>
+                                <div className="relative z-10">
+                                    <h3 className="text-2xl font-bold text-white mb-3 tracking-wide">{service.title}</h3>
+                                </div>
+
+                                {/* Bottom gradient line on hover */}
+                                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--color-brand-500)] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center" />
                             </motion.div>
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
-            {/* ----------------------------- */}
-            {/* SECTION 4: OUTCOMES */}
-            {/* ----------------------------- */}
-            <section className="relative z-10 py-32 px-6 lg:px-10 bg-zinc-950 border-t border-white/5">
-                <div className="max-w-6xl mx-auto text-center">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={containerVariants} className="mb-16">
-                        <motion.h2 variants={itemVariants} className="text-sm font-bold tracking-[0.25em] text-zinc-500 uppercase mb-4">
-                            The Result
-                        </motion.h2>
-                        <motion.h3 variants={itemVariants} className="text-4xl md:text-5xl font-medium text-white">
-                            Transformation Outcomes
-                        </motion.h3>
+            {/* ============================= */}
+            {/* OUTCOMES — 2×2 animated tiles */}
+            {/* ============================= */}
+            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+                <div className="max-w-6xl mx-auto">
+                    <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="mb-16">
+                        <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">The Result</p>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white">Outcomes</h2>
                     </motion.div>
 
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={containerVariants} className="flex flex-wrap justify-center gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {outcomes.map((outcome, idx) => (
-                            <motion.div key={idx} variants={itemVariants} className="flex items-center gap-4 bg-black border border-white/10 rounded-full px-8 py-5 hover:border-white/30 transition-colors">
-                                <div className="w-10 h-10 rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center">
-                                    <outcome.icon className="text-zinc-400 w-4 h-4" />
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, scale: 0.9, filter: "blur(12px)" }}
+                                whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                                viewport={{ once: true, margin: "-40px" }}
+                                transition={{ duration: 0.7, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                                whileHover={{ scale: 1.02 }}
+                                className="group relative bg-zinc-950 border border-white/5 rounded-3xl p-10 flex flex-col gap-6 overflow-hidden cursor-default min-h-[180px] hover:border-[var(--color-brand-800)] transition-colors duration-500"
+                            >
+                                <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[var(--color-brand-900)]/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                                <div className="flex items-center justify-between">
+                                    <div className="w-12 h-12 rounded-2xl bg-black border border-[var(--color-brand-900)]/60 flex items-center justify-center group-hover:border-[var(--color-brand-600)] transition-colors duration-500">
+                                        <outcome.icon className="w-5 h-5 text-zinc-600 group-hover:text-[var(--color-brand-400)] transition-colors duration-300" />
+                                    </div>
+                                    <span className="text-5xl font-black text-white/[0.04] group-hover:text-white/[0.08] transition-colors duration-500 leading-none">
+                                        {String(idx + 1).padStart(2, "0")}
+                                    </span>
                                 </div>
-                                <span className="text-lg font-light text-zinc-200">{outcome.title}</span>
+                                <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">{outcome.title}</h3>
+                                <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.9, delay: 0.4 + idx * 0.12, ease: [0.16, 1, 0.3, 1] }} style={{ originX: 0 }} className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--color-brand-900)] via-[var(--color-brand-600)] to-transparent" />
                             </motion.div>
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
-            {/* ----------------------------- */}
-            {/* CTA */}
-            {/* ----------------------------- */}
-            <section className="relative z-10 py-32 bg-black border-t border-white/10 flex justify-center">
-                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={containerVariants}>
-                    <button className="flex items-center justify-center gap-3 rounded-full bg-white px-10 py-4 text-sm font-bold uppercase tracking-widest text-black transition-transform hover:scale-105">
-                        <span>Align Your Workforce</span>
-                        <ArrowRight className="h-4 w-4" />
-                    </button>
+            {/* ============================= */}
+            {/* CTA                           */}
+            {/* ============================= */}
+            <section className="relative py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
+                <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">
+                    <span className="text-[clamp(5rem,18vw,14rem)] font-black text-[#222222] tracking-widest whitespace-nowrap leading-none">INFINIZY</span>
+                </div>
+                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants} className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl">
+                    <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">Align Your Workforce</motion.h2>
+                    <motion.p variants={itemVariants} className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">Position the right capability where it creates the greatest momentum.</motion.p>
+                    <motion.button variants={itemVariants} className="px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)]">
+                        Align Your Workforce
+                    </motion.button>
                 </motion.div>
             </section>
 
-            {/* Footer minimal spacer */}
-            <div className="h-24 bg-black w-full" />
-        </div >
+            <Footer />
+        </div>
     );
 }

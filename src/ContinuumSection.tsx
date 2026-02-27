@@ -84,7 +84,7 @@ export default function ContinuumSection() {
                         </p>
                     </div>
 
-                    <p className="text-zinc-500 max-w-lg leading-relaxed text-sm sm:text-base">
+                    <p className="text-zinc-500 max-w-lg leading-relaxed text-sm sm:text-base mt-2">
                         {content.footer}
                     </p>
                 </div>

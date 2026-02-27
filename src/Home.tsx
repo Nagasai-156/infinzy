@@ -1,4 +1,5 @@
-import { motion, type Variants } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import DarkVeil from './DarkVeil';
 import Navbar from './Navbar';
@@ -9,8 +10,17 @@ import PathwaysConcepts from './PathwaysConcepts';
 import PrismSection from './PrismSection';
 import MovesConcepts from './MovesConcepts';
 import InvitationSection from './InvitationSection';
+import Footer from './Footer';
+
 
 export default function Home() {
+  const [welcomeVisible, setWelcomeVisible] = useState(true);
+
+  useEffect(() => {
+    // Let words stagger in (~1.5s), hold, then fade out at 3.2s
+    const timer = setTimeout(() => setWelcomeVisible(false), 3200);
+    return () => clearTimeout(timer);
+  }, []);
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -34,29 +44,6 @@ export default function Home() {
     },
   };
 
-  // Advanced Text Masking Animation
-  const textAnimationContainer: Variants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.05, // Much faster staggering between words
-        delayChildren: 0.1,    // Starts immediately alongside everything else
-      }
-    }
-  };
-
-  const textMaskItem: Variants = {
-    hidden: { y: "120%" },
-    visible: {
-      y: "0%",
-      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as any }
-    }
-  };
-
-  const headlineLines = [
-    "You are entering the",
-    "Infinizy Continuum."
-  ];
 
   return (
     <div className="bg-black text-white font-sans w-full overflow-hidden">
@@ -101,62 +88,98 @@ export default function Home() {
             </motion.div>
 
             {/* Main Hero Typography */}
-            <motion.div className="mb-6 flex flex-col items-center gap-2">
-              <motion.h1 variants={itemVariants} className="text-lg font-light tracking-wide text-zinc-400 sm:text-xl md:text-2xl">
-                You are not visiting a company.
-              </motion.h1>
-
-              {/* Advanced Masked Sentence Reveal */}
-              <motion.h2
-                variants={textAnimationContainer}
-                initial="hidden"
-                animate="visible"
-                className="text-gradient-premium text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl md:leading-[1.15] flex flex-col items-center"
-              >
-                {headlineLines.map((line, lineIndex) => (
-                  <span key={lineIndex} className="block overflow-hidden py-1">
-                    {line.split(" ").map((word, wordIndex) => (
-                      <span key={wordIndex} className="inline-block overflow-hidden">
-                        <motion.span
-                          variants={textMaskItem}
-                          className="inline-block mr-[0.25em]"
-                        >
-                          {word}
-                        </motion.span>
-                      </span>
+            <motion.div
+              className="mb-8 mt-4 flex flex-col items-center gap-4"
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: { staggerChildren: 0.08, delayChildren: 0.2 }
+                }
+              }}
+              initial="hidden"
+              animate="visible"
+            >
+              <AnimatePresence>
+                {welcomeVisible && (
+                  <motion.div
+                    className="flex flex-wrap justify-center text-lg font-light tracking-wide text-zinc-400 sm:text-xl md:text-2xl"
+                    exit={{ opacity: 0, y: -12, transition: { duration: 0.7, ease: 'easeInOut' } }}
+                  >
+                    {"Welcome. You are not visiting a company.".split(" ").map((word, i) => (
+                      <motion.span
+                        key={`h1-${i}`}
+                        className="inline-block mr-[0.25em]"
+                        initial={{ opacity: 0, y: 16, filter: 'blur(4px)' }}
+                        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.3 + i * 0.1 }}
+                      >
+                        {word}
+                      </motion.span>
                     ))}
-                  </span>
-                ))}
-              </motion.h2>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
+              <div className="flex flex-wrap justify-center text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl md:leading-[1.15] text-center">
+                {[
+                  { word: "You", highlight: false },
+                  { word: "are", highlight: false },
+                  { word: "entering", highlight: false },
+                  { word: "the", highlight: false },
+                  { word: "INFINIZY", highlight: true },
+                  { word: "CONTINUUM.", highlight: true },
+                ].map(({ word, highlight }, i) => (
+                  <motion.span
+                    key={`h2-${i}`}
+                    className={`inline-block pb-2 mr-[0.25em] ${highlight
+                      ? 'text-white text-5xl sm:text-6xl md:text-7xl font-bold tracking-widest'
+                      : 'text-white'}`}
+                    initial={{ opacity: 0, y: 24, filter: 'blur(6px)' }}
+                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    transition={{
+                      duration: 0.7,
+                      ease: [0.16, 1, 0.3, 1],
+                      delay: 4.0 + i * 0.18,
+                    }}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </div>
             </motion.div>
 
             {/* Description Paragraph */}
             <motion.p
-              variants={itemVariants}
-              className="mb-10 max-w-xl text-base font-light leading-relaxed text-zinc-400 sm:text-lg"
+              initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 5.7 }}
+              className="mb-10 max-w-xl text-center text-base font-light leading-relaxed text-zinc-400 sm:text-lg"
             >
-              A living space where capability expands, talent aligns, ideas take form, and <span className="text-zinc-200 font-normal">transformation becomes measurable.</span>
+              A living space where capability expands, talent aligns, ideas take form, and transformation becomes measurable.
             </motion.p>
 
             {/* Call to Action Buttons */}
             <motion.div
-              variants={itemVariants}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 6.1 }}
               className="flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row"
             >
-              <button className="flex w-full items-center justify-center gap-2 rounded-full bg-white px-8 py-3.5 font-medium text-black transition-transform hover:scale-105 sm:w-auto">
+              <button className="flex w-full items-center justify-center gap-2 rounded-full bg-white px-8 py-3.5 font-medium text-[#34002b] transition-transform hover:scale-105 sm:w-auto">
                 <span>Enter the Continuum</span>
                 <ArrowRight className="h-4 w-4" />
               </button>
 
-              <button className="flex w-full items-center justify-center rounded-full border border-white/20 bg-black/20 px-8 py-3.5 font-medium text-white transition-colors hover:bg-white/10 backdrop-blur-md sm:w-auto">
+              <button className="flex w-full items-center justify-center rounded-full bg-[#34002b] px-8 py-3.5 font-medium text-white transition-transform hover:scale-105 sm:w-auto">
                 Begin Your Transformation
               </button>
             </motion.div>
 
             {/* Footer - Founder */}
             <motion.div
-              variants={itemVariants}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 6.5 }}
               className="mt-20 flex flex-col items-center gap-4"
             >
               <div className="h-px w-12 bg-white/20" />
@@ -215,7 +238,7 @@ export default function Home() {
       {/* ----------------------------- */}
       <InvitationSection />
 
-
+      <Footer />
     </div>
   );
 }

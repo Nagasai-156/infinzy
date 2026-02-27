@@ -10,23 +10,27 @@ import Approach from './Approach';
 import CustomSolutions from './CustomSolutions';
 import Clients from './Clients';
 import Contact from './Contact';
+import SplashCursor from './components/SplashCursor';
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/skills" element={<Skills />} />
-        <Route path="/talent" element={<Talent />} />
-        <Route path="/content" element={<Content />} />
-        <Route path="/corporate-experiences" element={<CorporateExperiences />} />
-        <Route path="/approach" element={<Approach />} />
-        <Route path="/custom-solutions" element={<CustomSolutions />} />
-        <Route path="/clients" element={<Clients />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <SplashCursor />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/talent" element={<Talent />} />
+          <Route path="/content" element={<Content />} />
+          <Route path="/corporate-experiences" element={<CorporateExperiences />} />
+          <Route path="/approach" element={<Approach />} />
+          <Route path="/custom-solutions" element={<CustomSolutions />} />
+          <Route path="/clients" element={<Clients />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
