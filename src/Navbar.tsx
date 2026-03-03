@@ -55,19 +55,14 @@ export default function Navbar() {
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="fixed top-0 left-0 right-0 z-50 flex h-20 items-center justify-between px-6 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-md border-b border-white/5 lg:hidden"
             >
-                {/* Logo */}
-                <div className="flex items-center gap-2">
-                    <Link to="/" className="flex items-center gap-3 group">
+                {/* Logo - Top Left on all screens */}
+                <div className="fixed top-6 left-6 z-[101]">
+                    <Link to="/" className="group block">
                         <img
-                            src="/logo.jpg"
+                            src="/logo-full.png"
                             alt="Infinizy Logo"
-                            width={36}
-                            height={36}
-                            className="shrink-0 invert brightness-200 drop-shadow-[0_0_6px_rgba(255,255,255,0.5)]"
+                            className="h-10 w-auto brightness-200 drop-shadow-[0_0_10px_rgba(255,255,255,0.4)] transition-transform group-hover:scale-105"
                         />
-                        <span className="text-lg font-bold tracking-widest text-[var(--color-brand-500)] uppercase group-hover:text-[#FFD700] transition-colors">
-                            Infinizy
-                        </span>
                     </Link>
                 </div>
 
@@ -94,11 +89,11 @@ export default function Navbar() {
                         className="mb-8"
                     >
                         <img
-                            src="/logo.jpg"
+                            src="/logo-sq.png"
                             alt="Infinizy Logo"
                             width={120}
                             height={120}
-                            className="invert brightness-200 drop-shadow-[0_0_20px_rgba(255,215,0,0.5)]"
+                            className="brightness-200 drop-shadow-[0_0_20px_rgba(255,215,0,0.5)]"
                         />
                     </motion.div>
 

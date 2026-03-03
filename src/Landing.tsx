@@ -161,6 +161,14 @@ export default function Landing() {
 
     return (
         <div className="w-full h-screen bg-[#0a0a0a] relative overflow-hidden font-sans">
+            {/* Logo - Top Left */}
+            <div className="fixed top-6 left-6 z-[101]">
+                <img
+                    src="/logo-full.png"
+                    alt="Infinizy Logo"
+                    className="h-10 w-auto brightness-200 drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]"
+                />
+            </div>
 
             {/* Removed Mute Sound and FAQ based on user request */}
 
