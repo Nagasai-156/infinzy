@@ -40,21 +40,13 @@ const Footer = () => {
                     {/* Logo & Statement Column */}
                     <div className="lg:col-span-1">
                         <Link to="/" className="flex items-center gap-3 mb-8 group cursor-pointer">
-                            <svg width="40" height="40" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0 transition-transform duration-500 group-hover:rotate-12">
-                                <defs>
-                                    <clipPath id="footerGlobeClip">
-                                        <circle cx="100" cy="100" r="88" />
-                                    </clipPath>
-                                </defs>
-                                <g clipPath="url(#footerGlobeClip)">
-                                    <path d="M 10 30 C 40 20, 80 50, 70 100 C 60 150, 20 160, 10 190" stroke="var(--color-brand-500)" strokeWidth="28" fill="none" strokeLinecap="round" />
-                                    <path d="M 70 5 C 120 0, 160 30, 155 80 C 150 120, 110 140, 90 155" stroke="var(--color-brand-500)" strokeWidth="28" fill="none" strokeLinecap="round" />
-                                    <path d="M 120 80 C 150 90, 185 130, 175 175" stroke="var(--color-brand-500)" strokeWidth="28" fill="none" strokeLinecap="round" />
-                                    <path d="M 40 140 C 70 170, 120 185, 160 195" stroke="white" strokeWidth="22" fill="none" strokeLinecap="round" />
-                                </g>
-                                <circle cx="100" cy="100" r="88" stroke="var(--color-brand-500)" strokeWidth="8" fill="none" />
-                                <ellipse cx="100" cy="105" rx="130" ry="28" stroke="white" strokeWidth="7" fill="none" transform="rotate(-20 100 105)" />
-                            </svg>
+                            <img
+                                src="/logo.png"
+                                alt="Infinizy Logo"
+                                width={40}
+                                height={40}
+                                className="shrink-0 invert brightness-200 transition-transform duration-500 group-hover:rotate-12 drop-shadow-[0_0_8px_var(--color-brand-500)]"
+                            />
                             <span className="text-2xl font-black tracking-tighter text-white uppercase italic">Infinizy.</span>
                         </Link>
                         <p className="text-zinc-400 font-light leading-relaxed mb-8 max-w-sm">

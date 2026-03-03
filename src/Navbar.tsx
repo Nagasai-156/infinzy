@@ -53,21 +53,13 @@ export default function Navbar() {
                 {/* Logo */}
                 <div className="flex items-center gap-2">
                     <Link to="/" className="flex items-center gap-3 group">
-                        <svg width="36" height="36" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
-                            <defs>
-                                <clipPath id="globeClip">
-                                    <circle cx="100" cy="100" r="88" />
-                                </clipPath>
-                            </defs>
-                            <g clipPath="url(#globeClip)">
-                                <path d="M 10 30 C 40 20, 80 50, 70 100 C 60 150, 20 160, 10 190" stroke="white" strokeWidth="28" fill="none" strokeLinecap="round" />
-                                <path d="M 70 5 C 120 0, 160 30, 155 80 C 150 120, 110 140, 90 155" stroke="white" strokeWidth="28" fill="none" strokeLinecap="round" />
-                                <path d="M 120 80 C 150 90, 185 130, 175 175" stroke="white" strokeWidth="28" fill="none" strokeLinecap="round" />
-                                <path d="M 40 140 C 70 170, 120 185, 160 195" stroke="white" strokeWidth="22" fill="none" strokeLinecap="round" />
-                            </g>
-                            <circle cx="100" cy="100" r="88" stroke="white" strokeWidth="8" fill="none" />
-                            <ellipse cx="100" cy="105" rx="130" ry="28" stroke="white" strokeWidth="7" fill="none" transform="rotate(-20 100 105)" />
-                        </svg>
+                        <img
+                            src="/logo.png"
+                            alt="Infinizy Logo"
+                            width={36}
+                            height={36}
+                            className="shrink-0 invert brightness-200 drop-shadow-[0_0_6px_rgba(255,255,255,0.5)]"
+                        />
                         <span className="text-lg font-bold tracking-widest text-[var(--color-brand-500)] uppercase group-hover:text-[#FFD700] transition-colors">
                             Infinizy
                         </span>
@@ -117,21 +109,13 @@ export default function Navbar() {
                         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                         className="mb-8"
                     >
-                        <svg width="120" height="120" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <clipPath id="globeClipMenu">
-                                    <circle cx="100" cy="100" r="88" />
-                                </clipPath>
-                            </defs>
-                            <g clipPath="url(#globeClipMenu)">
-                                <path d="M 10 30 C 40 20, 80 50, 70 100 C 60 150, 20 160, 10 190" stroke="#FFD700" strokeWidth="28" fill="none" strokeLinecap="round" />
-                                <path d="M 70 5 C 120 0, 160 30, 155 80 C 150 120, 110 140, 90 155" stroke="#FFD700" strokeWidth="28" fill="none" strokeLinecap="round" />
-                                <path d="M 120 80 C 150 90, 185 130, 175 175" stroke="#FFD700" strokeWidth="28" fill="none" strokeLinecap="round" />
-                                <path d="M 40 140 C 70 170, 120 185, 160 195" stroke="#FFD700" strokeWidth="22" fill="none" strokeLinecap="round" />
-                            </g>
-                            <circle cx="100" cy="100" r="88" stroke="#FFD700" strokeWidth="6" fill="none" />
-                            <ellipse cx="100" cy="105" rx="130" ry="28" stroke="white" strokeWidth="6" fill="none" transform="rotate(-20 100 105)" />
-                        </svg>
+                        <img
+                            src="/logo.png"
+                            alt="Infinizy Logo"
+                            width={120}
+                            height={120}
+                            className="invert brightness-200 drop-shadow-[0_0_20px_rgba(255,215,0,0.5)] transition-transform duration-500"
+                        />
                     </motion.div>
 
                     {navItems.map((item, index) => (
