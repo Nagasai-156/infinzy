@@ -47,7 +47,7 @@ export default function Home() {
     <div className="bg-black text-white font-sans w-full overflow-hidden">
 
       {/* Navbar Component */}
-      
+
 
       {/* ----------------------------- */}
       {/* SECTION 1: HERO */}
@@ -124,12 +124,13 @@ export default function Home() {
                   { word: "are", highlight: false },
                   { word: "entering", highlight: false },
                   { word: "the", highlight: false },
-                  { word: "INFINIZY CONTINUUM", highlight: true },
+                  { word: "INFINIZY", highlight: true },
+                  { word: "CONTINUUM", highlight: true },
                 ].map(({ word, highlight }, i) => (
                   <motion.span
                     key={`h2-${i}`}
                     className={`inline-block pb-2 ${highlight
-                      ? 'text-5xl sm:text-6xl md:text-7xl font-bold tracking-widest whitespace-nowrap'
+                      ? 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-widest' // Removed whitespace-nowrap, adjusted sizing
                       : 'text-2xl sm:text-3xl md:text-4xl font-light text-zinc-300'}`}
                     initial={
                       highlight
@@ -138,7 +139,7 @@ export default function Home() {
                     }
                     animate={
                       highlight
-                        ? { opacity: 1, scale: [1.5, 0.8, 1], color: ['#FFD700', '#FFD700', '#ffffff'], filter: 'blur(0px)' }
+                        ? { opacity: 1, scale: [1.2, 0.9, 1], color: ['#FFD700', '#FFD700', '#ffffff'], filter: 'blur(0px)' }
                         : { opacity: 1, y: 0, filter: 'blur(0px)' }
                     }
                     transition={{
