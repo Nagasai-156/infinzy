@@ -2,8 +2,10 @@ import { motion, type Variants } from 'framer-motion';
 import { ShieldCheck, Briefcase, GraduationCap, CheckCircle, FileCheck, FileText, UserPlus, TrendingUp, Maximize, Layout } from 'lucide-react';
 import Talent3D from './Talent3D';
 import Footer from './Footer';
+import { usePageMeta } from './lib/usePageMeta';
 
 export default function Talent() {
+    usePageMeta('Talent', 'Discover how Infinizy aligns exceptional talent with organisational transformation goals.');
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.1 } },
@@ -39,7 +41,7 @@ export default function Talent() {
 
     return (
         <div className="bg-black text-white font-sans w-full overflow-hidden">
-            
+
 
             {/* ============================= */}
             {/* HERO — unchanged             */}

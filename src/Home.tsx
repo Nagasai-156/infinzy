@@ -9,9 +9,11 @@ import PathwaysConcepts from './PathwaysConcepts';
 import MovesConcepts from './MovesConcepts';
 import InvitationSection from './InvitationSection';
 import Footer from './Footer';
+import { usePageMeta } from './lib/usePageMeta';
 
 
 export default function Home() {
+  usePageMeta('Home', 'You are entering the Infinizy Continuum — a living space where capability expands, talent aligns, ideas take form, and transformation becomes measurable.');
   const [welcomeVisible, setWelcomeVisible] = useState(true);
 
   useEffect(() => {

@@ -4,9 +4,11 @@ import CorporateExperiences3D from './CorporateExperiences3D';
 import { Typewriter } from './components/ui/typewriter';
 import { StretchHoverText } from './components/ui/stretch-hover-text';
 import Footer from './Footer';
+import { usePageMeta } from './lib/usePageMeta';
 
 
 export default function CorporateExperiences() {
+    usePageMeta('Corporate Experiences', 'Infinizy designs immersive corporate learning experiences that sustain measurable transformation.');
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.1 } },
@@ -34,7 +36,7 @@ export default function CorporateExperiences() {
 
     return (
         <div className="bg-black text-white font-sans w-full overflow-hidden">
-            
+
 
             {/* ----------------------------- */}
             {/* SECTION 1: HERO (Adapted from provided reference design) */}

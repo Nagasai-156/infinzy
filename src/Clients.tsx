@@ -5,8 +5,10 @@ import { Case } from './components/ui/cases-with-infinite-scroll';
 import { Typewriter } from './components/ui/typewriter';
 import { StaggerTestimonials } from './components/ui/stagger-testimonials';
 import Footer from './Footer';
+import { usePageMeta } from './lib/usePageMeta';
 
 export default function Clients() {
+    usePageMeta('Clients', 'Explore how businesses worldwide have transformed through Infinizy partnerships.');
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
@@ -25,7 +27,7 @@ export default function Clients() {
 
     return (
         <div className="bg-black text-white font-sans w-full overflow-hidden">
-            
+
 
             {/* ============================= */}
             {/* HERO — unchanged             */}

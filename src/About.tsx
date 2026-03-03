@@ -4,8 +4,10 @@ import About3D from './About3D';
 import { Typewriter } from './components/ui/typewriter';
 import { ScrambleText } from './components/ui/scramble-text';
 import Footer from './Footer';
+import { usePageMeta } from './lib/usePageMeta';
 
 export default function About() {
+    usePageMeta('About', 'Learn about Infinizy — our mission, vision, and the people driving transformation.');
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
@@ -25,7 +27,7 @@ export default function About() {
 
     return (
         <div className="bg-black text-white font-sans w-full overflow-hidden">
-            
+
 
             {/* ============================= */}
             {/* HERO — unchanged             */}

@@ -5,8 +5,10 @@ import Approach3D from './Approach3D';
 import { Typewriter } from './components/ui/typewriter';
 import PrismSection from './PrismSection';
 import Footer from './Footer';
+import { usePageMeta } from './lib/usePageMeta';
 
 export default function Approach() {
+    usePageMeta('Our Approach', 'The Infinizy approach: a deliberate architecture of growth, insight, and lasting capability.');
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
@@ -30,7 +32,7 @@ export default function Approach() {
 
     return (
         <div className="bg-black text-white font-sans w-full overflow-hidden">
-            
+
 
             {/* ============================= */}
             {/* HERO — unchanged             */}

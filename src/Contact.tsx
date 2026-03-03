@@ -2,8 +2,10 @@ import { motion, type Variants, AnimatePresence } from 'framer-motion';
 import { Mail, MapPin, Phone, ArrowRight, User, Building, ChevronLeft } from 'lucide-react';
 import { useState } from 'react';
 import Footer from './Footer';
+import { usePageMeta } from './lib/usePageMeta';
 
 export default function Contact() {
+    usePageMeta('Contact', 'Ready to begin your transformation? Connect with Infinizy today.');
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
@@ -55,7 +57,7 @@ export default function Contact() {
 
     return (
         <div className="bg-[#0a0005] text-white font-sans w-full min-h-screen overflow-x-hidden selection:bg-[var(--color-brand-500)] selection:text-white relative">
-            
+
 
             {/* HERO SECTION */}
             <section className="relative min-h-[60vh] lg:min-h-[70vh] flex flex-col items-center justify-center pt-32 pb-20 px-6 text-center z-10 overflow-hidden">

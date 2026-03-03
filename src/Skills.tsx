@@ -16,22 +16,7 @@ const drawVariants: any = {
         }
     }
 };
-const drawFillVariants: any = {
-    hidden: { pathLength: 0, opacity: 0, fillOpacity: 0 },
-    visible: {
-        pathLength: 1,
-        opacity: 0.1,
-        fillOpacity: 0.05,
-        transition: {
-            pathLength: { duration: 2, ease: "easeInOut" },
-            opacity: { duration: 0.2 },
-            fillOpacity: { duration: 1, delay: 1.5 }
-        }
-    }
-};
 
-// @ts-ignore
-console.log(drawFillVariants);
 
 const dotVariants: any = {
     hidden: { scale: 0, opacity: 0 },
@@ -124,8 +109,10 @@ const AdultFrogIcon = (props: any) => (
 import { Boxes } from './components/ui/background-boxes';
 import { CinematicText } from './components/ui/cinematic-text';
 import Footer from './Footer';
+import { usePageMeta } from './lib/usePageMeta';
 
 export default function Skills() {
+    usePageMeta('Skills', 'Explore the skill frameworks and learning architectures Infinizy brings to the table.');
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
@@ -185,7 +172,7 @@ export default function Skills() {
 
     return (
         <div className="bg-black text-white font-sans w-full overflow-hidden">
-            
+
 
             {/* ============================= */}
             {/* HERO — unchanged             */}

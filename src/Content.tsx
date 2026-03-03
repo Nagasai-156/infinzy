@@ -4,8 +4,10 @@ import { GalaxyBackground } from './components/ui/galaxy-background';
 import { ContentTree } from './components/ui/content-tree';
 import { Typewriter } from './components/ui/typewriter';
 import Footer from './Footer';
+import { usePageMeta } from './lib/usePageMeta';
 
 export default function Content() {
+    usePageMeta('Content', 'Strategic content solutions — from business documentation to brand storytelling — by Infinizy.');
 
     const containerVariants: Variants = {
         hidden: { opacity: 0 },

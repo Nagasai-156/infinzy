@@ -4,8 +4,10 @@ import { useRef } from 'react';
 import Aurora from './components/ui/aurora';
 import { Typewriter } from './components/ui/typewriter';
 import Footer from './Footer';
+import { usePageMeta } from './lib/usePageMeta';
 
 export default function CustomSolutions() {
+    usePageMeta('Custom Solutions', 'Bespoke solutions crafted to your unique transformation journey by Infinizy.');
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
@@ -29,7 +31,7 @@ export default function CustomSolutions() {
 
     return (
         <div className="bg-black text-white font-sans w-full overflow-hidden">
-            
+
 
             {/* ============================= */}
             {/* HERO — unchanged             */}
