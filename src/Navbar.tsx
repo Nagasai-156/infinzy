@@ -35,8 +35,13 @@ export default function Navbar() {
         return `/${item.toLowerCase().replace(/\s+/g, '-')}`;
     };
 
-    // If it's NOT mobile AND we aren't on the landing page ("/")
-    if (!isMobile && location.pathname !== "/") {
+    // Always hide on the landing page (for all screen sizes)
+    if (location.pathname === '/') {
+        return null;
+    }
+
+    // On desktop (non-mobile), also hide since the ReturnGlobe handles navigation
+    if (!isMobile) {
         return null;
     }
 
@@ -81,9 +86,9 @@ export default function Navbar() {
 
                 {/* Desktop CTA */}
                 <div className="hidden lg:block">
-                    <button className="rounded-full bg-[#34002b] px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-white transition-transform hover:scale-105">
+                    <Link to="/contact" className="inline-flex rounded-full bg-[#34002b] px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-white transition-transform hover:scale-105">
                         Enter the Continuum
-                    </button>
+                    </Link>
                 </div>
 
                 {/* Mobile/Tablet Menu Toggle */}
@@ -135,15 +140,20 @@ export default function Navbar() {
                         </motion.div>
                     ))}
 
-                    <motion.button
+                    <motion.div
                         initial={{ y: 20, opacity: 0 }}
                         animate={isOpen ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
                         transition={{ delay: isOpen ? navItems.length * 0.05 : 0 }}
-                        className="mt-8 rounded-full bg-[#34002b] px-8 py-4 text-sm font-bold uppercase tracking-widest text-white"
-                        onClick={() => setIsOpen(false)}
+                        className="mt-8"
                     >
-                        Enter the Continuum
-                    </motion.button>
+                        <Link
+                            to="/contact"
+                            className="inline-flex rounded-full bg-[#34002b] px-8 py-4 text-sm font-bold uppercase tracking-widest text-white"
+                            onClick={() => setIsOpen(false)}
+                        >
+                            Enter the Continuum
+                        </Link>
+                    </motion.div>
                 </div>
             </motion.div>
         </AnimatePresence>

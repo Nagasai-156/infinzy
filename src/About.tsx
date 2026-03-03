@@ -1,4 +1,5 @@
 import { motion, type Variants } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Code, Target, Zap, ShieldCheck, Heart, RefreshCw, Quote } from 'lucide-react';
 import About3D from './About3D';
 import { Typewriter } from './components/ui/typewriter';
@@ -367,9 +368,11 @@ export default function About() {
                 <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants} className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl">
                     <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">Enter the Continuum</motion.h2>
                     <motion.p variants={itemVariants} className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">A living space where capability expands, talent aligns, and transformation becomes measurable.</motion.p>
-                    <motion.button variants={itemVariants} className="px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)]">
-                        Enter the Continuum
-                    </motion.button>
+                    <motion.div variants={itemVariants}>
+                        <Link to="/contact" className="inline-flex items-center px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)]">
+                            Enter the Continuum
+                        </Link>
+                    </motion.div>
                 </motion.div>
             </section>
 

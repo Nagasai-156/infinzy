@@ -1,4 +1,5 @@
 import { motion, type Variants } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { BrainCircuit, Activity, LineChart, Target, Compass, Sparkles } from 'lucide-react';
 import { useRef } from 'react';
 import Approach3D from './Approach3D';
@@ -242,12 +243,11 @@ export default function Approach() {
                     <motion.p variants={itemVariants} className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">
                         A structured, intelligent, and human-led path to lasting change.
                     </motion.p>
-                    <motion.button
-                        variants={itemVariants}
-                        className="px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)]"
-                    >
-                        Start Transformation
-                    </motion.button>
+                    <motion.div variants={itemVariants}>
+                        <Link to="/contact" className="inline-flex items-center px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)]">
+                            Start Transformation
+                        </Link>
+                    </motion.div>
                 </motion.div>
             </section>
 

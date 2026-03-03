@@ -1,4 +1,5 @@
 import { motion, type Variants } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import {
     Sparkles, Brain, Shield, TerminalSquare, MessageSquare,
     Bot, GitBranch, LayoutTemplate, MessageCircle, RefreshCw, Headset, ArrowRight
@@ -418,9 +419,11 @@ export default function Skills() {
                     <motion.p variants={itemVariants} className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">
                         Start your custom <span className="text-[#34002b] font-medium">capability</span> journey and join the next generation of global performers.
                     </motion.p>
-                    <motion.button variants={itemVariants} className="px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)]">
-                        Elevate Capability
-                    </motion.button>
+                    <motion.div variants={itemVariants}>
+                        <Link to="/contact" className="inline-flex items-center px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)]">
+                            Elevate Capability
+                        </Link>
+                    </motion.div>
                 </motion.div>
             </section>
 

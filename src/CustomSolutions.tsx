@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Settings2, Map, LayoutTemplate, Zap, RefreshCcw } from 'lucide-react';
 import { useRef } from 'react';
 import Aurora from './components/ui/aurora';
@@ -241,12 +242,11 @@ export default function CustomSolutions() {
                     <motion.p variants={itemVariants} className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">
                         Engineered entirely for your structure, goals, and culture.
                     </motion.p>
-                    <motion.button
-                        variants={itemVariants}
-                        className="px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)]"
-                    >
-                        Design My Transformation
-                    </motion.button>
+                    <motion.div variants={itemVariants}>
+                        <Link to="/contact" className="inline-flex items-center px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)]">
+                            Design My Transformation
+                        </Link>
+                    </motion.div>
                 </motion.div>
             </section>
 
