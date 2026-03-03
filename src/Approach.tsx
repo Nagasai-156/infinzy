@@ -1,9 +1,9 @@
-import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { BrainCircuit, Activity, LineChart, Target, Compass, Sparkles } from 'lucide-react';
 import { useRef } from 'react';
-import Navbar from './Navbar';
 import Approach3D from './Approach3D';
 import { Typewriter } from './components/ui/typewriter';
+import PrismSection from './PrismSection';
 import Footer from './Footer';
 
 export default function Approach() {
@@ -26,12 +26,11 @@ export default function Approach() {
     ];
 
     const scrollRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({ target: scrollRef, offset: ["start end", "end start"] });
-    const lineWidth = useTransform(scrollYProgress, [0, 0.6], ["0%", "100%"]);
+
 
     return (
         <div className="bg-black text-white font-sans w-full overflow-hidden">
-            <Navbar />
+            
 
             {/* ============================= */}
             {/* HERO — unchanged             */}
@@ -57,6 +56,8 @@ export default function Approach() {
                             loop={true}
                             speed={70}
                             delay={2000}
+                            highlightWords={["Transformation", "Architecture", "approach"]}
+                            highlightClass="text-[#FFD700] font-bold drop-shadow-[0_0_15px_rgba(255,215,0,0.6)]"
                             className="text-gradient-premium relative z-20 text-5xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl md:leading-[1.15] text-center block min-h-[140px]"
                         />
                     </motion.div>
@@ -64,75 +65,65 @@ export default function Approach() {
             </section>
 
             {/* ============================= */}
-            {/* PROCESS — scroll-driven line  */}
+            {/* PROCESS — Premium Dark Stairs */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5" ref={scrollRef}>
-                <div className="max-w-6xl mx-auto">
+            <section className="relative w-full z-10 py-24 md:py-32 bg-black border-t border-white/5 overflow-hidden" ref={scrollRef}>
+                <div className="w-full px-6 max-w-7xl mx-auto flex flex-col items-center">
 
-                    {/* Header */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-80px" }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        className="mb-20"
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-white mb-20 md:mb-32 text-center"
                     >
-                        <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">Framework</p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">The Process</h2>
-                    </motion.div>
+                        Achieving <span className="text-[#FFD700]">Transformation</span>
+                    </motion.h2>
 
-                    {/* Scroll-driven progress line */}
-                    <div className="hidden lg:block relative h-px bg-white/5 mb-0 mx-8 overflow-hidden">
-                        <motion.div
-                            style={{ width: lineWidth }}
-                            className="absolute inset-y-0 left-0 bg-gradient-to-r from-[var(--color-brand-900)] via-[var(--color-brand-500)] to-[var(--color-brand-300)]"
-                        />
-                    </div>
-
-                    {/* Step cards */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-px bg-white/5 rounded-3xl overflow-hidden mt-0">
+                    {/* Staircase Layout */}
+                    <div className="flex flex-col w-full max-w-5xl mx-auto gap-6 md:gap-8 pb-10">
                         {processSteps.map((step, idx) => (
                             <motion.div
                                 key={idx}
-                                initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
-                                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                                viewport={{ once: true, margin: "-30px" }}
-                                transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                whileHover={{ backgroundColor: "rgba(255,255,255,0.03)", y: -4 }}
-                                className="group relative bg-black flex flex-col items-start p-8 cursor-default transition-colors duration-300"
+                                initial={{ opacity: 0, x: -30, filter: "blur(4px)" }}
+                                whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
+                                style={{
+                                    '--stair-offset': `${idx * 8}%`,
+                                } as any}
+                                className="relative flex items-center justify-between w-full md:w-[50%] p-6 md:p-8 rounded-[1.5rem] bg-zinc-950 border border-white/10 shadow-lg transition-all duration-300 hover:border-[#FFD700]/50 hover:bg-zinc-900 group md:ml-[var(--stair-offset)]"
                             >
-                                {/* Number */}
-                                <span className="text-xs font-black text-white/10 group-hover:text-[var(--color-brand-800)] tracking-widest mb-6 transition-colors duration-500">
-                                    {String(idx + 1).padStart(2, "0")}
-                                </span>
-
-                                {/* Icon */}
-                                <div className="w-12 h-12 rounded-2xl bg-zinc-950 border border-white/5 group-hover:border-[var(--color-brand-800)] flex items-center justify-center mb-6 transition-all duration-500 group-hover:-translate-y-1">
-                                    <step.icon className="w-5 h-5 text-zinc-600 group-hover:text-[var(--color-brand-400)] transition-colors duration-300" />
+                                <div className="flex flex-col sm:flex-row md:flex-row items-start sm:items-center gap-6 w-full">
+                                    <div className="flex items-center gap-4 shrink-0">
+                                        <div className="w-14 h-14 rounded-xl bg-black border border-white/10 flex items-center justify-center group-hover:border-[#FFD700]/50 transition-colors duration-300">
+                                            <step.icon className="w-6 h-6 text-zinc-500 group-hover:text-[#FFD700] transition-colors duration-300" />
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col justify-center flex-1">
+                                        <div className="flex items-center justify-between mb-2">
+                                            <h3 className="text-xl font-bold text-white group-hover:text-[#FFD700] transition-colors duration-300 tracking-wide">
+                                                {step.title}
+                                            </h3>
+                                            <span className="text-2xl font-black text-white/10 group-hover:text-[#FFD700]/30 transition-colors duration-300 select-none">
+                                                {String(idx + 1).padStart(2, "0")}
+                                            </span>
+                                        </div>
+                                        <p className="text-sm text-zinc-400 leading-relaxed pr-4">
+                                            {step.desc}
+                                        </p>
+                                    </div>
                                 </div>
-
-                                {/* Title */}
-                                <h3 className="text-lg font-bold text-white mb-3">{step.title}</h3>
-
-                                {/* Desc */}
-                                <p className="text-xs text-zinc-600 group-hover:text-zinc-400 font-light leading-relaxed transition-colors duration-300">
-                                    {step.desc}
-                                </p>
-
-                                {/* Bottom animated bar */}
-                                <motion.div
-                                    initial={{ scaleX: 0 }}
-                                    whileInView={{ scaleX: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.8, delay: 0.3 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                    style={{ originX: 0 }}
-                                    className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-[var(--color-brand-900)] to-transparent"
-                                />
                             </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
+
+            {/* ============================= */}
+            {/* PRISM OVERRIDDEN SECTION      */}
+            {/* ============================= */}
+            <PrismSection />
 
             {/* ============================= */}
             {/* AI-ENHANCED                   */}
@@ -214,7 +205,7 @@ export default function Approach() {
                         <div>
                             <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">Continuous Improvement</p>
                             <p className="text-4xl md:text-5xl font-light text-white leading-snug">
-                                Growth is sustained.
+                                <span className="text-[#34002b] font-medium drop-shadow-[0_0_15px_rgba(52,0,43,0.5)]">Growth</span> is sustained.
                             </p>
                         </div>
                         <div className="border-l border-white/10 pl-10">

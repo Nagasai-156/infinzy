@@ -1,6 +1,5 @@
 import { motion, type Variants } from 'framer-motion';
 import { Network, Star, Target, Shield, Heart } from 'lucide-react';
-import Navbar from './Navbar';
 import FaultyTerminal from './components/ui/FaultyTerminal';
 import { Case } from './components/ui/cases-with-infinite-scroll';
 import { Typewriter } from './components/ui/typewriter';
@@ -26,7 +25,7 @@ export default function Clients() {
 
     return (
         <div className="bg-black text-white font-sans w-full overflow-hidden">
-            <Navbar />
+            
 
             {/* ============================= */}
             {/* HERO — unchanged             */}
@@ -57,8 +56,8 @@ export default function Clients() {
 
                 <div className="relative z-10 px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl text-center w-full mt-20">
                     <motion.div initial="hidden" animate="visible" variants={containerVariants} className="max-w-4xl mx-auto">
-                        <motion.h2 variants={itemVariants} className="text-sm font-bold tracking-[0.2em] text-[var(--color-brand-300)] uppercase mb-6 flex items-center justify-center gap-2">
-                            <Star className="w-4 h-4" /> Clients <Star className="w-4 h-4" />
+                        <motion.h2 variants={itemVariants} className="text-sm font-bold tracking-[0.2em] text-[var(--color-brand-300)] uppercase mb-6 flex items-center justify-center gap-2 whitespace-nowrap">
+                            <Star className="w-4 h-4" /> Trusted by thousands of businesses worldwide <Star className="w-4 h-4" />
                         </motion.h2>
                         <Typewriter
                             text={[
@@ -69,6 +68,8 @@ export default function Clients() {
                             loop={true}
                             speed={70}
                             delay={2000}
+                            highlightWords={["Partnerships", "Solving", "Engineered", "impact", "impactful"]}
+                            highlightClass="inline-block text-[#FFD700] drop-shadow-[0_0_15px_rgba(255,215,0,0.4)] animate-zoom-in-out"
                             className="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white mb-8 block min-h-[160px]"
                         />
                     </motion.div>
@@ -206,7 +207,7 @@ export default function Clients() {
                     className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl"
                 >
                     <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">
-                        Start a Partnership
+                        Start a <span className="text-[#FFD700] drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]">Partnership</span>
                     </motion.h2>
                     <motion.p variants={itemVariants} className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">
                         Build a relationship engineered for precision, commitment, and measurable impact.

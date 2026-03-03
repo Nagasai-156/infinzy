@@ -1,8 +1,8 @@
 import { motion, type Variants } from 'framer-motion';
 import { ArrowRight, User, Users, Presentation, Medal, GitMerge, Heart, Maximize, RefreshCw, TrendingUp } from 'lucide-react';
-import Navbar from './Navbar';
 import CorporateExperiences3D from './CorporateExperiences3D';
 import { Typewriter } from './components/ui/typewriter';
+import { StretchHoverText } from './components/ui/stretch-hover-text';
 import Footer from './Footer';
 
 
@@ -34,7 +34,7 @@ export default function CorporateExperiences() {
 
     return (
         <div className="bg-black text-white font-sans w-full overflow-hidden">
-            <Navbar />
+            
 
             {/* ----------------------------- */}
             {/* SECTION 1: HERO (Adapted from provided reference design) */}
@@ -60,6 +60,8 @@ export default function CorporateExperiences() {
                                 loop={true}
                                 speed={70}
                                 delay={2000}
+                                highlightWords={["Transformation", "experience", "experience.", "Experience", "thinking"]}
+                                highlightClass="text-[#34002b] font-bold"
                                 className="mt-6 block text-4xl font-normal text-white sm:mt-10 sm:text-5xl lg:text-6xl xl:text-7xl leading-tight min-h-[140px]"
                             />
                             <motion.p variants={itemVariants} className="max-w-xl mt-6 text-xl font-light text-zinc-400 sm:mt-8">
@@ -141,21 +143,24 @@ export default function CorporateExperiences() {
                                 key={idx}
                                 initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
                                 whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                                whileHover="hover"
                                 viewport={{ once: true, margin: "-40px" }}
                                 transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                className={`group relative bg-zinc-950 border border-white/5 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-500)]/40 ${idx < 2 ? 'md:col-span-3' : 'md:col-span-2'
+                                className={`group relative bg-zinc-950 border border-white/5 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default transition-colors duration-500 hover:border-white/20 hover:bg-black/40 ${idx < 2 ? 'md:col-span-3' : 'md:col-span-2'
                                     }`}
                             >
                                 {/* Glowing orb on hover */}
                                 <div className="absolute -top-24 -right-24 w-60 h-60 bg-gradient-to-br from-[var(--color-brand-400)] to-[var(--color-brand-800)] rounded-full blur-[80px] opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none" />
 
                                 <div className="relative z-10 mb-10 sm:mb-16">
-                                    <div className="w-14 h-14 rounded-2xl bg-black border border-white/10 group-hover:border-[var(--color-brand-500)]/50 flex items-center justify-center transition-colors duration-500 shadow-inner group-hover:-translate-y-1 transform ease-out duration-500">
-                                        <type.icon className="w-6 h-6 text-zinc-400 group-hover:text-[var(--color-brand-300)] transition-colors duration-500" />
+                                    <div className="w-14 h-14 rounded-2xl bg-black border border-white/10 group-hover:border-[var(--color-brand-500)]/40 flex items-center justify-center transition-colors duration-500 shadow-inner group-hover:shadow-[0_0_15px_rgba(52,0,43,0.3)]">
+                                        <type.icon className="w-6 h-6 text-zinc-500 group-hover:text-[var(--color-brand-300)] transition-colors duration-500" />
                                     </div>
                                 </div>
-                                <div className="relative z-10">
-                                    <h3 className="text-2xl font-bold text-white mb-3 tracking-wide">{type.title}</h3>
+                                <div className="relative z-10 pt-4">
+                                    <div className="mb-4 min-h-[40px] flex items-end">
+                                        <StretchHoverText text={type.title} className="text-2xl font-bold tracking-wide leading-none" />
+                                    </div>
                                     <p className="text-[15px] text-zinc-400 group-hover:text-zinc-300 font-light leading-relaxed transition-colors duration-500">{type.desc}</p>
                                 </div>
 
@@ -181,7 +186,7 @@ export default function CorporateExperiences() {
                         className="mb-16"
                     >
                         <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">The Result</p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">Outcomes</h2>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white">Outcome</h2>
                     </motion.div>
 
                     {/* 2×2 large tiles */}

@@ -2,12 +2,10 @@ import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import DarkVeil from './DarkVeil';
-import Navbar from './Navbar';
 import ContinuumSection from './ContinuumSection';
 import EvolveSection from './EvolveSection';
 import FounderConcepts from './FounderConcepts';
 import PathwaysConcepts from './PathwaysConcepts';
-import PrismSection from './PrismSection';
 import MovesConcepts from './MovesConcepts';
 import InvitationSection from './InvitationSection';
 import Footer from './Footer';
@@ -49,7 +47,7 @@ export default function Home() {
     <div className="bg-black text-white font-sans w-full overflow-hidden">
 
       {/* Navbar Component */}
-      <Navbar />
+      
 
       {/* ----------------------------- */}
       {/* SECTION 1: HERO */}
@@ -120,24 +118,32 @@ export default function Home() {
                 )}
               </AnimatePresence>
 
-              <div className="flex flex-wrap justify-center text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl md:leading-[1.15] text-center">
+              <div className="flex flex-wrap items-baseline justify-center text-center gap-x-2 sm:gap-x-3">
                 {[
-                  { word: "You", highlight: false },
+                  { word: "you", highlight: false },
                   { word: "are", highlight: false },
                   { word: "entering", highlight: false },
                   { word: "the", highlight: false },
-                  { word: "INFINIZY", highlight: true },
-                  { word: "CONTINUUM.", highlight: true },
+                  { word: "INFINIZY CONTINUUM", highlight: true },
                 ].map(({ word, highlight }, i) => (
                   <motion.span
                     key={`h2-${i}`}
-                    className={`inline-block pb-2 mr-[0.25em] ${highlight
-                      ? 'text-white text-5xl sm:text-6xl md:text-7xl font-bold tracking-widest'
-                      : 'text-white'}`}
-                    initial={{ opacity: 0, y: 24, filter: 'blur(6px)' }}
-                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    className={`inline-block pb-2 ${highlight
+                      ? 'text-5xl sm:text-6xl md:text-7xl font-bold tracking-widest whitespace-nowrap'
+                      : 'text-2xl sm:text-3xl md:text-4xl font-light text-zinc-300'}`}
+                    initial={
+                      highlight
+                        ? { opacity: 0, scale: 0.5, color: '#FFD700', filter: 'blur(10px)' }
+                        : { opacity: 0, y: 24, filter: 'blur(6px)' }
+                    }
+                    animate={
+                      highlight
+                        ? { opacity: 1, scale: [1.5, 0.8, 1], color: ['#FFD700', '#FFD700', '#ffffff'], filter: 'blur(0px)' }
+                        : { opacity: 1, y: 0, filter: 'blur(0px)' }
+                    }
                     transition={{
-                      duration: 0.7,
+                      duration: highlight ? 1.5 : 0.7,
+                      times: highlight ? [0, 0.6, 1] : undefined,
                       ease: [0.16, 1, 0.3, 1],
                       delay: 4.0 + i * 0.18,
                     }}
@@ -224,9 +230,8 @@ export default function Home() {
       <PathwaysConcepts />
 
       {/* ----------------------------- */}
-      {/* SECTION 5.5: PRISM FRAMEWORK  */}
+      {/* SECTION 5.5: PRISM FRAMEWORK MOVED TO APPROACH */}
       {/* ----------------------------- */}
-      <PrismSection />
 
       {/* ----------------------------- */}
       {/* SECTION 6: MOVES              */}

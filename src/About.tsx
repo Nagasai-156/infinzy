@@ -1,8 +1,8 @@
 import { motion, type Variants } from 'framer-motion';
 import { Code, Target, Zap, ShieldCheck, Heart, RefreshCw, Quote } from 'lucide-react';
 import About3D from './About3D';
-import Navbar from './Navbar';
 import { Typewriter } from './components/ui/typewriter';
+import { ScrambleText } from './components/ui/scramble-text';
 import Footer from './Footer';
 
 export default function About() {
@@ -25,7 +25,7 @@ export default function About() {
 
     return (
         <div className="bg-black text-white font-sans w-full overflow-hidden">
-            <Navbar />
+            
 
             {/* ============================= */}
             {/* HERO — unchanged             */}
@@ -47,10 +47,12 @@ export default function About() {
                                 Who we are and how we got here.
                             </motion.h1>
                             <Typewriter
-                                text={["The Origin of the Infinizy Continuum"]}
+                                text={["The Origin of the Infinizy\u00A0Continuum"]}
                                 loop={false}
                                 speed={70}
                                 delay={2000}
+                                highlightWords={["Infinizy\u00A0Continuum"]}
+                                highlightClass="text-[#34002b]"
                                 className="text-gradient-premium relative z-20 text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl md:leading-[1.15] text-center block min-h-[120px]"
                             />
                         </motion.div>
@@ -71,12 +73,42 @@ export default function About() {
                             <p className="text-xl md:text-2xl font-light text-zinc-400 mb-8 font-serif italic">
                                 Every transformation begins with a question.
                             </p>
-                            <div className="relative inline-block px-10">
-                                <span className="absolute -top-8 left-0 text-7xl text-white/10 font-serif leading-none">"</span>
-                                <h3 className="text-2xl md:text-4xl lg:text-5xl font-light leading-snug text-white italic max-w-3xl">
-                                    Why do organizations invest in learning, hiring, and strategy — yet still struggle to sustain growth?
-                                </h3>
-                                <span className="absolute -bottom-16 right-0 text-7xl text-white/10 font-serif leading-none">"</span>
+                            <div className="relative w-full flex flex-col items-center justify-center min-h-[300px] md:min-h-[400px] px-10">
+                                {/* Animated "why?" */}
+                                <motion.div
+                                    variants={{
+                                        hidden: { opacity: 0, scale: 0.5 },
+                                        visible: {
+                                            opacity: [0, 1, 1, 0],
+                                            scale: [0.5, 1.3, 1.3, 2.5],
+                                            transition: { delay: 0.8, duration: 2.2, times: [0, 0.2, 0.7, 1], ease: "easeInOut" }
+                                        }
+                                    }}
+                                    className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
+                                >
+                                    <span className="text-7xl md:text-8xl lg:text-9xl font-black italic text-[#FFD700] tracking-tighter drop-shadow-2xl">
+                                        why?
+                                    </span>
+                                </motion.div>
+
+                                {/* The Question */}
+                                <motion.div
+                                    variants={{
+                                        hidden: { opacity: 0, filter: 'blur(10px)' },
+                                        visible: {
+                                            opacity: 1,
+                                            filter: 'blur(0px)',
+                                            transition: { delay: 3.0, duration: 1, ease: [0.16, 1, 0.3, 1] }
+                                        }
+                                    }}
+                                    className="relative inline-block mt-8"
+                                >
+                                    <span className="absolute -top-8 left-0 text-7xl text-white/10 font-serif leading-none">"</span>
+                                    <h3 className="text-2xl md:text-4xl lg:text-5xl font-light leading-snug text-white italic max-w-3xl relative z-10 mt-6 lg:mt-0">
+                                        Why do organizations invest in learning, hiring, and strategy — yet still struggle to sustain growth?
+                                    </h3>
+                                    <span className="absolute -bottom-16 right-0 text-7xl text-white/10 font-serif leading-none">"</span>
+                                </motion.div>
                             </div>
                         </motion.div>
 
@@ -112,7 +144,10 @@ export default function About() {
             <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-6xl mx-auto">
                     <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="mb-16">
-                        <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">Core Belief</p>
+                        <p className="text-sm font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-4">Core Belief</p>
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
+                            The Elements of Progress
+                        </h2>
                     </motion.div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5 rounded-3xl overflow-hidden">
                         {[
@@ -129,12 +164,11 @@ export default function About() {
                                 whileHover={{ backgroundColor: "rgba(255,255,255,0.03)", y: -4 }}
                                 className="group relative bg-black flex flex-col items-start p-10 cursor-default transition-colors duration-300"
                             >
-                                <span className="text-xs font-black text-white/10 group-hover:text-[var(--color-brand-800)] tracking-widest mb-6 transition-colors duration-500">{String(idx + 1).padStart(2, "0")}</span>
-                                <div className="w-12 h-12 rounded-2xl bg-zinc-950 border border-white/5 group-hover:border-[var(--color-brand-800)] flex items-center justify-center mb-6 transition-all duration-500 group-hover:-translate-y-1">
-                                    <belief.icon className="w-5 h-5 text-zinc-600 group-hover:text-[var(--color-brand-400)] transition-colors duration-300" />
+                                <div className="w-14 h-14 rounded-2xl bg-zinc-950 border border-white/5 group-hover:border-[var(--color-brand-800)] flex items-center justify-center mb-8 transition-all duration-500 group-hover:-translate-y-1">
+                                    <belief.icon className="w-6 h-6 text-zinc-600 group-hover:text-[var(--color-brand-400)] transition-colors duration-300" />
                                 </div>
-                                <h3 className="text-lg font-bold text-white mb-2">{belief.label}</h3>
-                                <p className="text-sm text-zinc-600 group-hover:text-zinc-400 font-light transition-colors duration-300">{belief.text}</p>
+                                <h3 className="text-xl md:text-2xl font-bold text-white mb-3 tracking-wide">{belief.label}</h3>
+                                <p className="text-base md:text-lg text-zinc-500 group-hover:text-zinc-300 font-light transition-colors duration-300 leading-relaxed">{belief.text}</p>
                                 <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.3 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }} style={{ originX: 0 }} className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-[var(--color-brand-900)] to-transparent" />
                             </motion.div>
                         ))}
@@ -223,7 +257,10 @@ export default function About() {
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
                 <div className="max-w-7xl mx-auto relative z-10">
                     <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="mb-16">
-                        <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">Purpose</p>
+                        <p className="text-sm font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-4">Purpose</p>
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
+                            Our Ambition
+                        </h2>
                     </motion.div>
                     <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={containerVariants} className="flex flex-col lg:flex-row gap-8 lg:gap-14">
                         {/* Vision */}
@@ -262,7 +299,7 @@ export default function About() {
                         </motion.div>
                     </motion.div>
                 </div>
-            </section>
+            </section >
 
             {/* ============================= */}
             {/* CORE VALUES — numbered rows   */}
@@ -278,33 +315,42 @@ export default function About() {
                     </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
-                        {values.map((val, idx) => (
-                            <motion.div
-                                key={idx}
-                                initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
-                                whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                                viewport={{ once: true, margin: "-40px" }}
-                                transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                className={`group relative bg-zinc-950 border border-white/5 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-500)]/40 ${idx < 2 ? 'md:col-span-3' : 'md:col-span-2'
-                                    }`}
-                            >
-                                {/* Glowing orb on hover */}
-                                <div className="absolute -top-24 -right-24 w-60 h-60 bg-gradient-to-br from-[var(--color-brand-400)] to-[var(--color-brand-800)] rounded-full blur-[80px] opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none" />
+                        {values.map((val, idx) => {
+                            const getInitial = (i: number) => {
+                                if (i === 0) return { opacity: 0, x: -60, y: 0, filter: "blur(10px)" };    // Left
+                                if (i === 1) return { opacity: 0, x: 60, y: 0, filter: "blur(10px)" };     // Right
+                                if (i === 2) return { opacity: 0, x: -40, y: 60, filter: "blur(10px)" };   // Bottom Left
+                                if (i === 3) return { opacity: 0, x: 0, y: 80, filter: "blur(10px)" };     // Bottom Center
+                                return { opacity: 0, x: 40, y: 60, filter: "blur(10px)" };                 // Bottom Right
+                            };
+                            return (
+                                <motion.div
+                                    key={idx}
+                                    initial={getInitial(idx)}
+                                    whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)" }}
+                                    viewport={{ once: true, margin: "-40px" }}
+                                    transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                                    className={`group relative bg-zinc-950 border border-white/5 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-500)]/40 ${idx < 2 ? 'md:col-span-3' : 'md:col-span-2'
+                                        }`}
+                                >
+                                    {/* Glowing orb on hover */}
+                                    <div className="absolute -top-24 -right-24 w-60 h-60 bg-gradient-to-br from-[var(--color-brand-400)] to-[var(--color-brand-800)] rounded-full blur-[80px] opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none" />
 
-                                <div className="relative z-10 mb-10 sm:mb-16">
-                                    <div className="w-14 h-14 rounded-2xl bg-black border border-white/10 group-hover:border-[var(--color-brand-500)]/50 flex items-center justify-center transition-colors duration-500 shadow-inner group-hover:-translate-y-1 transform ease-out duration-500">
-                                        <val.icon className="w-6 h-6 text-zinc-400 group-hover:text-[var(--color-brand-300)] transition-colors duration-500" />
+                                    <div className="relative z-10 mb-10 sm:mb-16">
+                                        <div className="w-14 h-14 rounded-2xl bg-black border border-white/10 group-hover:border-[var(--color-brand-500)]/50 flex items-center justify-center transition-colors duration-500 shadow-inner group-hover:-translate-y-1 transform ease-out duration-500">
+                                            <val.icon className="w-6 h-6 text-zinc-400 group-hover:text-[var(--color-brand-300)] transition-colors duration-500" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="relative z-10">
-                                    <h3 className="text-2xl font-bold text-white mb-3 tracking-wide">{val.title}</h3>
-                                    <p className="text-[15px] text-zinc-400 group-hover:text-zinc-300 font-light leading-relaxed transition-colors duration-500">{val.desc}</p>
-                                </div>
+                                    <div className="relative z-10">
+                                        <ScrambleText text={val.title} className="text-2xl font-bold text-white mb-3 tracking-wide block" as="h3" delay={idx * 150} />
+                                        <ScrambleText text={val.desc} className="text-[15px] text-zinc-400 group-hover:text-zinc-300 font-light leading-relaxed transition-colors duration-500 block" as="p" delay={300 + idx * 150} />
+                                    </div>
 
-                                {/* Bottom gradient line on hover */}
-                                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--color-brand-500)] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center" />
-                            </motion.div>
-                        ))}
+                                    {/* Bottom gradient line on hover */}
+                                    <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--color-brand-500)] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center" />
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </div>
             </section>
@@ -326,6 +372,6 @@ export default function About() {
             </section>
 
             <Footer />
-        </div>
+        </div >
     );
 }

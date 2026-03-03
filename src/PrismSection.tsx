@@ -93,9 +93,9 @@ export default function PrismSection() {
                     />
 
                     {/* Prism Texts */}
-                    <motion.text initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 1, duration: 1 }} x="450" y="320" fill="white" fontSize="22" fontWeight="500" textAnchor="middle">Strategy</motion.text>
-                    <motion.text initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 1.2, duration: 1 }} x="600" y="320" fill="white" fontSize="22" fontWeight="500" textAnchor="middle">Design</motion.text>
-                    <motion.text initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 1.4, duration: 1 }} x="750" y="320" fill="white" fontSize="22" fontWeight="500" textAnchor="middle">Technology</motion.text>
+                    <motion.text initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 1, duration: 1 }} x="600" y="300" fill="white" fontSize="22" fontWeight="500" textAnchor="middle">Human Influence</motion.text>
+                    <motion.text initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 1.2, duration: 1 }} x="600" y="340" fill="white" fontSize="22" fontWeight="500" textAnchor="middle">Artificial Intelligence</motion.text>
+                    <motion.text initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 1.4, duration: 1 }} x="600" y="380" fill="white" fontSize="22" fontWeight="500" textAnchor="middle">Technology</motion.text>
 
                     {/* Massive Blur Core (Rainbow smudge inside) */}
                     <motion.ellipse
@@ -132,9 +132,9 @@ export default function PrismSection() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 2.5, duration: 0.8 }}
-                        x="1100" y="580" fill="white" fontSize="26" fontWeight="bold" textAnchor="end"
+                        x="1100" y="580" fill="#FFD700" fontSize="26" fontWeight="bold" textAnchor="end"
                     >
-                        The Product
+                        Infinizy Continuum
                     </motion.text>
 
                     {/* Input Colored Beams */}

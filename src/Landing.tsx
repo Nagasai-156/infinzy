@@ -184,18 +184,18 @@ export default function Landing() {
                     initial={{ opacity: 0, y: 20, filter: "blur(20px)" }}
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-[var(--color-brand-500)] text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif tracking-tighter cursor-pointer pointer-events-auto transition-transform hover:scale-105 duration-1000 select-none drop-shadow-[0_0_40px_rgba(190,40,145,0.2)]"
+                    className="text-[var(--color-brand-500)] text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-bold tracking-tighter cursor-pointer pointer-events-auto transition-transform hover:scale-105 duration-1000 select-none drop-shadow-[0_0_40px_rgba(190,40,145,0.2)]"
                     onClick={() => navigate('/home')}
                 >
-                    infinizy.
+                    Infinizy.
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: 20, filter: "blur(20px)" }}
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-white/80 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif tracking-tighter select-none"
+                    className="text-white/80 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-bold tracking-tighter select-none"
                 >
-                    CONTINUUM
+                    Continuum
                 </motion.p>
             </div>
 

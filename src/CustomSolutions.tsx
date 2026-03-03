@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
 import { Settings2, Map, LayoutTemplate, Zap, RefreshCcw } from 'lucide-react';
 import { useRef } from 'react';
-import Navbar from './Navbar';
 import Aurora from './components/ui/aurora';
 import { Typewriter } from './components/ui/typewriter';
 import Footer from './Footer';
@@ -30,7 +29,7 @@ export default function CustomSolutions() {
 
     return (
         <div className="bg-black text-white font-sans w-full overflow-hidden">
-            <Navbar />
+            
 
             {/* ============================= */}
             {/* HERO — unchanged             */}
@@ -38,12 +37,12 @@ export default function CustomSolutions() {
             <section className="relative min-h-screen py-32 flex flex-col justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0 pointer-events-none bg-black">
                     <Aurora
-                        colorStops={["#34002b", "#FF3399", "#34002b"]}
+                        colorStops={["#2a0022", "#4a0b2c", "#2a0022"]}
                         blend={0.4}
-                        amplitude={2.0}
-                        speed={1.5}
+                        amplitude={1.2}
+                        speed={0.5}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/80 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/80 pointer-events-none" />
                 </div>
 
                 <div className="relative z-10 px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl text-center w-full">
@@ -60,6 +59,8 @@ export default function CustomSolutions() {
                             loop={true}
                             speed={70}
                             delay={2000}
+                            highlightWords={["organizations", "engineer", "continuum"]}
+                            highlightClass="inline-block text-[#FFD700] drop-shadow-[0_0_15px_rgba(255,215,0,0.4)] animate-zoom-in-out"
                             className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium tracking-tight text-white leading-[1.1] mb-8 block min-h-[180px]"
                         />
                     </motion.div>
@@ -126,19 +127,28 @@ export default function CustomSolutions() {
                         {methods.map((method, idx) => (
                             <motion.div
                                 key={idx}
-                                initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
-                                whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                                initial={{ opacity: 0, y: 50, rotateX: -10, filter: "blur(10px)" }}
+                                whileInView={{ opacity: 1, y: 0, rotateX: 0, filter: "blur(0px)" }}
                                 viewport={{ once: true, margin: "-100px" }}
-                                transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                className={`group relative bg-zinc-950 border border-white/5 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-500)]/40 ${idx < 2 ? 'md:col-span-3' : 'md:col-span-2'
+                                transition={{
+                                    duration: 0.8,
+                                    delay: idx * 0.12,
+                                    type: "spring",
+                                    stiffness: 100,
+                                    damping: 20
+                                }}
+                                whileHover={{ y: -8, scale: 1.02 }}
+                                style={{ transformPerspective: 1000 }}
+                                className={`group relative bg-zinc-950/80 backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-500 hover:border-[var(--color-brand-500)]/40 ${idx < 2 ? 'md:col-span-3' : 'md:col-span-2'
                                     }`}
                             >
                                 {/* Glowing orb on hover */}
-                                <div className="absolute -top-24 -right-24 w-60 h-60 bg-gradient-to-br from-[var(--color-brand-400)] to-[var(--color-brand-800)] rounded-full blur-[80px] opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none" />
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.06)_0%,transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen" />
+                                <div className="absolute -top-24 -right-24 w-60 h-60 bg-gradient-to-br from-[#FFD700]/20 to-transparent rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none transform group-hover:scale-150" />
 
                                 <div className="relative z-10 mb-10 sm:mb-16">
-                                    <div className="w-14 h-14 rounded-2xl bg-black border border-white/10 group-hover:border-[var(--color-brand-500)]/50 flex items-center justify-center transition-colors duration-500 shadow-inner group-hover:-translate-y-1 transform ease-out duration-500">
-                                        <method.icon className="w-6 h-6 text-zinc-400 group-hover:text-[var(--color-brand-300)] transition-colors duration-500" />
+                                    <div className="w-14 h-14 rounded-2xl bg-black border border-white/10 group-hover:border-[#FFD700]/50 flex items-center justify-center transition-colors duration-500 shadow-inner">
+                                        <method.icon className="w-6 h-6 text-zinc-400 group-hover:text-[#FFD700] transition-colors duration-500" />
                                     </div>
                                 </div>
                                 <div className="relative z-10">
@@ -147,7 +157,7 @@ export default function CustomSolutions() {
                                 </div>
 
                                 {/* Bottom gradient line on hover */}
-                                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--color-brand-500)] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center" />
+                                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#FFD700]/70 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center" />
                             </motion.div>
                         ))}
                     </div>
@@ -171,8 +181,8 @@ export default function CustomSolutions() {
                         {/* Left */}
                         <div>
                             <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-4">Our Philosophy</p>
-                            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                                Built Around You
+                            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight flex items-baseline gap-2">
+                                Built Around <span className="text-[#34002b] drop-shadow-[0_0_15px_rgba(52,0,43,0.5)] text-5xl md:text-6xl font-black">You</span>
                             </h2>
                             <p className="text-lg text-zinc-400 font-light leading-relaxed">
                                 Every organization has unique pressures, ambitions, and culture. Generic interventions produce generic outcomes. What's built here is engineered entirely for your specific context.

@@ -12,14 +12,23 @@ export default function MovesConcepts() {
         <section className="bg-[#050505] py-32 md:py-48 px-6 flex flex-col items-center justify-center">
             <div className="w-full max-w-5xl mx-auto flex flex-col items-center">
 
-                {/* Header */}
-                <div className="flex items-center justify-center gap-6 mb-24 md:mb-32">
-                    <div className="w-12 md:w-16 h-[1px] bg-[#E5C158]/40" />
-                    <span className="text-[#E5C158] text-[10px] md:text-xs font-bold tracking-[0.25em] uppercase">
-                        How Transformation Moves
+                {/* Premium Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: -20, filter: "blur(10px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    className="flex flex-col items-center justify-center gap-4 mb-24 md:mb-32 text-center"
+                >
+                    <span className="text-[#FFD700] text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase opacity-70">
+                        The Mechanics of Evolution
                     </span>
-                    <div className="w-12 md:w-16 h-[1px] bg-[#E5C158]/40" />
-                </div>
+                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-light text-white tracking-tight leading-tight whitespace-nowrap">
+                        How Transformation{" "}
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FCE38A] to-[#FFD700] italic font-serif font-medium">Moves</span>
+                    </h2>
+                    <div className="w-24 h-px bg-gradient-to-r from-transparent via-[#FFD700]/50 to-transparent mt-6" />
+                </motion.div>
 
                 {/* List */}
                 <div className="flex flex-col gap-12 md:gap-16 w-full mb-32 md:mb-40">

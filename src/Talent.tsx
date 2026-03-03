@@ -1,7 +1,6 @@
 import { motion, type Variants } from 'framer-motion';
 import { ShieldCheck, Briefcase, GraduationCap, CheckCircle, FileCheck, FileText, UserPlus, TrendingUp, Maximize, Layout } from 'lucide-react';
 import Talent3D from './Talent3D';
-import Navbar from './Navbar';
 import Footer from './Footer';
 
 export default function Talent() {
@@ -40,7 +39,7 @@ export default function Talent() {
 
     return (
         <div className="bg-black text-white font-sans w-full overflow-hidden">
-            <Navbar />
+            
 
             {/* ============================= */}
             {/* HERO — unchanged             */}
@@ -58,7 +57,7 @@ export default function Talent() {
                         <motion.h1 variants={heroTitleContainer} initial="hidden" animate="visible" className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-bold tracking-tight text-white leading-[1.15] text-center mb-6">
                             <span className="block mb-2">
                                 {["Talent", "is", "not", "hired", "here."].map((word, idx) => (
-                                    <motion.span key={idx} variants={wordVariant} className="inline-block mr-[0.25em]">{word}</motion.span>
+                                    <motion.span key={idx} variants={wordVariant} className={`inline-block mr-[0.25em] ${word === "Talent" ? "text-[#34002b]" : ""}`}>{word}</motion.span>
                                 ))}
                             </span>
                             <span className="block">
@@ -104,7 +103,7 @@ export default function Talent() {
                         <p className="text-zinc-500 text-sm font-light max-w-xs leading-relaxed">Six structured pathways. One objective — aligned capability.</p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {services.map((service, idx) => (
                             <motion.div
                                 key={idx}
@@ -112,8 +111,7 @@ export default function Talent() {
                                 whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                                 viewport={{ once: true, margin: "-40px" }}
                                 transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                className={`group relative bg-zinc-950 border border-white/5 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-500)]/40 ${idx < 2 ? 'md:col-span-3' : 'md:col-span-2'
-                                    }`}
+                                className="group relative bg-zinc-950 border border-white/5 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-500)]/40"
                             >
                                 {/* Glowing orb on hover */}
                                 <div className="absolute -top-24 -right-24 w-60 h-60 bg-gradient-to-br from-[var(--color-brand-400)] to-[var(--color-brand-800)] rounded-full blur-[80px] opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none" />

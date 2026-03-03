@@ -147,7 +147,7 @@ const Footer = () => {
 
                 {/* High-Impact Aceternity Closing Section */}
                 <div className="mt-20 md:mt-28 relative flex flex-col items-center justify-center overflow-hidden h-[32rem] md:h-[42rem] w-full rounded-md">
-                    <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-center text-white relative z-20 tracking-tighter">
+                    <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-center text-[#34002b] relative z-20 tracking-tighter">
                         INFINIZY
                     </h1>
 

@@ -142,8 +142,8 @@ const GLSLHills = ({ width = '100%', height = '100%', cameraZ = 125, planeSize =
               void main(void) {
                 float rawOpacity = (96.0 - length(vPosition)) / 256.0;
                 float opacity = clamp(rawOpacity * 1.5, 0.0, 1.0);
-                // Silver gradient for maximum visibility against dark background
-                vec3 color = mix(vec3(0.50, 0.50, 0.50), vec3(0.95, 0.95, 0.95), opacity);
+                // Brand color gradient (#34002b)
+                vec3 color = mix(vec3(0.05, 0.0, 0.04), vec3(0.20, 0.0, 0.17), opacity);
                 gl_FragColor = vec4(color, opacity);
               }
             `,

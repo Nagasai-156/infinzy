@@ -72,7 +72,7 @@ export default function EvolveSection() {
                         initial={{ scale: 1 }}
                         animate={{ scale: [1, 1.03, 1] }}
                         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-20 group-hover:opacity-40 mix-blend-screen grayscale group-hover:grayscale-0 transition-all duration-1000"
+                        className="absolute inset-0 bg-[url('/human.jpg')] bg-cover bg-center opacity-20 group-hover:opacity-40 mix-blend-screen grayscale group-hover:grayscale-0 transition-all duration-1000"
                     />
 
                     <motion.div
@@ -111,7 +111,7 @@ export default function EvolveSection() {
                         initial={{ scale: 1 }}
                         animate={{ scale: [1, 1.03, 1] }}
                         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                        className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-20 group-hover:opacity-40 mix-blend-screen grayscale group-hover:grayscale-0 transition-all duration-1000"
+                        className="absolute inset-0 bg-[url('/Ai.png')] bg-cover bg-center opacity-20 group-hover:opacity-40 mix-blend-screen grayscale group-hover:grayscale-0 transition-all duration-1000"
                     />
 
                     <motion.div

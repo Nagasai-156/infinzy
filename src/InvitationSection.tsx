@@ -26,7 +26,8 @@ export default function InvitationSection() {
                     className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6"
                 >
                     You are here because <br className="hidden md:block" />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/40 italic font-medium">growth matters to you.</span>
+                    <span className="text-[#34002b] italic font-bold text-[1.5em] leading-none align-middle inline-block transform -translate-y-1">growth </span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/40 italic font-medium">matters to you.</span>
                 </motion.h2>
 
                 <motion.p
@@ -46,11 +47,11 @@ export default function InvitationSection() {
                     transition={{ delay: 0.3, duration: 0.8 }}
                     className="relative group"
                 >
-                    <button className="relative inline-flex items-center gap-4 bg-white text-black px-10 py-4 md:px-12 md:py-5 rounded-full font-semibold text-lg md:text-xl transition-all duration-300 transform group-hover:scale-105 active:scale-95 shadow-lg group-hover:shadow-xl">
+                    <button className="relative inline-flex items-center gap-4 bg-[#34002b] text-white px-10 py-4 md:px-12 md:py-5 rounded-full font-semibold text-lg md:text-xl transition-all duration-300 transform group-hover:scale-105 active:scale-95 shadow-lg shadow-[#34002b]/20 group-hover:shadow-[#34002b]/40">
                         <span className="relative z-10 flex items-center gap-3">
                             Work With Infinizy
-                            <span className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center transition-colors duration-500">
-                                <ArrowRight className="w-4 h-4 transition-transform duration-500" />
+                            <span className="w-8 h-8 rounded-full bg-white/20 text-white flex items-center justify-center transition-colors duration-500 group-hover:bg-white/30">
+                                <ArrowRight className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1" />
                             </span>
                         </span>
                     </button>

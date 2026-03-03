@@ -4,13 +4,13 @@ export default function SplashCursor({
     SIM_RESOLUTION = 128,
     DYE_RESOLUTION = 1440,
     CAPTURE_RESOLUTION = 512,
-    DENSITY_DISSIPATION = 3.5,
-    VELOCITY_DISSIPATION = 2,
+    DENSITY_DISSIPATION = 4.5,
+    VELOCITY_DISSIPATION = 3.0,
     PRESSURE = 0.1,
     PRESSURE_ITERATIONS = 20,
-    CURL = 3,
-    SPLAT_RADIUS = 0.2,
-    SPLAT_FORCE = 6000,
+    CURL = 2.0,
+    SPLAT_RADIUS = 0.15,
+    SPLAT_FORCE = 4000,
     SHADING = true,
     COLOR_UPDATE_SPEED = 10,
     BACK_COLOR = { r: 52 / 255, g: 0, b: 43 / 255 }, // using #34002b
@@ -902,11 +902,11 @@ export default function SplashCursor({
             // pick random brand color
             const color = brandColors[Math.floor(Math.random() * brandColors.length)];
 
-            color.r *= 5.0; // Boost intensity less crazy
-            color.g *= 5.0;
-            color.b *= 5.0;
-            let dx = 10 * (Math.random() - 0.5);
-            let dy = 30 * (Math.random() - 0.5);
+            color.r *= 2.0; // Boost intensity much gently
+            color.g *= 2.0;
+            color.b *= 2.0;
+            let dx = 2 * (Math.random() - 0.5);
+            let dy = 5 * (Math.random() - 0.5);
             splat(pointer.texcoordX, pointer.texcoordY, dx, dy, color);
         }
 

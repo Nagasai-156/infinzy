@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const navItems = [
     "Home",
@@ -18,20 +18,37 @@ const navItems = [
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+    const location = useLocation();
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 1024); // lg breakpoint in tailwind
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     const getPath = (item: string) => {
         if (item === "Home") return "/home";
         return `/${item.toLowerCase().replace(/\s+/g, '-')}`;
     };
 
+    // If it's NOT mobile AND we aren't on the landing page ("/")
+    if (!isMobile && location.pathname !== "/") {
+        return null;
+    }
+
     return (
-        <>
-            {/* Desktop & Tablet Navigation */}
+        <AnimatePresence>
+            {/* Mobile/Tablet Navigation Header */}
             <motion.nav
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
+                exit={{ y: -100 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="fixed top-0 left-0 right-0 z-50 flex h-20 items-center justify-between px-6 lg:px-10 bg-gradient-to-b from-white/10 to-transparent backdrop-blur-md border-b border-white/5"
+                className="fixed top-0 left-0 right-0 z-50 flex h-20 items-center justify-between px-6 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-md border-b border-white/5 lg:hidden"
             >
                 {/* Logo */}
                 <div className="flex items-center gap-2">
@@ -145,6 +162,6 @@ export default function Navbar() {
                     </motion.button>
                 </div>
             </motion.div>
-        </>
+        </AnimatePresence>
     );
 }

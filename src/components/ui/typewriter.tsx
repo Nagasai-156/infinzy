@@ -10,6 +10,8 @@ export interface TypewriterProps {
     deleteSpeed?: number;
     delay?: number;
     className?: string;
+    highlightWords?: string[];
+    highlightClass?: string;
 }
 
 export function Typewriter({
@@ -20,6 +22,8 @@ export function Typewriter({
     deleteSpeed = 50,
     delay = 1500,
     className,
+    highlightWords,
+    highlightClass = "font-bold text-[#34002b]",
 }: TypewriterProps) {
     const [displayText, setDisplayText] = useState("");
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -68,9 +72,31 @@ export function Typewriter({
         text,
     ]);
 
+    const renderText = () => {
+        if (!highlightWords || highlightWords.length === 0) return displayText;
+
+        // Escape special regex characters in the words
+        const escapedWords = highlightWords.map(w => w.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
+        const regex = new RegExp(`(${escapedWords.join('|')})`, 'gi');
+        const parts = displayText.split(regex);
+
+        return parts.map((part, i) => {
+            // Check if this part matches any of the highlight words
+            const isHighlight = highlightWords.some(w => w.toLowerCase() === part.toLowerCase());
+            if (isHighlight) {
+                return (
+                    <span key={i} className={highlightClass}>
+                        {part}
+                    </span>
+                );
+            }
+            return <span key={i}>{part}</span>;
+        });
+    };
+
     return (
         <span className={className}>
-            {displayText}
+            {renderText()}
             <span className="animate-pulse">{cursor}</span>
         </span>
     );

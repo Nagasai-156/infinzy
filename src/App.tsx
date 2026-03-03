@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './Navbar';
+import { ReturnGlobe } from './components/ui/return-globe';
 import Home from './Home';
 import Landing from './Landing';
 import About from './About';
@@ -11,12 +13,16 @@ import CustomSolutions from './CustomSolutions';
 import Clients from './Clients';
 import Contact from './Contact';
 import SplashCursor from './components/SplashCursor';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   return (
     <>
       <SplashCursor />
       <BrowserRouter>
+        <ScrollToTop />
+        <Navbar />
+        <ReturnGlobe />
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/home" element={<Home />} />
