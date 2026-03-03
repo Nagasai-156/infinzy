@@ -41,13 +41,10 @@ const Footer = () => {
                     <div className="lg:col-span-1">
                         <Link to="/" className="flex items-center gap-3 mb-8 group cursor-pointer">
                             <img
-                                src="/logo.jpg"
+                                src="/logo-clean.png"
                                 alt="Infinizy Logo"
-                                width={40}
-                                height={40}
-                                className="shrink-0 invert brightness-200 transition-transform duration-500 group-hover:rotate-12 drop-shadow-[0_0_8px_var(--color-brand-500)]"
+                                className="h-10 w-auto transition-transform duration-500 group-hover:rotate-6"
                             />
-                            <span className="text-2xl font-black tracking-tighter text-white uppercase italic">Infinizy.</span>
                         </Link>
                         <p className="text-zinc-400 font-light leading-relaxed mb-8 max-w-sm">
                             Built at the convergence of human intelligence and advanced AI — continuously evolving with the future.
