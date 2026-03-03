@@ -20,6 +20,11 @@ export function ReturnGlobe() {
         return null;
     }
 
+    // Hide the return globe on Mobile and Tablet
+    if (winSize.w < 1024) {
+        return null;
+    }
+
     const handleReturn = (e: React.MouseEvent) => {
         e.preventDefault();
         if (isExiting) return;
