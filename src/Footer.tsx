@@ -41,7 +41,7 @@ const Footer = () => {
                     <div className="lg:col-span-1">
                         <Link to="/" className="flex items-center gap-3 mb-8 group cursor-pointer">
                             <img
-                                src="/logo.png"
+                                src="/logo.jpg"
                                 alt="Infinizy Logo"
                                 width={40}
                                 height={40}

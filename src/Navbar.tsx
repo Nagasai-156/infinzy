@@ -54,7 +54,7 @@ export default function Navbar() {
                 <div className="flex items-center gap-2">
                     <Link to="/" className="flex items-center gap-3 group">
                         <img
-                            src="/logo.png"
+                            src="/logo.jpg"
                             alt="Infinizy Logo"
                             width={36}
                             height={36}
@@ -110,7 +110,7 @@ export default function Navbar() {
                         className="mb-8"
                     >
                         <img
-                            src="/logo.png"
+                            src="/logo.jpg"
                             alt="Infinizy Logo"
                             width={120}
                             height={120}
