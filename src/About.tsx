@@ -52,8 +52,8 @@ export default function About() {
                             <Typewriter
                                 text={["The Origin of the Infinizy\u00A0Continuum"]}
                                 loop={false}
-                                speed={70}
-                                delay={2000}
+                                speed={15}
+                                delay={400}
                                 highlightWords={["Infinizy\u00A0Continuum"]}
                                 highlightClass="text-[#34002b]"
                                 className="text-gradient-premium relative z-20 text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl md:leading-[1.15] text-center block min-h-[120px]"

@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Settings2, Map, LayoutTemplate, Zap, RefreshCcw } from 'lucide-react';
+import { Settings2, Map, LayoutTemplate, Zap, RefreshCcw, Network, Target, Shield, Heart } from 'lucide-react';
 import { useRef } from 'react';
 import Aurora from './components/ui/aurora';
 import { Typewriter } from './components/ui/typewriter';
@@ -24,6 +24,13 @@ export default function CustomSolutions() {
         { title: "Program Design", icon: LayoutTemplate, desc: "Architect bespoke interventions — no templates, no shortcuts, no generic frameworks." },
         { title: "Implementation", icon: Zap, desc: "Deploy with precision, sequencing changes to ensure buy-in at every organizational layer." },
         { title: "Continuous Optimization", icon: RefreshCcw, desc: "Embed feedback loops that sustain and compound transformation over time." },
+    ];
+
+    const programTypes = [
+        { title: "Leadership Development", desc: "Build capacity at the executive layer. Recalibrate perspective, sharpen decision-making, sustain high performance.", icon: Shield },
+        { title: "New Hire Transformation", desc: "Integrate talent seamlessly into culture. Reduce ramp time and build belonging from day one.", icon: Network },
+        { title: "Learning Platforms", desc: "Scale knowledge dissemination globally. Intelligent architecture for capability building at scale.", icon: Target },
+        { title: "Corporate Wellness Initiatives", desc: "Sustain human performance. Health that enables the organization to run at its peak.", icon: Heart },
     ];
 
     const scrollRef = useRef<HTMLDivElement>(null);
@@ -216,6 +223,58 @@ export default function CustomSolutions() {
                             ))}
                         </div>
                     </motion.div>
+                </div>
+            </section>
+
+            {/* ============================= */}
+            {/* PROGRAM TYPES — numbered rows */}
+            {/* ============================= */}
+            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+                <div className="max-w-6xl mx-auto">
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className="flex items-end justify-between mb-20 flex-wrap gap-6"
+                    >
+                        <div>
+                            <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">Solutions</p>
+                            <h2 className="text-4xl md:text-5xl font-bold text-white">Program Types</h2>
+                        </div>
+                        <p className="text-zinc-500 text-sm font-light max-w-xs leading-relaxed">Four program pillars. Each engineered to build capability that sustains.</p>
+                    </motion.div>
+
+                    {/* Numbered stagger rows */}
+                    <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
+                        {programTypes.map((program, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+                                whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                                className="group relative bg-zinc-950 border border-white/5 rounded-[2rem] p-8 md:p-12 flex flex-col justify-between overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-500)]/40 md:col-span-3"
+                            >
+                                {/* Glowing orb on hover */}
+                                <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-[var(--color-brand-400)] to-[var(--color-brand-800)] rounded-full blur-[80px] opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none" />
+
+                                <div className="relative z-10 mb-12">
+                                    <div className="w-16 h-16 rounded-2xl bg-black border border-white/10 group-hover:border-[var(--color-brand-500)]/50 flex items-center justify-center transition-colors duration-500 shadow-inner group-hover:-translate-y-1 transform ease-out duration-500">
+                                        <program.icon className="w-7 h-7 text-zinc-400 group-hover:text-[var(--color-brand-300)] transition-colors duration-500" />
+                                    </div>
+                                </div>
+                                <div className="relative z-10">
+                                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-wide">{program.title}</h3>
+                                    <p className="text-base text-zinc-400 group-hover:text-zinc-300 font-light leading-relaxed transition-colors duration-500">{program.desc}</p>
+                                </div>
+
+                                {/* Bottom gradient line on hover */}
+                                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--color-brand-500)] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center" />
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </section>
 

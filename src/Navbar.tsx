@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { MiniContinuumNav } from './components/ui/mini-continuum-nav';
 
 const navItems = [
     "Home",
@@ -35,14 +36,13 @@ export default function Navbar() {
         return `/${item.toLowerCase().replace(/\s+/g, '-')}`;
     };
 
-    // Always hide on the landing page (for all screen sizes)
-    if (location.pathname === '/') {
+    // Always hide on the landing page and /new concept page
+    if (location.pathname === '/' || location.pathname === '/new') {
         return null;
     }
 
-    // On desktop (non-mobile), also hide since the ReturnGlobe handles navigation
     if (!isMobile) {
-        return null;
+        return <MiniContinuumNav />;
     }
 
     return (
@@ -71,26 +71,6 @@ export default function Navbar() {
                     </Link>
                 </div>
 
-                {/* Desktop Links */}
-                <div className="hidden lg:flex items-center gap-6 xl:gap-8">
-                    {navItems.map((item) => (
-                        <Link
-                            key={item}
-                            to={getPath(item)}
-                            className="text-[11px] font-medium uppercase tracking-[0.15em] text-zinc-400 transition-colors hover:text-white"
-                        >
-                            {item}
-                        </Link>
-                    ))}
-                </div>
-
-                {/* Desktop CTA */}
-                <div className="hidden lg:block">
-                    <Link to="/contact" className="inline-flex rounded-full bg-[#34002b] px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-white transition-transform hover:scale-105">
-                        Enter the Continuum
-                    </Link>
-                </div>
-
                 {/* Mobile/Tablet Menu Toggle */}
                 <button
                     className="lg:hidden p-2 text-zinc-300 transition-colors hover:text-white"
@@ -107,7 +87,6 @@ export default function Navbar() {
                 className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl lg:hidden flex flex-col justify-center items-center"
             >
                 <div className="flex flex-col items-center gap-6 overflow-y-auto w-full py-20">
-                    {/* Logo Centerpiece */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={isOpen ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
@@ -119,7 +98,7 @@ export default function Navbar() {
                             alt="Infinizy Logo"
                             width={120}
                             height={120}
-                            className="invert brightness-200 drop-shadow-[0_0_20px_rgba(255,215,0,0.5)] transition-transform duration-500"
+                            className="invert brightness-200 drop-shadow-[0_0_20px_rgba(255,215,0,0.5)]"
                         />
                     </motion.div>
 

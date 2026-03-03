@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './Navbar';
-import { ReturnGlobe } from './components/ui/return-globe';
 import Home from './Home';
 import Landing from './Landing';
 import About from './About';
@@ -14,17 +13,20 @@ import Clients from './Clients';
 import Contact from './Contact';
 import SplashCursor from './components/SplashCursor';
 import ScrollToTop from './components/ScrollToTop';
+import AnimeConcept from './AnimeConcept';
+import { OfflineGame } from './components/OfflineGame';
 
 export default function App() {
   return (
     <>
       <SplashCursor />
+      <OfflineGame />
       <BrowserRouter>
         <ScrollToTop />
         <Navbar />
-        <ReturnGlobe />
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/new" element={<AnimeConcept />} />
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/skills" element={<Skills />} />

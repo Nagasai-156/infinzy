@@ -47,8 +47,9 @@ export default function Content() {
                             text={[
                                 "Ideas matter when they move people."
                             ]}
-                            speed={70}
+                            speed={35}
                             delay={1000}
+                            cursor=""
                             className="text-5xl sm:text-6xl md:text-7xl lg:text-[80px] font-bold tracking-tight text-white leading-[1.1]"
                             highlightWords={["Ideas", "move"]}
                             highlightClass="text-[#34002b] inline-block drop-shadow-[0_0_15px_rgba(52,0,43,0.5)] animate-zoom-in-out"

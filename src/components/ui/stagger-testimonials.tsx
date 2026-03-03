@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+
 import { cn } from '../../lib/utils';
 
 const SQRT_5000 = Math.sqrt(5000);
@@ -247,6 +247,20 @@ export const StaggerTestimonials: React.FC = () => {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
+  // Auto-scroll functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newList = [...testimonialsList];
+      const item = newList.shift();
+      if (item) {
+        newList.push({ ...item, tempId: Math.random() });
+        setTestimonialsList(newList);
+      }
+    }, 2000); // 2 seconds delay for faster automatic scroll
+
+    return () => clearInterval(interval);
+  }, [testimonialsList]);
+
   return (
     <div
       className="relative w-full overflow-hidden bg-muted/30"
@@ -266,30 +280,6 @@ export const StaggerTestimonials: React.FC = () => {
           />
         );
       })}
-      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
-        <button
-          onClick={() => handleMove(-1)}
-          className={cn(
-            "flex h-14 w-14 items-center justify-center text-2xl transition-colors rounded-full",
-            "bg-black border border-white/10 hover:bg-[#34002b] hover:border-[var(--color-brand-300)] text-white",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-          )}
-          aria-label="Previous testimonial"
-        >
-          <ChevronLeft />
-        </button>
-        <button
-          onClick={() => handleMove(1)}
-          className={cn(
-            "flex h-14 w-14 items-center justify-center text-2xl transition-colors rounded-full",
-            "bg-black border border-white/10 hover:bg-[#34002b] hover:border-[var(--color-brand-300)] text-white",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-          )}
-          aria-label="Next testimonial"
-        >
-          <ChevronRight />
-        </button>
-      </div>
     </div>
   );
 };

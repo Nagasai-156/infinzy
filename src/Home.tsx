@@ -1,6 +1,7 @@
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import DarkVeil from './DarkVeil';
 import ContinuumSection from './ContinuumSection';
 import EvolveSection from './EvolveSection';
@@ -120,40 +121,35 @@ export default function Home() {
                 )}
               </AnimatePresence>
 
-              <div className="flex flex-wrap items-baseline justify-center text-center gap-x-2 sm:gap-x-3">
-                {[
-                  { word: "you", highlight: false },
-                  { word: "are", highlight: false },
-                  { word: "entering", highlight: false },
-                  { word: "the", highlight: false },
-                  { word: "INFINIZY", highlight: true },
-                  { word: "CONTINUUM", highlight: true },
-                ].map(({ word, highlight }, i) => (
+              <div className="flex flex-col items-center justify-center text-center gap-y-2 lg:gap-y-4">
+                <div className="flex flex-wrap items-baseline justify-center gap-x-2 sm:gap-x-3">
+                  {["you", "are", "entering", "the"].map((word, i) => (
+                    <motion.span
+                      key={`h2-intro-${i}`}
+                      className="inline-block text-2xl sm:text-3xl md:text-4xl font-light text-zinc-300"
+                      initial={{ opacity: 0, y: 24, filter: 'blur(6px)' }}
+                      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 4.0 + i * 0.18 }}
+                    >
+                      {word}
+                    </motion.span>
+                  ))}
+                </div>
+
+                <div className="flex justify-center w-full px-4">
                   <motion.span
-                    key={`h2-${i}`}
-                    className={`inline-block pb-2 ${highlight
-                      ? 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-widest' // Removed whitespace-nowrap, adjusted sizing
-                      : 'text-2xl sm:text-3xl md:text-4xl font-light text-zinc-300'}`}
-                    initial={
-                      highlight
-                        ? { opacity: 0, scale: 0.5, color: '#FFD700', filter: 'blur(10px)' }
-                        : { opacity: 0, y: 24, filter: 'blur(6px)' }
-                    }
-                    animate={
-                      highlight
-                        ? { opacity: 1, scale: [1.2, 0.9, 1], color: ['#FFD700', '#FFD700', '#ffffff'], filter: 'blur(0px)' }
-                        : { opacity: 1, y: 0, filter: 'blur(0px)' }
-                    }
+                    className="inline-block pb-2 text-[1.75rem] xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.10em] sm:tracking-widest uppercase"
+                    initial={{ opacity: 0, scale: 25, filter: 'blur(30px)', color: '#FFD700' }}
+                    animate={{ opacity: 1, scale: 1, filter: 'blur(0px)', color: '#ffffff' }}
                     transition={{
-                      duration: highlight ? 1.5 : 0.7,
-                      times: highlight ? [0, 0.6, 1] : undefined,
-                      ease: [0.16, 1, 0.3, 1],
-                      delay: 4.0 + i * 0.18,
+                      duration: 2.2,
+                      ease: [0.16, 1, 0.3, 1], // Smooth super deep ease-out
+                      delay: 4.8,
                     }}
                   >
-                    {word}
+                    INFINIZY CONTINUUM
                   </motion.span>
-                ))}
+                </div>
               </div>
             </motion.div>
 
@@ -174,14 +170,14 @@ export default function Home() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 6.1 }}
               className="flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row"
             >
-              <button className="flex w-full items-center justify-center gap-2 rounded-full bg-white px-8 py-3.5 font-medium text-[#34002b] transition-transform hover:scale-105 sm:w-auto">
+              <Link to="/about" className="flex w-full items-center justify-center gap-2 rounded-full bg-white px-8 py-3.5 font-medium text-[#34002b] transition-transform hover:scale-105 sm:w-auto">
                 <span>Enter the Continuum</span>
                 <ArrowRight className="h-4 w-4" />
-              </button>
+              </Link>
 
-              <button className="flex w-full items-center justify-center rounded-full bg-[#34002b] px-8 py-3.5 font-medium text-white transition-transform hover:scale-105 sm:w-auto">
+              <Link to="/contact" className="flex w-full items-center justify-center rounded-full bg-[#34002b] px-8 py-3.5 font-medium text-white transition-transform hover:scale-105 sm:w-auto">
                 Begin Your Transformation
-              </button>
+              </Link>
             </motion.div>
 
             {/* Footer - Founder */}

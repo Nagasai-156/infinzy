@@ -57,8 +57,8 @@ export default function Approach() {
                                 "A deliberate approach."
                             ]}
                             loop={true}
-                            speed={70}
-                            delay={2000}
+                            speed={8}
+                            delay={200}
                             highlightWords={["Transformation", "Architecture", "approach"]}
                             highlightClass="text-[#FFD700] font-bold drop-shadow-[0_0_15px_rgba(255,215,0,0.6)]"
                             className="text-gradient-premium relative z-20 text-5xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl md:leading-[1.15] text-center block min-h-[140px]"

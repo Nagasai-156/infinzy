@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function InvitationSection() {
     return (
@@ -47,14 +48,14 @@ export default function InvitationSection() {
                     transition={{ delay: 0.3, duration: 0.8 }}
                     className="relative group"
                 >
-                    <button className="relative inline-flex items-center gap-4 bg-[#34002b] text-white px-10 py-4 md:px-12 md:py-5 rounded-full font-semibold text-lg md:text-xl transition-all duration-300 transform group-hover:scale-105 active:scale-95 shadow-lg shadow-[#34002b]/20 group-hover:shadow-[#34002b]/40">
+                    <Link to="/contact" className="relative inline-flex items-center gap-4 bg-[#34002b] text-white px-10 py-4 md:px-12 md:py-5 rounded-full font-semibold text-lg md:text-xl transition-all duration-300 transform group-hover:scale-105 active:scale-95 shadow-lg shadow-[#34002b]/20 group-hover:shadow-[#34002b]/40">
                         <span className="relative z-10 flex items-center gap-3">
                             Work With Infinizy
                             <span className="w-8 h-8 rounded-full bg-white/20 text-white flex items-center justify-center transition-colors duration-500 group-hover:bg-white/30">
                                 <ArrowRight className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1" />
                             </span>
                         </span>
-                    </button>
+                    </Link>
                 </motion.div>
 
             </div>
