@@ -42,7 +42,20 @@ export default function Navbar() {
     }
 
     if (!isMobile) {
-        return <MiniContinuumNav />;
+        return (
+            <>
+                <div className="fixed top-6 left-6 z-[101] hidden lg:block">
+                    <Link to="/" className="group block">
+                        <img
+                            src="/logo-clean.png"
+                            alt="Infinizy Logo"
+                            className="h-10 w-auto transition-transform group-hover:scale-105"
+                        />
+                    </Link>
+                </div>
+                <MiniContinuumNav />
+            </>
+        );
     }
 
     return (

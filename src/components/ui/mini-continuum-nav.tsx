@@ -1,139 +1,128 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Text } from '@react-three/drei';
 import * as THREE from 'three';
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
-function CenterSphere() {
+function CenterSphere({ onClick, isExpanded }: { onClick: () => void; isExpanded: boolean }) {
     const meshRef = useRef<THREE.Mesh>(null);
-    useFrame(() => {
+    useFrame((state) => {
         if (meshRef.current) {
-            meshRef.current.rotation.y += 0.001;
-            meshRef.current.rotation.x += 0.0005;
+            meshRef.current.rotation.y += 0.003;
+            meshRef.current.rotation.x += 0.001;
+
+            // Subtle pulse
+            const s = 0.3 + Math.sin(state.clock.elapsedTime * 2) * 0.01;
+            meshRef.current.scale.set(s, s, s);
         }
     });
     return (
-        <mesh ref={meshRef} scale={0.25}>
+        <mesh
+            ref={meshRef}
+            onClick={(e) => {
+                e.stopPropagation();
+                onClick();
+            }}
+            onPointerOver={() => document.body.style.cursor = 'pointer'}
+            onPointerOut={() => document.body.style.cursor = 'auto'}
+        >
             <icosahedronGeometry args={[2.5, 4]} />
-            <meshBasicMaterial color="#ffffff" wireframe={true} transparent opacity={0.15} />
+            <meshBasicMaterial
+                color={isExpanded ? "#be2891" : "#ffffff"}
+                wireframe={true}
+                transparent
+                opacity={0.4}
+            />
         </mesh>
     );
 }
 
-function OrbitItem({ geometry, index, total, item }: { geometry: any, index: number, total: number, item: string }) {
-    const groupRef = useRef<THREE.Group>(null);
-    const meshRef = useRef<THREE.Mesh>(null);
-    const navigate = useNavigate();
-
-    useFrame((state) => {
-        const time = state.clock.getElapsedTime();
-        const radius = 1.1;
-        const speed = -0.05;
-        const angle = (index / total) * Math.PI * 2 + time * speed;
-
-        if (groupRef.current) {
-            groupRef.current.position.x = Math.cos(angle) * radius;
-            groupRef.current.position.y = Math.sin(angle) * radius;
-            groupRef.current.scale.set(0.25, 0.25, 0.25);
-        }
-        if (meshRef.current) {
-            meshRef.current.rotation.x = time * 0.5;
-            meshRef.current.rotation.y = time * 0.5;
-        }
-    });
-
-    return (
-        <group ref={groupRef}>
-            <mesh
-                ref={meshRef}
-                onClick={(e) => {
-                    e.stopPropagation();
-                    const routes: Record<string, string> = {
-                        'Home': '/home',
-                        'About': '/about',
-                        'Skills': '/skills',
-                        'Talent': '/talent',
-                        'Content': '/content',
-                        'Corporate Experiences': '/corporate-experiences',
-                        'Approach': '/approach',
-                        'Custom Solutions': '/custom-solutions',
-                        'Clients': '/clients',
-                        'Contact': '/contact',
-                    };
-                    navigate(routes[item] ?? '/home');
-                }}
-                onPointerOver={() => document.body.style.cursor = 'pointer'}
-                onPointerOut={() => document.body.style.cursor = 'auto'}
-            >
-                {geometry}
-                <meshBasicMaterial color="#ffffff" wireframe={true} transparent opacity={0.5} />
-            </mesh>
-            <Text
-                position={[0, -0.35, 0]}
-                fontSize={0.12}
-                color="#ffffff"
-                anchorX="center"
-                anchorY="middle"
-                letterSpacing={0.1}
-            >
-                {item.toUpperCase()}
-            </Text>
-        </group>
-    );
-}
-
-function OrbitingObjects() {
-    const navItems = [
-        "Home", "About", "Skills", "Talent", "Content",
-        "Corporate Experiences", "Approach", "Custom Solutions",
-        "Clients", "Contact"
-    ];
-    const geometries = useMemo(() => [
-        <icosahedronGeometry args={[0.2, 0]} />,
-        <octahedronGeometry args={[0.2, 0]} />,
-        <dodecahedronGeometry args={[0.25, 0]} />,
-        <boxGeometry args={[0.25, 0.25, 0.25]} />,
-        <sphereGeometry args={[0.2, 8, 8]} />,
-        <coneGeometry args={[0.2, 0.4, 4]} />,
-        <torusGeometry args={[0.15, 0.05, 8, 16]} />,
-        <tetrahedronGeometry args={[0.25, 0]} />,
-        <cylinderGeometry args={[0.15, 0.15, 0.3, 8]} />,
-        <octahedronGeometry args={[0.15, 1]} />
-    ], []);
-
-    return (
-        <group>
-            {navItems.map((item, i) => (
-                <OrbitItem
-                    key={i}
-                    geometry={geometries[i]}
-                    index={i}
-                    total={navItems.length}
-                    item={item}
-                />
-            ))}
-        </group>
-    );
-}
+const NavItems = [
+    { name: "Home", path: "/home" },
+    { name: "About", path: "/about" },
+    { name: "Skills", path: "/skills" },
+    { name: "Talent", path: "/talent" },
+    { name: "Content", path: "/content" },
+    { name: "Corporate Experiences", path: "/corporate-experiences" },
+    { name: "Approach", path: "/approach" },
+    { name: "Custom Solutions", path: "/custom-solutions" },
+    { name: "Clients", path: "/clients" },
+    { name: "Contact", path: "/contact" }
+];
 
 export function MiniContinuumNav() {
     const navigate = useNavigate();
-    return (
-        <div className="fixed top-2 right-2 z-[100] w-[180px] h-[180px] pointer-events-none">
-            <div className="w-full h-full relative">
-                <Canvas camera={{ position: [0, 0, 5], fov: 40 }} style={{ background: 'transparent' }} gl={{ alpha: true }}>
-                    <CenterSphere />
-                    <OrbitingObjects />
-                </Canvas>
+    const [isExpanded, setIsExpanded] = useState(false);
 
-                {/* Center Text Overlay - Small version */}
-                <div
-                    className="absolute inset-0 flex flex-col items-center justify-center pointer-events-auto cursor-pointer"
-                    onClick={() => navigate('/')}
-                >
-                    <p className="text-[#be2891] text-[7px] font-bold tracking-tighter leading-none">Infinizy.</p>
-                    <p className="text-white text-[7px] font-bold tracking-tighter leading-none">Continuum</p>
+    return (
+        <div className="fixed top-4 right-8 z-[100] flex flex-col items-center">
+            {/* Globe Trigger Container */}
+            <div className="relative w-32 h-32 flex items-center justify-center pointer-events-none group">
+                <div className="absolute inset-0 w-full h-full">
+                    <Canvas camera={{ position: [0, 0, 5], fov: 40 }} style={{ background: 'transparent' }} gl={{ alpha: true }}>
+                        <CenterSphere onClick={() => setIsExpanded(!isExpanded)} isExpanded={isExpanded} />
+                    </Canvas>
                 </div>
+
+                {/* Center Text Overlay */}
+                <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    className="relative z-10 flex flex-col items-center justify-center pointer-events-auto cursor-pointer select-none"
+                    onClick={() => setIsExpanded(!isExpanded)}
+                >
+                    <motion.p
+                        animate={{ color: isExpanded ? "#ffffff" : "#be2891" }}
+                        className="text-[9px] font-black tracking-tighter leading-none"
+                    >Infinizy.</motion.p>
+                    <motion.p
+                        animate={{ color: isExpanded ? "#be2891" : "#ffffff" }}
+                        className="text-[9px] font-black tracking-tighter leading-none"
+                    >Continuum</motion.p>
+
+                    {/* Toggle Indicator */}
+                    <motion.div
+                        animate={{ rotate: isExpanded ? 180 : 0 }}
+                        className="mt-1 opacity-50"
+                    >
+                        <div className="w-1.5 h-1.5 border-r border-b border-white rotate-45" />
+                    </motion.div>
+                </motion.div>
+
+                {/* Pulsating background ring */}
+                <div className="absolute inset-2 rounded-full border border-white/5 bg-white/[0.02] blur-[2px]" />
+            </div>
+
+            {/* Fallen Menu (Vertical List) */}
+            <div className="relative">
+                <AnimatePresence>
+                    {isExpanded && (
+                        <motion.div
+                            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                            className="mt-2 flex flex-col items-center gap-1.5 py-6 px-8 rounded-[2rem] bg-black/60 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                        >
+                            {NavItems.map((item, idx) => (
+                                <motion.button
+                                    key={item.name}
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: idx * 0.05, duration: 0.4 }}
+                                    onClick={() => {
+                                        navigate(item.path);
+                                        setIsExpanded(false);
+                                    }}
+                                    className="group relative flex items-center justify-center py-1 w-full"
+                                >
+                                    <span className="text-[10px] font-bold tracking-[0.3em] text-zinc-400 hover:text-white transition-all uppercase whitespace-nowrap">
+                                        {item.name}
+                                    </span>
+                                </motion.button>
+                            ))}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </div>
     );
