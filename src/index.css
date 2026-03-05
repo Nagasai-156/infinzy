@@ -48,6 +48,33 @@
       transform: translateX(0);
     }
   }
+
+  --animate-gradient-move: gradient-move 3s ease infinite;
+
+  @keyframes gradient-move {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
+
+@layer utilities {
+  .growth-gradient {
+    background: linear-gradient(-45deg, #be2891, #f5d6ea, #be2891, #55123d);
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: var(--animate-gradient-move);
+  }
 }
 
 @layer base {

@@ -26,12 +26,12 @@ function CenterSphere({ onClick, isExpanded }: { onClick: () => void; isExpanded
             onPointerOver={() => document.body.style.cursor = 'pointer'}
             onPointerOut={() => document.body.style.cursor = 'auto'}
         >
-            <icosahedronGeometry args={[2.5, 4]} />
+            <icosahedronGeometry args={[2.5, 1]} />
             <meshBasicMaterial
                 color={isExpanded ? "#be2891" : "#ffffff"}
                 wireframe={true}
                 transparent
-                opacity={0.4}
+                opacity={0.25}
             />
         </mesh>
     );
@@ -44,6 +44,7 @@ const NavItems = [
     { name: "Talent", path: "/talent" },
     { name: "Content", path: "/content" },
     { name: "Corporate Experiences", path: "/corporate-experiences" },
+    { name: "Consulting", path: "/consulting" },
     { name: "Approach", path: "/approach" },
     { name: "Custom Solutions", path: "/custom-solutions" },
     { name: "Clients", path: "/clients" },

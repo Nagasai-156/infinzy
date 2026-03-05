@@ -11,6 +11,7 @@ const navItems = [
     "Talent",
     "Content",
     "Corporate Experiences",
+    "Consulting",
     "Approach",
     "Custom Solutions",
     "Clients",

@@ -6,6 +6,16 @@ export function OfflineGame() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isOffline, setIsOffline] = useState(!navigator.onLine);
     const [showGame, setShowGame] = useState(false);
+    const [highScore, setHighScore] = useState(0);
+    const highScoreRef = useRef(0);
+
+    useEffect(() => {
+        const stored = window.localStorage.getItem('continuum_high_score');
+        const parsed = stored ? Number(stored) : 0;
+        const initialHighScore = Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : 0;
+        highScoreRef.current = initialHighScore;
+        setHighScore(initialHighScore);
+    }, []);
 
     // For manual debugging toggle: Ctrl + Shift + O
     useEffect(() => {
@@ -55,18 +65,23 @@ export function OfflineGame() {
         canvas.width = width;
         canvas.height = height;
 
-        window.addEventListener('resize', () => {
+        const handleResize = () => {
             width = window.innerWidth;
             height = window.innerHeight;
             canvas.width = width;
             canvas.height = height;
-        });
+        };
+
+        window.addEventListener('resize', handleResize);
 
         // Game State Variables
         let gameState: 'START' | 'PLAYING' | 'GAMEOVER' = 'START';
         let worldX = 0;
-        let speed = Math.max(3.5, window.innerWidth * 0.0035); // Responsive starting speed
+        let speed = Math.max(2.1, window.innerWidth * 0.002); // Slower start, then ramp up
         let score = 0;
+        let runDistance = 0;
+        let bestScore = highScoreRef.current;
+        let newHighScoreThisRun = false;
 
         type NodeType = 'SAFE' | 'DANGER' | 'PENALTY' | 'BONUS';
 
@@ -89,6 +104,20 @@ export function OfflineGame() {
 
         let nodes: GameNode[] = [];
         let trails: Trail[] = [];
+
+        const getDifficulty = (worldDistance: number) => {
+            const rampDistance = Math.max(width * 14, 6000);
+            return Math.max(0, Math.min(1, worldDistance / rampDistance));
+        };
+
+        const updateHighScore = (nextScore: number) => {
+            if (nextScore <= bestScore) return;
+            bestScore = nextScore;
+            newHighScoreThisRun = true;
+            highScoreRef.current = bestScore;
+            setHighScore(bestScore);
+            window.localStorage.setItem('continuum_high_score', String(bestScore));
+        };
 
         let player = {
             wx: width / 2,
@@ -124,8 +153,11 @@ export function OfflineGame() {
         function resetGame() {
             gameState = 'PLAYING';
             worldX = 0;
-            speed = Math.max(3.5, width * 0.0035); // Responsive logic
+            speed = Math.max(2.1, width * 0.002);
             score = 0;
+            runDistance = 0;
+            bestScore = highScoreRef.current;
+            newHighScoreThisRun = false;
 
             nodes = [];
             trails = [];
@@ -156,8 +188,11 @@ export function OfflineGame() {
         function spawnNodes(fromX: number, toX: number) {
             let cursorX = fromX;
             while (cursorX < toX) {
-                // Increased density - more nodes generated closer together
-                cursorX += Math.random() * 110 + 60;
+                const progression = getDifficulty(Math.max(0, cursorX - 300));
+                const minGap = 55 + progression * 95;
+                const maxGap = 110 + progression * 175;
+
+                cursorX += Math.random() * (maxGap - minGap) + minGap;
 
                 const safeMargin = height < 600 ? 70 : 110;
                 let wy = Math.random() * (height - safeMargin * 2) + safeMargin;
@@ -168,16 +203,22 @@ export function OfflineGame() {
                 let type: NodeType = 'SAFE';
                 let radius = 9;
 
-                // Adjust balance for difficulty
-                if (rand > 0.65) {
-                    type = 'DANGER'; // 35% chance 
-                    radius = 16;
-                } else if (rand > 0.50) {
-                    type = 'PENALTY'; // 15% chance
-                    radius = 14;
-                } else if (rand > 0.40) {
-                    type = 'BONUS'; // 10% chance
+                const safeChance = 0.68 - progression * 0.3;
+                const bonusChance = 0.18 - progression * 0.08;
+                const penaltyChance = 0.1 + progression * 0.12;
+
+                if (rand < safeChance) {
+                    type = 'SAFE';
+                    radius = 9;
+                } else if (rand < safeChance + bonusChance) {
+                    type = 'BONUS';
                     radius = 12;
+                } else if (rand < safeChance + bonusChance + penaltyChance) {
+                    type = 'PENALTY';
+                    radius = 14;
+                } else {
+                    type = 'DANGER';
+                    radius = 15 + progression * 3;
                 }
 
                 nodes.push({
@@ -261,7 +302,13 @@ export function OfflineGame() {
             else if (gameState === 'PLAYING') {
                 // Game Mechanics Updates
                 worldX += speed;
-                speed += width < 600 ? 0.002 : 0.0035; // Speed increases faster over time, adjusted for mobile
+                runDistance += speed;
+
+                const progression = getDifficulty(runDistance);
+                const baseSpeed = Math.max(2.1, width * 0.002);
+                const maxExtraSpeed = width < 600 ? 3.1 : 4.4;
+                const targetSpeed = baseSpeed + maxExtraSpeed * progression;
+                speed += (targetSpeed - speed) * 0.025;
 
                 // Spawn new nodes ahead
                 const furthestNode = nodes.reduce((max, n) => Math.max(max, n.wx), 0);
@@ -290,8 +337,8 @@ export function OfflineGame() {
                     const screenY = n.wy;
                     if (screenX > 0 && screenX < width) {
                         const dist = Math.hypot(MOUSE.x - screenX, MOUSE.y - screenY);
-                        // Make hit detection scale loosely on mobile width for "fat fingers"
-                        const hitRadius = width < 600 ? 100 : 120;
+                        const baseHitRadius = width < 600 ? 102 : 122;
+                        const hitRadius = baseHitRadius - progression * (width < 600 ? 20 : 30);
                         if (dist < hitRadius && dist < minDist) {
                             minDist = dist;
                             hoverNode = n;
@@ -326,10 +373,13 @@ export function OfflineGame() {
                         gameState = 'GAMEOVER';
                     } else if (hoverNode.type === 'PENALTY') {
                         score -= 30;
+                        updateHighScore(score);
                     } else if (hoverNode.type === 'BONUS') {
                         score += 50;
+                        updateHighScore(score);
                     } else {
                         score += 10;
+                        updateHighScore(score);
                     }
                 }
 
@@ -444,12 +494,16 @@ export function OfflineGame() {
                 ctx.textAlign = 'left';
                 ctx.fillText(`${score}`, isMobile ? 15 : 30, isMobile ? 90 : 100);
 
+                ctx.fillStyle = 'rgba(255,255,255,0.75)';
+                ctx.font = `${isMobile ? 12 : 16}px Inter, sans-serif`;
+                ctx.fillText(`Best ${bestScore}`, isMobile ? 16 : 32, isMobile ? 112 : 126);
+
                 // 5. Draw Target Rules at Top Right
                 ctx.fillStyle = 'rgba(255,255,255,0.9)';
                 ctx.font = `bold ${isMobile ? 10 : 12}px Inter, sans-serif`;
                 ctx.textAlign = 'right';
                 const ruleX = width - (isMobile ? 15 : 30);
-                const ruleStartY = isMobile ? 90 : 85;
+                const ruleStartY = isMobile ? 70 : 66;
                 const ruleStep = isMobile ? 15 : 20;
 
                 // Safe
@@ -464,6 +518,10 @@ export function OfflineGame() {
                 // Danger
                 ctx.fillStyle = '#ff3333';
                 ctx.fillText("⬢ GLITCH (DEATH)", ruleX, ruleStartY + ruleStep * 3);
+
+                ctx.fillStyle = 'rgba(255,255,255,0.85)';
+                ctx.fillText("Early game: dense and slower", ruleX, ruleStartY + ruleStep * 4);
+                ctx.fillText("Later: fewer links and faster stream", ruleX, ruleStartY + ruleStep * 5);
 
             }
             else if (gameState === 'GAMEOVER') {
@@ -481,9 +539,19 @@ export function OfflineGame() {
                 ctx.font = `${isMobile ? 20 : 24}px Inter, sans-serif`;
                 ctx.fillText(`Score: ${score}`, width / 2, height / 2 + 30);
 
+                ctx.fillStyle = 'rgba(255,255,255,0.9)';
+                ctx.font = `${isMobile ? 16 : 20}px Inter, sans-serif`;
+                ctx.fillText(`High Score: ${bestScore}`, width / 2, height / 2 + 60);
+
+                if (newHighScoreThisRun) {
+                    ctx.fillStyle = '#FFD700';
+                    ctx.font = `bold ${isMobile ? 16 : 20}px Inter, sans-serif`;
+                    ctx.fillText('NEW HIGH SCORE', width / 2, height / 2 + 92);
+                }
+
                 ctx.fillStyle = 'rgba(255,255,255,0.5)';
                 ctx.font = `${isMobile ? 14 : 16}px Inter, sans-serif`;
-                ctx.fillText("Tap anywhere to re-establish connection.", width / 2, height / 2 + 70);
+                ctx.fillText("Tap anywhere to re-establish connection.", width / 2, height / 2 + (newHighScoreThisRun ? 124 : 96));
 
                 if (MOUSE.clicked) {
                     resetGame();
@@ -501,6 +569,7 @@ export function OfflineGame() {
             window.removeEventListener('touchmove', handleMove);
             window.removeEventListener('mousedown', handleDown);
             window.removeEventListener('touchstart', handleDown);
+            window.removeEventListener('resize', handleResize);
             cancelAnimationFrame(animationFrameId);
         };
     }, [showGame]);
@@ -520,6 +589,7 @@ export function OfflineGame() {
                         <div className="flex items-center gap-3 bg-black/50 px-5 py-2 rounded-full border border-white/10 backdrop-blur-md">
                             <WifiOff className="w-4 h-4 text-red-500 animate-pulse" />
                             <span className="text-white/80 text-sm font-medium tracking-widest uppercase">Network Connection Lost</span>
+                            <span className="text-white/60 text-xs tracking-wide">Best: {highScore}</span>
                         </div>
                     </div>
 

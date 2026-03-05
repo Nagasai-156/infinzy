@@ -7,6 +7,7 @@ import Skills from './Skills';
 import Talent from './Talent';
 import Content from './Content';
 import CorporateExperiences from './CorporateExperiences';
+import Consulting from './Consulting';
 import Approach from './Approach';
 import CustomSolutions from './CustomSolutions';
 import Clients from './Clients';
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/talent" element={<Talent />} />
           <Route path="/content" element={<Content />} />
           <Route path="/corporate-experiences" element={<CorporateExperiences />} />
+          <Route path="/consulting" element={<Consulting />} />
           <Route path="/approach" element={<Approach />} />
           <Route path="/custom-solutions" element={<CustomSolutions />} />
           <Route path="/clients" element={<Clients />} />
