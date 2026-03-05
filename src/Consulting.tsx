@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, CheckCircle2, Cpu, Zap, Users } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Cpu } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Consulting3D from './Consulting3D';
 import Footer from './Footer';
@@ -23,7 +23,7 @@ const itemVariants = {
     visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+        transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
     }
 };
 
