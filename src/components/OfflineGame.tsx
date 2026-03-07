@@ -77,7 +77,7 @@ export function OfflineGame() {
         // Game State Variables
         let gameState: 'START' | 'PLAYING' | 'GAMEOVER' = 'START';
         let worldX = 0;
-        let speed = Math.max(2.1, window.innerWidth * 0.002); // Slower start, then ramp up
+        let speed = Math.max(1.0, window.innerWidth * 0.0012); // Start slow, ramp up as game progresses
         let score = 0;
         let runDistance = 0;
         let bestScore = highScoreRef.current;
@@ -106,7 +106,7 @@ export function OfflineGame() {
         let trails: Trail[] = [];
 
         const getDifficulty = (worldDistance: number) => {
-            const rampDistance = Math.max(width * 14, 6000);
+            const rampDistance = Math.max(width * 18, 8000); // Longer ramp = easier start for longer
             return Math.max(0, Math.min(1, worldDistance / rampDistance));
         };
 
@@ -153,7 +153,7 @@ export function OfflineGame() {
         function resetGame() {
             gameState = 'PLAYING';
             worldX = 0;
-            speed = Math.max(2.1, width * 0.002);
+            speed = Math.max(1.0, width * 0.0012);
             score = 0;
             runDistance = 0;
             bestScore = highScoreRef.current;
@@ -189,8 +189,9 @@ export function OfflineGame() {
             let cursorX = fromX;
             while (cursorX < toX) {
                 const progression = getDifficulty(Math.max(0, cursorX - 300));
-                const minGap = 55 + progression * 95;
-                const maxGap = 110 + progression * 175;
+                // Start: many nodes (small gaps), Progress: fewer nodes (larger gaps)
+                const minGap = 38 + progression * 120;
+                const maxGap = 75 + progression * 210;
 
                 cursorX += Math.random() * (maxGap - minGap) + minGap;
 
@@ -203,9 +204,10 @@ export function OfflineGame() {
                 let type: NodeType = 'SAFE';
                 let radius = 9;
 
-                const safeChance = 0.68 - progression * 0.3;
-                const bonusChance = 0.18 - progression * 0.08;
-                const penaltyChance = 0.1 + progression * 0.12;
+                // More penalties and death throughout; ramps up with progression
+                const safeChance = 0.55 - progression * 0.25;
+                const bonusChance = 0.15 - progression * 0.05;
+                const penaltyChance = 0.18 + progression * 0.17;
 
                 if (rand < safeChance) {
                     type = 'SAFE';
@@ -282,18 +284,36 @@ export function OfflineGame() {
 
             if (gameState === 'START') {
                 const isMobile = width < 600;
+                const fs = isMobile ? 12 : 14;
+
                 ctx.fillStyle = 'white';
                 ctx.font = `${isMobile ? 22 : 30}px Inter, sans-serif`;
                 ctx.textAlign = 'center';
-                ctx.fillText("NETWORK DETACHED.", width / 2, height / 2 - (isMobile ? 30 : 40));
+                ctx.fillText("NETWORK DETACHED.", width / 2, height / 2 - (isMobile ? 80 : 100));
 
                 ctx.fillStyle = '#FFD700';
                 ctx.font = `bold ${isMobile ? 32 : 45}px Inter, sans-serif`;
-                ctx.fillText("THE CONTINUUM", width / 2, height / 2 + (isMobile ? 10 : 20));
+                ctx.fillText("THE CONTINUUM", width / 2, height / 2 - (isMobile ? 40 : 50));
+
+                ctx.fillStyle = 'rgba(255,215,0,0.9)';
+                ctx.font = `bold ${isMobile ? 14 : 18}px Inter, sans-serif`;
+                ctx.fillText(`HIGH SCORE: ${bestScore}`, width / 2, height / 2 - (isMobile ? 10 : 5));
+
+                ctx.fillStyle = 'rgba(255,255,255,0.85)';
+                ctx.font = `bold ${fs}px Inter, sans-serif`;
+                ctx.textAlign = 'center';
+                ctx.fillText("RULES:", width / 2, height / 2 + (isMobile ? 25 : 35));
+                ctx.fillStyle = 'rgba(255,255,255,0.65)';
+                ctx.font = `${fs}px Inter, sans-serif`;
+                ctx.fillText("⬤ Gold nodes: +10 pts", width / 2, height / 2 + (isMobile ? 45 : 60));
+                ctx.fillText("★ Green stars: +50 pts", width / 2, height / 2 + (isMobile ? 62 : 82));
+                ctx.fillText("◆ Purple diamonds: -30 pts", width / 2, height / 2 + (isMobile ? 79 : 104));
+                ctx.fillText("⬢ Red hexagons: GAME OVER", width / 2, height / 2 + (isMobile ? 96 : 126));
+                ctx.fillText("Connect nodes before you scroll off. Speed increases over time.", width / 2, height / 2 + (isMobile ? 120 : 155));
 
                 ctx.fillStyle = 'rgba(255,255,255,0.5)';
                 ctx.font = `${isMobile ? 12 : 16}px Inter, sans-serif`;
-                ctx.fillText(isMobile ? "Tap to tether nodes. Avoid red glitches." : "Click or Tap to tether between nodes. Avoid red glitches.", width / 2, height / 2 + (isMobile ? 50 : 70));
+                ctx.fillText(isMobile ? "Tap anywhere to start" : "Click or Tap anywhere to start", width / 2, height / 2 + (isMobile ? 155 : 195));
 
                 if (MOUSE.clicked) {
                     resetGame();
@@ -305,8 +325,8 @@ export function OfflineGame() {
                 runDistance += speed;
 
                 const progression = getDifficulty(runDistance);
-                const baseSpeed = Math.max(2.1, width * 0.002);
-                const maxExtraSpeed = width < 600 ? 3.1 : 4.4;
+                const baseSpeed = Math.max(1.0, width * 0.0012);
+                const maxExtraSpeed = width < 600 ? 2.8 : 4.0;
                 const targetSpeed = baseSpeed + maxExtraSpeed * progression;
                 speed += (targetSpeed - speed) * 0.025;
 

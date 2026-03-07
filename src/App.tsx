@@ -12,7 +12,10 @@ import Approach from './Approach';
 import CustomSolutions from './CustomSolutions';
 import Clients from './Clients';
 import Contact from './Contact';
-import SplashCursor from './components/SplashCursor';
+import Terms from './Terms';
+import Privacy from './Privacy';
+import CursorStars from './components/CursorStars';
+import { CookieConsent } from './components/CookieConsent';
 import ScrollToTop from './components/ScrollToTop';
 import AnimeConcept from './AnimeConcept';
 import { OfflineGame } from './components/OfflineGame';
@@ -20,9 +23,10 @@ import { OfflineGame } from './components/OfflineGame';
 export default function App() {
   return (
     <>
-      <SplashCursor />
+      <CursorStars />
       <OfflineGame />
       <BrowserRouter>
+        <CookieConsent />
         <ScrollToTop />
         <Navbar />
         <Routes>
@@ -39,6 +43,8 @@ export default function App() {
           <Route path="/custom-solutions" element={<CustomSolutions />} />
           <Route path="/clients" element={<Clients />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -92,6 +92,7 @@ function OrbitItem({ geometry, index, total, item }: { geometry: any, index: num
                         'Talent': '/talent',
                         'Content': '/content',
                         'Corporate Experiences': '/corporate-experiences',
+                        'Consulting': '/consulting',
                         'Approach': '/approach',
                         'Custom Solutions': '/custom-solutions',
                         'Clients': '/clients',
@@ -123,11 +124,11 @@ function OrbitItem({ geometry, index, total, item }: { geometry: any, index: num
 function OrbitingObjects() {
     const navItems = [
         "Home", "About", "Skills", "Talent", "Content",
-        "Corporate Experiences", "Approach", "Custom Solutions",
+        "Corporate Experiences", "Consulting", "Approach", "Custom Solutions",
         "Clients", "Contact"
     ];
 
-    // Create 10 different geometries for the 10 nav items
+    // Create 11 different geometries for the 11 nav items
     const geometries = useMemo(() => [
         <icosahedronGeometry args={[0.2, 0]} />,
         <octahedronGeometry args={[0.2, 0]} />,
@@ -138,7 +139,8 @@ function OrbitingObjects() {
         <torusGeometry args={[0.15, 0.05, 8, 16]} />,
         <tetrahedronGeometry args={[0.25, 0]} />,
         <cylinderGeometry args={[0.15, 0.15, 0.3, 8]} />,
-        <octahedronGeometry args={[0.15, 1]} /> // subdivided octahedron
+        <octahedronGeometry args={[0.15, 1]} />, // subdivided octahedron
+        <ringGeometry args={[0.12, 0.2, 16]} /> // ring for Consulting
     ], []);
 
     return (

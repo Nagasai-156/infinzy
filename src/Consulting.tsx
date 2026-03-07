@@ -27,6 +27,11 @@ const itemVariants = {
     }
 };
 
+const capitalizeWords = (str: string) =>
+    str.split(' ').map(w =>
+        w.split('-').map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()).join('-')
+    ).join(' ');
+
 export default function Consulting() {
     usePageMeta('Consulting', 'Strategic architecture for enterprise transformation.');
     const containerRef = useRef<HTMLDivElement>(null);
@@ -123,7 +128,7 @@ export default function Consulting() {
                             </p>
                         </motion.div>
 
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
                             {[
                                 "Enterprise learning transformation roadmaps",
                                 "Leadership competency architecture",
@@ -139,10 +144,23 @@ export default function Consulting() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: idx * 0.05 }}
-                                    className="p-8 bg-zinc-900/40 border border-white/5 rounded-3xl hover:border-brand-500/30 transition-all group"
+                                    className={`p-8 bg-zinc-900/40 border border-white/5 rounded-3xl hover:border-brand-500/30 transition-all group ${idx === 6 ? 'col-span-1 md:col-span-2 lg:col-span-3' : ''}`}
                                 >
                                     <CheckCircle2 className="w-8 h-8 text-brand-500 mb-6" />
-                                    <p className="text-lg font-medium text-zinc-300">{item}</p>
+                                    <p className="text-lg font-medium text-zinc-300">
+                                        {capitalizeWords(item).split(' ').map((word, i) => (
+                                            <motion.span
+                                                key={i}
+                                                className="inline-block mr-[0.25em]"
+                                                initial={{ opacity: 0, y: 8 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 0.4, delay: idx * 0.05 + i * 0.03 }}
+                                            >
+                                                {word}
+                                            </motion.span>
+                                        ))}
+                                    </p>
                                 </motion.div>
                             ))}
                         </div>
@@ -188,7 +206,7 @@ export default function Consulting() {
                             </p>
                         </motion.div>
 
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
                             {[
                                 "Enterprise digital transformation strategy",
                                 "Technology stack rationalization and evaluation",
@@ -204,18 +222,31 @@ export default function Consulting() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: idx * 0.05 }}
-                                    className="p-8 bg-zinc-900/40 border border-white/5 rounded-3xl hover:border-[#FFD700]/30 transition-all"
+                                    className={`p-8 bg-zinc-900/40 border border-white/5 rounded-3xl hover:border-[#FFD700]/30 transition-all ${idx === 6 ? 'col-span-1 md:col-span-2 lg:col-span-3' : ''}`}
                                 >
                                     <Cpu className="w-8 h-8 text-[#FFD700] mb-6" />
-                                    <p className="text-lg font-medium text-zinc-300">{item}</p>
+                                    <p className="text-lg font-medium text-zinc-300">
+                                        {capitalizeWords(item).split(' ').map((word, i) => (
+                                            <motion.span
+                                                key={i}
+                                                className="inline-block mr-[0.25em]"
+                                                initial={{ opacity: 0, y: 8 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 0.4, delay: idx * 0.05 + i * 0.03 }}
+                                            >
+                                                {word}
+                                            </motion.span>
+                                        ))}
+                                    </p>
                                 </motion.div>
                             ))}
                         </div>
 
                         <div className="text-center p-12 border-y border-white/5">
-                            <p className="text-2xl text-zinc-500 font-light italic">
+                            <p className="text-xl md:text-2xl text-zinc-400 font-light leading-relaxed max-w-3xl mx-auto">
                                 We do not recommend tools. <br />
-                                <span className="text-white font-black uppercase tracking-tighter text-3xl mt-4 block">
+                                <span className="text-white font-semibold mt-2 block">
                                     We design systems aligned with long-term enterprise direction.
                                 </span>
                             </p>
@@ -232,9 +263,9 @@ export default function Consulting() {
                             viewport={{ once: true }}
                         >
                             <h2 className="text-4xl md:text-7xl font-black mb-12">
-                                HUMAN INTELLIGENCE <br />
+                                <span className="growth-gradient">HUMAN</span> INTELLIGENCE <br />
                                 <span className="text-brand-500">×</span> <br />
-                                ARTIFICIAL INTELLIGENCE
+                                <span className="growth-gradient">ARTIFICIAL</span> INTELLIGENCE
                             </h2>
                             <p className="text-xl text-zinc-400 max-w-3xl mx-auto mb-20 leading-relaxed">
                                 The future belongs to organizations that master integration. Artificial intelligence delivers data precision, pattern recognition, and predictive modeling. Human intelligence ensures contextual judgment, ethical oversight, and strategic foresight.
@@ -302,22 +333,30 @@ export default function Consulting() {
                 </section>
 
                 {/* CTA SECTION */}
-                <section className="py-48 text-center px-6 border-t border-white/5">
+                <section className="relative py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
+                    <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">
+                        <span className="text-[clamp(5rem,18vw,14rem)] font-black text-[#222222] tracking-widest whitespace-nowrap leading-none">
+                            INFINIZY
+                        </span>
+                    </div>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
+                        className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl"
                     >
-                        <h2 className="text-6xl md:text-9xl font-black mb-16 tracking-tighter">
-                            Architect Enterprise <br />
-                            <span className="growth-gradient italic">Transformation</span>
+                        <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">
+                            Architect Enterprise <span className="text-[#FFD700] drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]">Transformation</span>
                         </h2>
+                        <p className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">
+                            Strategic architecture for measurable, sustainable enterprise growth.
+                        </p>
                         <Link
                             to="/contact"
-                            className="inline-flex items-center gap-6 bg-white text-black px-12 py-6 rounded-full font-black text-2xl hover:bg-brand-500 hover:text-white transition-all duration-700 active:scale-95 shadow-[0_40px_100px_rgba(255,255,255,0.1)] group"
+                            className="inline-flex items-center gap-6 px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)] group"
                         >
                             Start Transformation
-                            <ArrowRight className="w-8 h-8 group-hover:translate-x-4 transition-transform" />
+                            <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                         </Link>
                     </motion.div>
                 </section>

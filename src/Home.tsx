@@ -138,7 +138,7 @@ export default function Home() {
 
                 <div className="flex justify-center w-full px-4">
                   <motion.span
-                    className="inline-block pb-2 text-[1.75rem] xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.10em] sm:tracking-widest uppercase"
+                    className="inline-block pb-2 text-[1.75rem] xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.10em] sm:tracking-widest uppercase font-serif"
                     initial={{ opacity: 0, scale: 25, filter: 'blur(30px)', color: '#FFD700' }}
                     animate={{ opacity: 1, scale: 1, filter: 'blur(0px)', color: '#ffffff' }}
                     transition={{

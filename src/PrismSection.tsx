@@ -44,7 +44,7 @@ export default function PrismSection() {
                         transition={{ delay: 0.1 }}
                         className="text-white/50 text-sm leading-relaxed md:ml-auto md:w-5/6 text-justify md:text-right"
                     >
-                        Infinizy acts as a prism, collaboratively guiding our clients through this process, ensuring the end result is a balanced, market-fit product, where all of the input has been taken into account and molded into perfection.
+                        The Infinizy website acts as a prism, synthesizing needs, thoughts, and people into a unified experience. It guides visitors through the Continuum — ensuring every section, service, and pathway is balanced, coherent, and aligned into one cohesive digital journey.
                     </motion.p>
                 </div>
             </div>

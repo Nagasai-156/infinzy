@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Twitter, Linkedin, Github, Instagram, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
+import { FaXTwitter, FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa6';
 import { SparklesCore } from './components/ui/sparkles';
 
 const Footer = () => {
@@ -17,16 +18,17 @@ const Footer = () => {
 
     const secondaryLinks = [
         { name: 'Corporate Experiences', href: '/corporate-experiences' },
+        { name: 'Consulting', href: '/consulting' },
         { name: 'Custom Solutions', href: '/custom-solutions' },
         { name: 'Clients', href: '/clients' },
         { name: 'Contact', href: '/contact' },
     ];
 
     const socialLinks = [
-        { icon: Linkedin, href: '#' },
-        { icon: Twitter, href: '#' },
-        { icon: Instagram, href: '#' },
-        { icon: Github, href: '#' },
+        { name: 'X', href: 'https://x.com/InfinizyGlobal', Icon: FaXTwitter },
+        { name: 'Facebook', href: 'https://www.facebook.com/share/1CL6FQCzfx/?mibextid=wwXIfr', Icon: FaFacebookF },
+        { name: 'Instagram', href: 'https://www.instagram.com/infinizyglobal?igsh=MTJwa3Z1ZzkyOGYxNA%3D%3D&utm_source=qr', Icon: FaInstagram },
+        { name: 'LinkedIn', href: 'https://in.linkedin.com/company/infinizyglobal', Icon: FaLinkedinIn },
     ];
 
     return (
@@ -54,10 +56,13 @@ const Footer = () => {
                                 <motion.a
                                     key={i}
                                     href={social.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={social.name}
                                     whileHover={{ y: -4, color: 'var(--color-brand-400)' }}
                                     className="w-10 h-10 rounded-full bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-400 transition-colors"
                                 >
-                                    <social.icon className="w-4 h-4" />
+                                    <social.Icon className="w-4 h-4" />
                                 </motion.a>
                             ))}
                         </div>
@@ -126,8 +131,8 @@ const Footer = () => {
                 {/* Bottom Bar */}
                 <div className="pt-16 border-t border-white/5 flex flex-col md:row items-center justify-between gap-8">
                     <div className="flex gap-8 text-[11px] font-medium uppercase tracking-[0.2em] text-zinc-500">
-                        <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                        <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+                        <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+                        <Link to="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link>
                     </div>
                     <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-zinc-600">
                         © {currentYear} INFINIZY CONTINUUM. ALL RIGHTS RESERVED.

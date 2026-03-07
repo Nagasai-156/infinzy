@@ -72,10 +72,10 @@ export default function CorporateExperiences() {
                             </motion.p>
                             <motion.div variants={itemVariants} className="relative inline-flex items-center justify-center mt-8 sm:mt-12 group">
                                 <div className="absolute transition-all duration-200 rounded-full -inset-px bg-gradient-to-r from-[var(--color-brand-300)] to-[var(--color-brand-500)] group-hover:shadow-lg group-hover:shadow-[var(--color-brand-300)]/50"></div>
-                                <a href="#" title="" className="relative inline-flex items-center justify-center px-8 py-3 text-base font-normal text-white bg-black border border-transparent rounded-full transition-transform hover:scale-105" role="button">
+                                <Link to="/contact" className="relative inline-flex items-center justify-center px-8 py-3 text-base font-normal text-white bg-black border border-transparent rounded-full transition-transform hover:scale-105">
                                     <span className="mr-3">Design Experience</span>
                                     <ArrowRight className="h-4 w-4" />
-                                </a>
+                                </Link>
                             </motion.div>
                         </motion.div>
 
