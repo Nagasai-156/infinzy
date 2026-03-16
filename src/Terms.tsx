@@ -45,7 +45,7 @@ export default function Terms() {
         },
         {
             title: '10. Contact',
-            content: 'For questions regarding these Terms and Conditions, please contact us at hello@infinizy.com or through our Contact page.',
+            content: 'For questions regarding these Terms and Conditions, please contact us at hello@infinizyglobal.com or through our Contact page.',
         },
     ];
 

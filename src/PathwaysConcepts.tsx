@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 
 const cards = [
@@ -6,6 +7,7 @@ const cards = [
         symbol: "⬡",
         title: "Skills",
         desc: "Capability Elevation",
+        path: "/skills",
         image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop",
         accentColor: "#d4af37",
     },
@@ -13,6 +15,7 @@ const cards = [
         symbol: "◈",
         title: "Talent",
         desc: "Workforce Alignment",
+        path: "/talent",
         image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop",
         accentColor: "#c0c0c0",
     },
@@ -20,6 +23,7 @@ const cards = [
         symbol: "◇",
         title: "Content",
         desc: "Intelligence Architecture",
+        path: "/content",
         image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1600&auto=format&fit=crop",
         accentColor: "#a36b98",
     },
@@ -27,6 +31,7 @@ const cards = [
         symbol: "△",
         title: "Corporate Experiences",
         desc: "Immersive Transformation",
+        path: "/corporate-experiences",
         image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
         accentColor: "#ffffff",
     },
@@ -63,8 +68,9 @@ export default function PathwaysConcepts() {
                         const isActive = hovered === i;
                         const anyHovered = hovered !== null;
                         return (
-                            <div
+                            <Link
                                 key={i}
+                                to={card.path}
                                 onMouseEnter={() => setHovered(i)}
                                 className="relative overflow-hidden rounded-[28px] xl:rounded-[36px] cursor-pointer shrink-0 flex flex-col justify-end"
                                 style={{
@@ -149,7 +155,7 @@ export default function PathwaysConcepts() {
                                         style={{ color: card.accentColor }}
                                     />
                                 </div>
-                            </div>
+                            </Link>
                         );
                     })}
                 </div>
@@ -157,11 +163,11 @@ export default function PathwaysConcepts() {
                 {/* ── Mobile / Tablet Stack ── */}
                 <div className="flex lg:hidden flex-col gap-4 md:gap-5">
                     {cards.map((card, i) => (
-                        <div
+                        <Link
                             key={i}
-                            className="relative overflow-hidden rounded-[24px] md:rounded-[32px] cursor-pointer"
+                            to={card.path}
+                            className="relative overflow-hidden rounded-[24px] md:rounded-[32px] cursor-pointer block"
                             style={{ height: '280px' }}
-                            onClick={() => setHovered(hovered === i ? null : i)}
                         >
                             {/* Background image */}
                             <div
@@ -190,7 +196,7 @@ export default function PathwaysConcepts() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
 

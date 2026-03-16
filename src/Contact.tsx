@@ -95,7 +95,7 @@ export default function Contact() {
                         transition={{ duration: 1.2, ease: "easeOut" }}
                         className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white drop-shadow-xl bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-100 to-zinc-400 text-center px-4 leading-[1.2] py-4"
                     >
-                        Begin your transformation.
+                        Begin Your Transformation.
                     </motion.h1>
                 </motion.div>
             </section>
@@ -238,8 +238,9 @@ export default function Contact() {
                                                         name="phone"
                                                         value={formData.phone}
                                                         onChange={handleChange}
+                                                        required
                                                         className="w-full bg-zinc-900/50 border border-white/10 rounded-xl pl-11 pr-4 py-3.5 text-[15px] text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-[var(--color-brand-500)] focus:border-[var(--color-brand-500)] transition-all font-light"
-                                                        placeholder="+1 (555) 000-0000"
+                                                        placeholder="8328621026"
                                                     />
                                                 </div>
                                             </div>
@@ -254,6 +255,7 @@ export default function Contact() {
                                                 name="serviceInterest"
                                                 value={formData.serviceInterest}
                                                 onChange={handleChange}
+                                                required
                                                 className="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-4 py-3.5 text-[15px] text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-[var(--color-brand-500)] focus:border-[var(--color-brand-500)] transition-all font-light appearance-none"
                                             >
                                                 {serviceOptions.map((option, idx) => (
@@ -293,12 +295,8 @@ export default function Contact() {
                         </AnimatePresence>
                     </div>
 
-                    {/* RIGHT COLUMN: OFFICE DETAILS */}
+                    {/* RIGHT COLUMN: OFFICE INFO */}
                     <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={containerVariants} className="lg:col-span-5 flex flex-col space-y-6 lg:mt-5">
-                        <motion.div variants={itemVariants} className="mb-2">
-                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 uppercase tracking-widest glow-text">OFFICE DETAILS</h2>
-                        </motion.div>
-
                         <motion.div variants={itemVariants} className="bg-[#150a11]/60 p-8 sm:p-10 rounded-[2rem] border border-white/5 shadow-xl backdrop-blur-md">
                             <div className="space-y-10">
                                 <div className="flex gap-5 items-start">
@@ -308,8 +306,9 @@ export default function Contact() {
                                     <div>
                                         <h4 className="text-[17px] font-semibold text-white mb-2 uppercase tracking-wide">Address</h4>
                                         <p className="text-[15px] text-zinc-400 font-light leading-relaxed">
-                                            101 Singularity Blvd, Suite 42<br />
-                                            San Francisco, CA 94105
+                                            Infinizy Global Innovations Pvt Ltd<br />
+                                            RAD, Jubilee Hills<br />
+                                            500033
                                         </p>
                                     </div>
                                 </div>
@@ -320,9 +319,9 @@ export default function Contact() {
                                     </div>
                                     <div>
                                         <h4 className="text-[17px] font-semibold text-white mb-2 uppercase tracking-wide">Phone</h4>
-                                        <p className="text-[15px] text-zinc-400 font-light leading-relaxed">
-                                            +1 (555) 867-5309
-                                        </p>
+                                        <a href="tel:+918328621026" className="text-[15px] text-zinc-400 hover:text-white transition-colors font-light leading-relaxed">
+                                            8328621026
+                                        </a>
                                     </div>
                                 </div>
 
@@ -332,28 +331,32 @@ export default function Contact() {
                                     </div>
                                     <div>
                                         <h4 className="text-[17px] font-semibold text-white mb-2 uppercase tracking-wide">Email</h4>
-                                        <p className="text-[15px] text-zinc-400 font-light leading-relaxed">
-                                            hello@infinizy.ai
-                                        </p>
+                                        <a href="mailto:hello@infinizyglobal.com" className="text-[15px] text-zinc-400 hover:text-white transition-colors font-light leading-relaxed">
+                                            hello@infinizyglobal.com
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </motion.div>
 
                         <motion.div variants={itemVariants} className="bg-zinc-900/40 rounded-[2rem] border border-white/5 shadow-xl overflow-hidden h-56 relative group">
-                            {/* Dummy Map Image / UI */}
-                            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=600&auto=format&fit=crop" alt="Map Location" className="w-full h-full object-cover grayscale opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" />
+                            <iframe
+                                title="Infinizy Global Innovations Pvt Ltd Location"
+                                src="https://www.google.com/maps?q=17.4372589,78.3982636&z=17&output=embed"
+                                className="w-full h-full border-0"
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                            />
                             <div className="absolute inset-0 border border-white/10 rounded-[2rem] pointer-events-none"></div>
 
-                            {/* Marker Pin on map */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                                <div className="text-white drop-shadow-lg font-bold text-sm bg-black/60 px-2 py-0.5 rounded-sm backdrop-blur-sm mb-1">San Francisco</div>
-                                <MapPin className="w-6 h-6 text-[var(--color-brand-400)] drop-shadow-[0_0_8px_rgba(255,0,255,0.8)] fill-[var(--color-brand-900)]" />
-                            </div>
-
-                            <div className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-md border border-white/10">
-                                <span className="text-xs font-medium text-white">View on Map</span>
-                            </div>
+                            <a
+                                href="https://www.google.com/maps/place/Infinizy+Global+Innovations+Pvt.+Ltd./@17.4372589,78.3956887,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb9148019e338f:0xeb98cb442f3536c3!8m2!3d17.4372589!4d78.3982636!16s%2Fg%2F11ff1w3wn2?entry=ttu&g_ep=EgoyMDI2MDMxMS4wIKXMDSoASAFQAw%3D%3D"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="absolute bottom-4 left-4 bg-black/80 hover:bg-black/90 backdrop-blur-md px-3 py-1.5 rounded-md border border-white/10 transition-colors"
+                            >
+                                <span className="text-xs font-medium text-white">View on Google Maps</span>
+                            </a>
                         </motion.div>
                     </motion.div>
 

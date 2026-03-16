@@ -16,43 +16,62 @@ const inputs = [
 
 export default function PrismSection() {
     return (
-        <section className="bg-[#020202] py-24 lg:py-32 min-h-screen flex flex-col items-center justify-center relative overflow-hidden border-t border-white/10 w-full">
+        <section className="bg-[#020202] py-24 lg:py-32 flex flex-col items-center justify-center relative overflow-hidden border-t border-white/10 w-full">
 
-            {/* Header Content */}
-            <div className="max-w-[1200px] w-full mx-auto px-6 mb-16 flex flex-col md:flex-row justify-between items-start z-10">
-                <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-white/60 font-medium tracking-widest uppercase text-sm mb-6 md:mb-0"
-                >
-                    Framework
-                </motion.div>
-                <div className="max-w-xl md:text-right">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-4"
-                    >
-                        of needs, thoughts and people
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="text-white/50 text-sm leading-relaxed md:ml-auto md:w-5/6 text-justify md:text-right"
-                    >
-                        The Infinizy website acts as a prism, synthesizing needs, thoughts, and people into a unified experience. It guides visitors through the Continuum — ensuring every section, service, and pathway is balanced, coherent, and aligned into one cohesive digital journey.
-                    </motion.p>
-                </div>
-            </div>
+            <div className="w-full max-w-7xl mx-auto px-6 relative z-10">
+                {/* Top: Copy + Prism */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-14 items-start">
+                    {/* Content */}
+                    <div className="flex flex-col">
+                        <motion.p
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="text-white/60 font-medium tracking-widest uppercase text-xs sm:text-sm mb-6"
+                        >
+                            Framework
+                        </motion.p>
 
-            {/* Prism Visualization */}
-            <div className="w-full max-w-[1200px] mx-auto overflow-visible relative">
-                {/* SVG maintains aspect ratio automatically and scales to width */}
-                <svg viewBox="0 0 1200 800" className="w-full h-auto drop-shadow-2xl overflow-visible">
+                        <motion.h2
+                            initial={{ opacity: 0, y: 16 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight leading-[1.05]"
+                        >
+                            The Thinking Behind Infinizy
+                        </motion.h2>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 16 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.05 }}
+                            className="mt-7 space-y-4 text-white/65 text-sm sm:text-[15px] md:text-base leading-relaxed max-w-prose"
+                        >
+                            <p>Every organization is surrounded by signals.</p>
+                            <p>
+                                Ideas waiting to be explored. Needs emerging from people and markets. Trends reshaping industries. Experiences shaping decisions. Cultures influencing perspectives.
+                            </p>
+                            <p>Yet most of these signals remain scattered. Information exists everywhere, but clarity is rare.</p>
+                            <p>
+                                Infinizy was born from a simple belief — meaningful progress happens when scattered signals are brought together and interpreted through the right lens.
+                            </p>
+                            <p className="text-white/80">
+                                At the heart of Infinizy lies the convergence of three powerful forces:
+                            </p>
+                        </motion.div>
+                    </div>
+
+                    {/* Prism Visualization (right) */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        className="w-full rounded-[2.5rem] border border-white/10 bg-black/30 backdrop-blur-sm p-4 sm:p-6 overflow-hidden"
+                    >
+                        <div className="w-full overflow-visible relative">
+                            {/* SVG maintains aspect ratio automatically and scales to width */}
+                            <svg viewBox="0 0 1200 800" className="w-full h-auto drop-shadow-2xl overflow-visible">
 
                     {/* Definitions */}
                     <defs>
@@ -182,7 +201,58 @@ export default function PrismSection() {
                             </g>
                         );
                     })}
-                </svg>
+                            </svg>
+                        </div>
+                    </motion.div>
+                </div>
+
+                {/* Bottom: 3 forces in boxes */}
+                <motion.div
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ delay: 0.05 }}
+                    className="mt-12 lg:mt-14"
+                >
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+                        {[
+                            { title: "Human insight", text: "brings judgment, creativity, and empathy." },
+                            { title: "Artificial intelligence", text: "reveals patterns and possibilities hidden within data." },
+                            { title: "Technology", text: "transforms those insights into scalable solutions." }
+                        ].map((item) => (
+                            <div
+                                key={item.title}
+                                className="rounded-3xl border border-white/10 bg-zinc-950/50 backdrop-blur-sm p-7 sm:p-8 min-h-[140px]"
+                            >
+                                <p className="text-white font-semibold text-base sm:text-lg">{item.title}</p>
+                                <p className="mt-3 text-white/60 text-sm sm:text-base leading-relaxed">{item.text}</p>
+                            </div>
+                        ))}
+                    </div>
+                </motion.div>
+
+                {/* Closing copy */}
+                <motion.div
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ delay: 0.06 }}
+                    className="mt-10 lg:mt-12 max-w-4xl"
+                >
+                    <div className="space-y-4 text-white/65 text-sm sm:text-[15px] md:text-base leading-relaxed">
+                        <p>When these forces intersect, complexity becomes clarity.</p>
+                        <p>And from that clarity emerges something continuous — a flow of understanding, capability, and transformation.</p>
+                        <p className="text-white/90">
+                            We call this the <span className="text-[#FFD700] font-semibold">Infinizy Continuum</span>.
+                        </p>
+                        <p className="text-white/70">
+                            A space where ideas evolve into strategy, where intelligence becomes action, and where organizations move forward with purpose.
+                        </p>
+                        <p className="text-white font-semibold tracking-wide">
+                            From signals to strategy. From complexity to capability.
+                        </p>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );

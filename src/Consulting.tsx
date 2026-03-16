@@ -5,7 +5,6 @@ import Consulting3D from './Consulting3D';
 import Footer from './Footer';
 import { usePageMeta } from './lib/usePageMeta';
 import { useRef } from 'react';
-import { CinematicText } from './components/ui/cinematic-text';
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -27,10 +26,40 @@ const itemVariants = {
     }
 };
 
-const capitalizeWords = (str: string) =>
-    str.split(' ').map(w =>
-        w.split('-').map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()).join('-')
-    ).join(' ');
+const toDisplayTitle = (input: string) => {
+    // Support inputs like:
+    // - "Enterprise digital transformation strategy"
+    // - "EnterpriseDigitalTransformationStrategy"
+    // - "AI-integrated learning ecosystems"
+    // - "TechnologyRoiModelingAndGovernance"
+    const spaced = input
+        .replace(/_/g, ' ')
+        .replace(/-/g, ' ')
+        .replace(/([a-z])([A-Z])/g, '$1 $2')
+        .replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+    const acronyms = new Set(['AI', 'IT', 'ROI', 'L&D', 'Roi']);
+
+    return spaced
+        .split(' ')
+        .map((raw) => {
+            const word = raw.trim();
+            if (!word) return '';
+            if (acronyms.has(word) || acronyms.has(word.toUpperCase())) return word.toUpperCase();
+            if (word.toLowerCase() === 'and') return 'and';
+            if (word.toLowerCase() === 'with') return 'with';
+            if (word.toLowerCase() === 'for') return 'for';
+            if (word.toLowerCase() === 'to') return 'to';
+            if (word.toLowerCase() === 'of') return 'of';
+            if (word.toLowerCase() === 'in') return 'in';
+            if (word.toLowerCase() === 'on') return 'on';
+            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        })
+        .filter(Boolean)
+        .join(' ');
+};
 
 export default function Consulting() {
     usePageMeta('Consulting', 'Strategic architecture for enterprise transformation.');
@@ -54,18 +83,23 @@ export default function Consulting() {
             </div>
 
             {/* HERO SECTION */}
-            <section className="relative h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
-                <div className="relative z-10 max-w-7xl mx-auto w-full text-center">
+            <section className="relative min-h-[80vh] md:min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden">
+                <div className="relative z-10 max-w-5xl mx-auto w-full text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                     >
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] mb-8">
-                            <CinematicText text="Strategy Determines the Future." className="block" />
-                            <span className="growth-gradient italic block pt-2">Execution Merely Follows.</span>
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight mb-6 mx-auto">
+                            <span className="block">
+                                <span className="text-[#FFD700]">Strategy</span> determines the{' '}
+                                <span className="text-[#FFD700]">future</span>.
+                            </span>
+                            <span className="block pt-3 text-white/80 italic">
+                                Execution merely follows.
+                            </span>
                         </h1>
-                        <p className="text-xl md:text-2xl font-light text-zinc-400 max-w-3xl mx-auto leading-relaxed mt-8">
+                        <p className="text-base sm:text-lg md:text-xl font-light text-zinc-400 max-w-3xl mx-auto leading-relaxed mt-4">
                             Inside the Infinizy Continuum, Consulting is where transformation is engineered at its highest level.
                         </p>
                     </motion.div>
@@ -128,7 +162,7 @@ export default function Consulting() {
                             </p>
                         </motion.div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 mb-20">
                             {[
                                 "Enterprise learning transformation roadmaps",
                                 "Leadership competency architecture",
@@ -144,11 +178,24 @@ export default function Consulting() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: idx * 0.05 }}
-                                    className={`p-8 bg-zinc-900/40 border border-white/5 rounded-3xl hover:border-brand-500/30 transition-all group ${idx === 6 ? 'col-span-1 md:col-span-2 lg:col-span-3' : ''}`}
+                                    className={[
+                                        // Balanced spans: 4 cards on row 1 (3+3+3+3), 3 cards on row 2 (4+4+4).
+                                        idx <= 3 ? "lg:col-span-3" : "lg:col-span-4",
+                                        // Shape variety
+                                        idx % 3 === 0 ? "rounded-[2.25rem]" : idx % 3 === 1 ? "rounded-[3rem]" : "rounded-[2.75rem]",
+                                        // Height variety (subtle)
+                                        idx % 2 === 0 ? "min-h-[140px] md:min-h-[170px]" : "min-h-[160px] md:min-h-[190px]",
+                                        // Base styling
+                                        "relative overflow-hidden p-8 md:p-9 bg-zinc-900/40 border border-white/5 hover:border-brand-500/30 transition-all group flex flex-col justify-between"
+                                    ].join(' ')}
                                 >
-                                    <CheckCircle2 className="w-8 h-8 text-brand-500 mb-6" />
-                                    <p className="text-lg font-medium text-zinc-300">
-                                        {capitalizeWords(item).split(' ').map((word, i) => (
+                                    {/* Ambient corner glow */}
+                                    <div className="absolute -top-20 -right-20 w-56 h-56 bg-[var(--color-brand-500)]/10 blur-[70px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+                                    <div className="relative z-10 flex items-start gap-5">
+                                        <CheckCircle2 className="w-8 h-8 text-brand-500 shrink-0 mt-0.5" />
+                                        <p className="text-lg md:text-xl font-medium text-zinc-200 leading-snug">
+                                        {toDisplayTitle(item).split(' ').map((word, i) => (
                                             <motion.span
                                                 key={i}
                                                 className="inline-block mr-[0.25em]"
@@ -161,6 +208,10 @@ export default function Consulting() {
                                             </motion.span>
                                         ))}
                                     </p>
+                                    </div>
+
+                                    {/* Bottom line accent */}
+                                    <div className="relative z-10 mt-6 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                                 </motion.div>
                             ))}
                         </div>
@@ -206,7 +257,7 @@ export default function Consulting() {
                             </p>
                         </motion.div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 mb-20">
                             {[
                                 "Enterprise digital transformation strategy",
                                 "Technology stack rationalization and evaluation",
@@ -222,23 +273,40 @@ export default function Consulting() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: idx * 0.05 }}
-                                    className={`p-8 bg-zinc-900/40 border border-white/5 rounded-3xl hover:border-[#FFD700]/30 transition-all ${idx === 6 ? 'col-span-1 md:col-span-2 lg:col-span-3' : ''}`}
+                                    className={[
+                                        // Balanced spans: 4 cards on row 1 (3+3+3+3), 3 cards on row 2 (4+4+4).
+                                        idx <= 3 ? "lg:col-span-3" : "lg:col-span-4",
+                                        // Shape variety
+                                        idx % 3 === 0 ? "rounded-[2.25rem]" : idx % 3 === 1 ? "rounded-[3rem]" : "rounded-[2.75rem]",
+                                        // Height variety (subtle)
+                                        idx % 2 === 0 ? "min-h-[140px] md:min-h-[170px]" : "min-h-[160px] md:min-h-[190px]",
+                                        // Base styling
+                                        "relative overflow-hidden p-8 md:p-9 bg-zinc-900/40 border border-white/5 hover:border-[#FFD700]/30 transition-all group flex flex-col justify-between"
+                                    ].join(' ')}
                                 >
-                                    <Cpu className="w-8 h-8 text-[#FFD700] mb-6" />
-                                    <p className="text-lg font-medium text-zinc-300">
-                                        {capitalizeWords(item).split(' ').map((word, i) => (
-                                            <motion.span
-                                                key={i}
-                                                className="inline-block mr-[0.25em]"
-                                                initial={{ opacity: 0, y: 8 }}
-                                                whileInView={{ opacity: 1, y: 0 }}
-                                                viewport={{ once: true }}
-                                                transition={{ duration: 0.4, delay: idx * 0.05 + i * 0.03 }}
-                                            >
-                                                {word}
-                                            </motion.span>
-                                        ))}
-                                    </p>
+                                    {/* Ambient corner glow */}
+                                    <div className="absolute -top-20 -right-20 w-56 h-56 bg-[#FFD700]/10 blur-[70px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+                                    <div className="relative z-10 flex items-start gap-5">
+                                        <Cpu className="w-8 h-8 text-[#FFD700] shrink-0 mt-0.5" />
+                                        <p className="text-lg md:text-xl font-medium text-zinc-200 leading-snug">
+                                            {toDisplayTitle(item).split(' ').map((word, i) => (
+                                                <motion.span
+                                                    key={i}
+                                                    className="inline-block mr-[0.25em]"
+                                                    initial={{ opacity: 0, y: 8 }}
+                                                    whileInView={{ opacity: 1, y: 0 }}
+                                                    viewport={{ once: true }}
+                                                    transition={{ duration: 0.4, delay: idx * 0.05 + i * 0.03 }}
+                                                >
+                                                    {word}
+                                                </motion.span>
+                                            ))}
+                                        </p>
+                                    </div>
+
+                                    {/* Bottom line accent */}
+                                    <div className="relative z-10 mt-6 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                                 </motion.div>
                             ))}
                         </div>
@@ -309,17 +377,18 @@ export default function Consulting() {
                             <p className="text-lg text-zinc-500">Within the Infinizy Continuum, consulting is directly connected to execution:</p>
                         </motion.div>
 
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-20">
                             {["Skills", "Talent", "Content", "Experiences"].map((item, i) => (
                                 <motion.div
                                     key={i}
                                     initial={{ opacity: 0, scale: 0.9 }}
                                     whileInView={{ opacity: 1, scale: 1 }}
                                     transition={{ delay: i * 0.1 }}
-                                    className="text-center group"
+                                    className="group text-center rounded-3xl border border-white/10 bg-zinc-900/30 backdrop-blur-sm px-6 py-8 md:px-7 md:py-10 hover:border-brand-500/30 hover:bg-zinc-900/40 transition-all"
                                 >
-                                    <p className="text-zinc-600 text-[10px] uppercase tracking-[0.3em] mb-2">Strategy informs</p>
-                                    <p className="text-2xl font-black italic tracking-tighter uppercase group-hover:text-brand-500 transition-colors">{item}</p>
+                                    <p className="text-xl md:text-2xl font-black italic tracking-tighter uppercase group-hover:text-brand-500 transition-colors">
+                                        {item}
+                                    </p>
                                 </motion.div>
                             ))}
                         </div>

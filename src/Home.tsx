@@ -1,6 +1,6 @@
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import DarkVeil from './DarkVeil';
 import ContinuumSection from './ContinuumSection';
@@ -32,19 +32,6 @@ export default function Home() {
       },
     },
   };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1] as any // sleek, smooth ease-out (no bounces, no blurs)
-      }
-    },
-  };
-
 
   return (
     <div className="bg-black text-white font-sans w-full overflow-hidden">
@@ -78,15 +65,7 @@ export default function Home() {
             animate="visible"
             className="flex w-full max-w-3xl flex-col items-center text-center"
           >
-            {/* Eyebrow Label */}
-            <motion.div variants={itemVariants} className="mb-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 backdrop-blur-md">
-                <Sparkles className="h-4 w-4 text-zinc-300" />
-                <span className="text-xs font-medium uppercase tracking-widest text-zinc-300">
-                  Welcome to the Continuum
-                </span>
-              </div>
-            </motion.div>
+            {/* Eyebrow Label removed as requested */}
 
             {/* Main Hero Typography */}
             <motion.div
@@ -188,12 +167,18 @@ export default function Home() {
               className="mt-20 flex flex-col items-center gap-4"
             >
               <div className="h-px w-12 bg-white/20" />
+              <div className="w-16 h-16 rounded-full overflow-hidden border border-white/20 shadow-lg">
+                <img src="/image.png" alt="Sailaja Akkala" className="w-full h-full object-cover" />
+              </div>
               <div className="flex flex-col items-center gap-1.5">
-                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] text-[#FFD700]">
                   Founded by
                 </span>
-                <span className="text-sm font-medium tracking-wide text-zinc-300">
+                <span className="text-lg sm:text-xl font-semibold tracking-wide text-[#FFD700]">
                   Sailaja Akkala
+                </span>
+                <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+                  Visionary Architect
                 </span>
               </div>
             </motion.div>

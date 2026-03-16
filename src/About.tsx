@@ -1,4 +1,5 @@
 import { motion, type Variants } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Code, Target, Zap, ShieldCheck, Heart, RefreshCw, Quote } from 'lucide-react';
 import About3D from './About3D';
@@ -17,6 +18,22 @@ export default function About() {
         hidden: { opacity: 0, y: 40, filter: 'blur(8px)' },
         visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
     };
+
+    const originQuestions = [
+        "Why do organizations invest in learning, hiring, and strategy — yet still struggle to sustain growth?",
+        "Why do businesses implement new technologies and strategies — yet still struggle to align their people, skills, and culture with that change?",
+        "Why do organizations invest separately in skills development, talent acquisition, technology, and strategy — yet still struggle to bring them together into one system that drives real transformation?"
+    ];
+
+    const [originQuestionIndex, setOriginQuestionIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setOriginQuestionIndex((prev) => (prev + 1) % originQuestions.length);
+        }, 9000); // enough time for the "why?" animation + read time
+
+        return () => clearInterval(interval);
+    }, [originQuestions.length]);
 
     const values = [
         { title: "Integrity", icon: ShieldCheck, desc: "Uncompromising ethics in every interaction." },
@@ -107,9 +124,15 @@ export default function About() {
                                     className="relative inline-block mt-8"
                                 >
                                     <span className="absolute -top-8 left-0 text-7xl text-white/10 font-serif leading-none">"</span>
-                                    <h3 className="text-2xl md:text-4xl lg:text-5xl font-light leading-snug text-white italic max-w-3xl relative z-10 mt-6 lg:mt-0">
-                                        Why do organizations invest in learning, hiring, and strategy — yet still struggle to sustain growth?
-                                    </h3>
+                                    <motion.h3
+                                        key={originQuestionIndex}
+                                        initial={{ opacity: 0, y: 10, filter: 'blur(6px)' }}
+                                        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                        className="text-2xl md:text-4xl lg:text-5xl font-light leading-snug text-white italic max-w-3xl relative z-10 mt-6 lg:mt-0"
+                                    >
+                                        {originQuestions[originQuestionIndex]}
+                                    </motion.h3>
                                     <span className="absolute -bottom-16 right-0 text-7xl text-white/10 font-serif leading-none">"</span>
                                 </motion.div>
                             </div>
@@ -123,7 +146,7 @@ export default function About() {
                             <div className="flex flex-col md:flex-row gap-10 md:gap-12 items-center">
                                 <div className="flex-shrink-0 relative">
                                     <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden ring-4 ring-black/50 shadow-2xl z-10 relative bg-zinc-900 border border-white/10">
-                                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop" alt="Sailaja Akkala" className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 transition-all duration-700" />
+                                        <img src="/image.png" alt="Sailaja Akkala" className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 transition-all duration-700" />
                                     </div>
                                 </div>
                                 <div className="flex-1 text-center md:text-left mt-4 md:mt-0">
@@ -155,7 +178,7 @@ export default function About() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5 rounded-3xl overflow-hidden">
                         {[
                             { label: "Human Potential", text: "Human potential is cultivated.", icon: Heart },
-                            { label: "Org Growth", text: "Organizational growth is engineered.", icon: Target },
+                            { label: "Organizational Growth", text: "Organizational growth is engineered.", icon: Target },
                             { label: "Transformation", text: "Transformation is continuous.", icon: RefreshCw },
                         ].map((belief, idx) => (
                             <motion.div
@@ -219,12 +242,12 @@ export default function About() {
                         <motion.div className="lg:col-span-5 relative" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
                             <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl group ring-1 ring-white/10">
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 transition-opacity duration-500 group-hover:from-black/80" />
-                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop" alt="Sailaja Akkala" className="w-full h-full object-cover grayscale opacity-90 group-hover:scale-105 group-hover:grayscale-[50%] transition-all duration-1000" />
+                                <img src="/image.png" alt="Sailaja Akkala" className="w-full h-full object-cover grayscale opacity-90 group-hover:scale-105 group-hover:grayscale-[50%] transition-all duration-1000" />
                                 <div className="absolute bottom-10 left-10 z-20">
                                     <h4 className="text-3xl font-light text-white mb-2 tracking-wide">Sailaja Akkala</h4>
                                     <div className="flex items-center gap-3">
                                         <div className="w-6 h-[1px] bg-[var(--color-brand-500)]" />
-                                        <p className="text-[11px] font-bold tracking-[0.3em] text-[var(--color-brand-400)] uppercase">Founder & Visionary</p>
+                                        <p className="text-[11px] font-bold tracking-[0.3em] text-[var(--color-brand-400)] uppercase">Visionary Architect</p>
                                     </div>
                                 </div>
                             </div>

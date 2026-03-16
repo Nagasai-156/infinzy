@@ -27,8 +27,8 @@ export default function InvitationSection() {
                     className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6"
                 >
                     You are here because <br className="hidden md:block" />
-                    <span className="growth-gradient italic font-extrabold text-[1.3em] leading-none align-baseline inline-block px-2 pt-2 pb-4 -my-4">growth</span>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/40 italic font-medium"> matters to you.</span>
+                    <span className="italic font-extrabold text-[1.3em] leading-none align-baseline inline-block px-2 pt-2 pb-4 -my-4 text-[#FFD700]">growth</span>
+                    <span className="text-white italic font-medium"> matters to you.</span>
                 </motion.h2>
 
                 <motion.p

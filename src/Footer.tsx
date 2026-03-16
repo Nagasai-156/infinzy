@@ -32,7 +32,7 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="relative bg-[#050505] text-white pt-32 pb-16 overflow-hidden border-t border-white/5">
+        <footer className="relative bg-[#050505] text-white pt-24 pb-12 overflow-hidden border-t border-white/5">
             {/* Ambient Background Glows */}
             <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[var(--color-brand-900)]/30 rounded-full blur-[120px] pointer-events-none opacity-50" />
             <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-[var(--color-brand-500)]/10 rounded-full blur-[100px] pointer-events-none opacity-30" />
@@ -103,7 +103,7 @@ const Footer = () => {
                                 </div>
                                 <div>
                                     <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1">Email</p>
-                                    <a href="mailto:hello@infinizy.com" className="text-sm text-zinc-300 hover:text-white transition-colors">hello@infinizy.com</a>
+                                    <a href="mailto:hello@infinizyglobal.com" className="text-sm text-zinc-300 hover:text-white transition-colors">hello@infinizyglobal.com</a>
                                 </div>
                             </div>
                             <div className="flex items-start gap-4 group">
@@ -112,7 +112,7 @@ const Footer = () => {
                                 </div>
                                 <div>
                                     <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1">Phone</p>
-                                    <a href="tel:+1234567890" className="text-sm text-zinc-300 hover:text-white transition-colors">+1 (234) 567-890</a>
+                                    <a href="tel:+918328621026" className="text-sm text-zinc-300 hover:text-white transition-colors">8328621026</a>
                                 </div>
                             </div>
                             <div className="flex items-start gap-4 group">
@@ -121,7 +121,14 @@ const Footer = () => {
                                 </div>
                                 <div>
                                     <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1">HQ</p>
-                                    <p className="text-sm text-zinc-300">The Continuum Plaza, Tech District, SF</p>
+                                    <a
+                                        href="https://www.google.com/maps/place/Infinizy+Global+Innovations+Pvt.+Ltd./@17.4372589,78.3956887,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb9148019e338f:0xeb98cb442f3536c3!8m2!3d17.4372589!4d78.3982636!16s%2Fg%2F11ff1w3wn2?entry=ttu&g_ep=EgoyMDI2MDMxMS4wIKXMDSoASAFQAw%3D%3D"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-sm text-zinc-300 hover:text-white transition-colors leading-relaxed"
+                                    >
+                                        Infinizy Global Innovations Pvt Ltd, RAD, Jubilee Hills, 500033
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -139,8 +146,8 @@ const Footer = () => {
                     </p>
                 </div>
 
-                {/* High-Impact Aceternity Closing Section */}
-                <div className="mt-20 md:mt-28 relative flex flex-col items-center justify-center overflow-hidden h-[32rem] md:h-[42rem] w-full rounded-md">
+                {/* High-Impact Aceternity Closing Section (INFINIZY + animation only) */}
+                <div className="mt-10 md:mt-16 relative flex flex-col items-center justify-center overflow-hidden h-[28rem] md:h-[36rem] w-full rounded-md">
                     <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-center text-[#34002b] relative z-20 tracking-tighter">
                         INFINIZY
                     </h1>
@@ -165,19 +172,6 @@ const Footer = () => {
                         {/* Radial Mask to prevent sharp edges */}
                         <div className="absolute inset-0 w-full h-full bg-[#050505] [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
                     </div>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.5 }}
-                        className="relative z-20 text-center px-6 mt-[-0.5rem] md:mt-[-1.5rem]"
-                    >
-                        <h3 className="text-2xl md:text-4xl lg:text-6xl font-bold tracking-tight text-white leading-tight max-w-5xl transition-all duration-500">
-                            You did not visit a website. <br className="hidden md:block" />
-                            You entered the <span className="text-[var(--color-brand-500)] italic">Infinizy Continuum.</span>
-                        </h3>
-                    </motion.div>
                 </div>
             </div>
         </footer>

@@ -20,7 +20,7 @@ const content = {
             border: "border-blue-500/20"
         }
     ],
-    footer: "This is how Sailaja Akkala designed the Infinizy Continuum — not just to keep pace with the future, but to help shape it."
+    footer: <>This is how <span className="font-semibold text-[#FFD700]">Sailaja Akkala</span> designed the Infinizy Continuum — not just to keep pace with the future, but to help shape it.</>
 };
 
 // Variants for staggered children
@@ -80,7 +80,7 @@ export default function EvolveSection() {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
-                        className="relative z-10 transition-transform duration-700 lg:group-hover:-translate-y-4"
+                        className="relative z-10 transition-transform duration-700 lg:group-hover:-translate-y-4 flex flex-col items-end text-right"
                     >
                         {/* Pulsing Organic Heart Icon */}
                         <motion.div
@@ -91,8 +91,18 @@ export default function EvolveSection() {
                         >
                             {content.intelligences[0].icon}
                         </motion.div>
-                        <motion.h3 variants={itemVariants} className="text-3xl sm:text-4xl font-light mb-4 text-white tracking-tight">{content.intelligences[0].name}</motion.h3>
-                        <motion.p variants={itemVariants} className="text-zinc-400 text-lg sm:text-xl leading-relaxed max-w-md">{content.intelligences[0].desc}</motion.p>
+                        <motion.h3
+                            variants={itemVariants}
+                            className="text-3xl sm:text-4xl font-light mb-4 text-white tracking-tight"
+                        >
+                            {content.intelligences[0].name}
+                        </motion.h3>
+                        <motion.p
+                            variants={itemVariants}
+                            className="text-zinc-400 text-lg sm:text-xl leading-relaxed max-w-md ml-auto"
+                        >
+                            {content.intelligences[0].desc}
+                        </motion.p>
                     </motion.div>
                 </motion.div>
 

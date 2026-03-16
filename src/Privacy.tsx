@@ -54,7 +54,7 @@ export default function Privacy() {
         },
         {
             title: '8. Your Rights',
-            content: 'Depending on your location, you may have the right to access, correct, delete, or restrict the processing of your personal data. You may also have the right to data portability and to withdraw consent. To exercise these rights, please contact us at hello@infinizy.com.',
+            content: 'Depending on your location, you may have the right to access, correct, delete, or restrict the processing of your personal data. You may also have the right to data portability and to withdraw consent. To exercise these rights, please contact us at hello@infinizyglobal.com.',
         },
         {
             title: '9. Children\'s Privacy',
@@ -66,7 +66,7 @@ export default function Privacy() {
         },
         {
             title: '11. Contact Us',
-            content: 'For any questions about this Privacy Policy or our data practices, please contact us at hello@infinizy.com or visit our Contact page.',
+            content: 'For any questions about this Privacy Policy or our data practices, please contact us at hello@infinizyglobal.com or visit our Contact page.',
         },
     ];
 

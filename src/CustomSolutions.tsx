@@ -62,14 +62,14 @@ export default function CustomSolutions() {
                         </motion.h2>
                         <Typewriter
                             text={[
-                                "No two organizations evolve the same way.",
+                                "No two Organizations evolve the same way.",
                                 "Let's engineer your unique transformation.",
-                                "A continuum of progress."
+                                "A Continuum of progress."
                             ]}
                             loop={true}
                             speed={70}
                             delay={2000}
-                            highlightWords={["organizations", "engineer", "continuum"]}
+                            highlightWords={["Organizations", "engineer", "Continuum"]}
                             highlightClass="inline-block text-[#FFD700] drop-shadow-[0_0_15px_rgba(255,215,0,0.4)] animate-zoom-in-out"
                             className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium tracking-tight text-white leading-[1.1] mb-8 block min-h-[180px]"
                         />

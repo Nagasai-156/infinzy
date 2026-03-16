@@ -8,10 +8,32 @@ const content = {
     subtext: "Learning alone is not enough. Hiring alone is not enough. Technology alone is not enough.",
     highlight: "Transformation happens when everything moves together.",
     pillars: [
-        { title: "Skills", desc: "The foundation of capability. Mastering the tools of tomorrow.", icon: <Zap className="w-6 h-6" /> },
-        { title: "Talent", desc: "The people who drive the future. Aligning brilliant minds.", icon: <Briefcase className="w-6 h-6" /> },
-        { title: "Knowledge", desc: "The insight to act decisively. Data transformed into wisdom.", icon: <Brain className="w-6 h-6" /> },
-        { title: "Experience", desc: "The mastery born from action. Building intuition through repetition.", icon: <Layers className="w-6 h-6" /> }
+        {
+            title: "Skills",
+            desc: "The foundation of capability. Mastering the tools of tomorrow.",
+            icon: <Zap className="w-6 h-6" />,
+            // Reuse the Four Forces. One Continuum. imagery
+            bg: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop"
+        },
+        {
+            title: "Talent",
+            desc: "The people who drive the future. Aligning brilliant minds.",
+            icon: <Briefcase className="w-6 h-6" />,
+            bg: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop"
+        },
+        {
+            title: "Knowledge",
+            desc: "The insight to act decisively. Data transformed into wisdom.",
+            icon: <Brain className="w-6 h-6" />,
+            // Align Knowledge with the Content / intelligence visual
+            bg: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1600&auto=format&fit=crop"
+        },
+        {
+            title: "Experience",
+            desc: "The mastery born from action. Building intuition through repetition.",
+            icon: <Layers className="w-6 h-6" />,
+            bg: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop"
+        }
     ],
     footer: "Inside the Infinizy Continuum, these forces operate as one continuous flow — shaping individuals, strengthening organizations, and accelerating outcomes."
 };
@@ -90,7 +112,7 @@ export default function ContinuumSection() {
                 </div>
 
                 {/* Right Curved Rotating Carousel */}
-                <div className="lg:w-1/2 w-full h-[500px] sm:h-[600px] relative flex justify-center items-center overflow-visible">
+                <div className="lg:w-1/2 w-full h-[500px] sm:h-[600px] relative flex flex-col justify-center items-center overflow-visible gap-6">
                     {content.pillars.map((pillar, i) => {
                         const pos = getPosition(i);
                         const isActive = active === i;
@@ -112,10 +134,11 @@ export default function ContinuumSection() {
                                 onClick={() => setActive(i)}
                                 className="absolute w-full max-w-[320px] sm:max-w-md aspect-[4/3] rounded-3xl overflow-hidden cursor-pointer bg-zinc-900 border border-white/10 shadow-2xl flex flex-col justify-end p-6 sm:p-8 select-none"
                             >
-                                {/* Decorative background image for the active card to pop beautifully */}
+                                {/* Decorative background image for each card */}
                                 <motion.div
-                                    animate={{ opacity: isActive ? 0.4 : 0.05 }}
-                                    className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center mix-blend-screen transition-opacity duration-1000"
+                                    animate={{ opacity: isActive ? 0.4 : 0.08 }}
+                                    style={{ backgroundImage: `url(${pillar.bg})` }}
+                                    className="absolute inset-0 bg-cover bg-center mix-blend-screen transition-opacity duration-1000"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
 
@@ -140,6 +163,24 @@ export default function ContinuumSection() {
                             </motion.div>
                         )
                     })}
+
+                    {/* Manual controls for rotation (in addition to click) */}
+                    <div className="relative z-20 mt-auto flex items-center justify-center gap-4">
+                        <button
+                            type="button"
+                            onClick={() => setActive((prev) => (prev + 3) % 4)}
+                            className="px-3 py-1.5 text-xs uppercase tracking-[0.25em] rounded-full border border-white/20 text-zinc-300 hover:bg-white/10 transition"
+                        >
+                            Prev
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => setActive((prev) => (prev + 1) % 4)}
+                            className="px-3 py-1.5 text-xs uppercase tracking-[0.25em] rounded-full border border-white/20 text-zinc-300 hover:bg-white/10 transition"
+                        >
+                            Next
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
