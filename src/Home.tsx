@@ -19,7 +19,7 @@ export default function Home() {
 
   useEffect(() => {
     // Let words stagger in (~1.5s), hold, then fade out at 3.2s
-    const timer = setTimeout(() => setWelcomeVisible(false), 3200);
+    const timer = setTimeout(() => setWelcomeVisible(false), 1800);
     return () => clearTimeout(timer);
   }, []);
   const containerVariants: Variants = {
@@ -83,7 +83,7 @@ export default function Home() {
                 {welcomeVisible && (
                   <motion.div
                     className="flex flex-wrap justify-center text-lg font-light tracking-wide text-zinc-400 sm:text-xl md:text-2xl"
-                    exit={{ opacity: 0, y: -12, transition: { duration: 0.7, ease: 'easeInOut' } }}
+                    exit={{ opacity: 0, y: -12, transition: { duration: 0.4, ease: 'easeInOut' } }}
                   >
                     {"Welcome. You are not visiting a company.".split(" ").map((word, i) => (
                       <motion.span
@@ -91,7 +91,7 @@ export default function Home() {
                         className="inline-block mr-[0.25em]"
                         initial={{ opacity: 0, y: 16, filter: 'blur(4px)' }}
                         animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.3 + i * 0.1 }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1], delay: 0.1 + i * 0.06 }}
                       >
                         {word}
                       </motion.span>
@@ -108,7 +108,7 @@ export default function Home() {
                       className="inline-block text-2xl sm:text-3xl md:text-4xl font-light text-zinc-300"
                       initial={{ opacity: 0, y: 24, filter: 'blur(6px)' }}
                       animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 4.0 + i * 0.18 }}
+                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 2.0 + i * 0.12 }}
                     >
                       {word}
                     </motion.span>
@@ -121,9 +121,9 @@ export default function Home() {
                     initial={{ opacity: 0, scale: 25, filter: 'blur(30px)', color: '#FFD700' }}
                     animate={{ opacity: 1, scale: 1, filter: 'blur(0px)', color: '#ffffff' }}
                     transition={{
-                      duration: 2.2,
-                      ease: [0.16, 1, 0.3, 1], // Smooth super deep ease-out
-                      delay: 4.8,
+                      duration: 1.4,
+                      ease: [0.16, 1, 0.3, 1],
+                      delay: 2.6,
                     }}
                   >
                     INFINIZY CONTINUUM
@@ -136,7 +136,7 @@ export default function Home() {
             <motion.p
               initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 5.7 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 3.2 }}
               className="mb-10 max-w-xl text-center text-base font-light leading-relaxed text-zinc-400 sm:text-lg"
             >
               A living space where capability expands, talent aligns, ideas take form, and transformation becomes measurable.
@@ -146,7 +146,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 6.1 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 3.5 }}
               className="flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row"
             >
               <Link to="/about" className="flex w-full items-center justify-center gap-2 rounded-full bg-white px-8 py-3.5 font-medium text-[#34002b] transition-transform hover:scale-105 sm:w-auto">
@@ -163,7 +163,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 6.5 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 3.8 }}
               className="mt-20 flex flex-col items-center gap-4"
             >
               <div className="h-px w-12 bg-white/20" />

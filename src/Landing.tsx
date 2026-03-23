@@ -1,4 +1,4 @@
-import { useRef, useMemo, type RefObject } from 'react';
+import { useRef, useMemo, useEffect, useCallback, type RefObject } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Stars, Text } from '@react-three/drei';
 import * as THREE from 'three';
@@ -22,13 +22,13 @@ function ClockDriver({ clock }: { clock: RefObject<SharedClock> }) {
             clock.current.effectiveTime += dt;
         }
 
-        // Responsive FOV — wider on small screens so orbits fit
+        // Responsive FOV — slightly wider on small screens
         const w = state.size.width;
         const cam = state.camera as THREE.PerspectiveCamera;
         let fov = 60;
-        if (w < 480) fov = 80;
-        else if (w < 768) fov = 72;
-        else if (w < 1024) fov = 66;
+        if (w < 480) fov = 68;
+        else if (w < 768) fov = 65;
+        else if (w < 1024) fov = 62;
         if (cam.fov !== fov) {
             cam.fov = fov;
             cam.updateProjectionMatrix();
@@ -53,14 +53,14 @@ function CenterSphere({ clock }: { clock: RefObject<SharedClock> }) {
         meshRef.current.rotation.y = rotRef.current.y;
         meshRef.current.rotation.x = rotRef.current.x;
 
-        // Responsive scaling — smaller globe so orbits fit
+        // Responsive scaling — balanced globe size
         const w = state.size.width;
         const isPortrait = w < state.size.height;
         let scale = 1;
-        if (w < 480) scale = 0.35;
-        else if (w < 768) scale = 0.4;
-        else if (w < 1024) scale = 0.55;
-        else if (w <= 1366 || isPortrait) scale = 0.7;
+        if (w < 480) scale = 0.55;
+        else if (w < 768) scale = 0.6;
+        else if (w < 1024) scale = 0.7;
+        else if (w <= 1366 || isPortrait) scale = 0.8;
         meshRef.current.scale.set(scale, scale, scale);
     });
 
@@ -103,10 +103,10 @@ function OrbitItem({
         let radius = 4.2;
         let baseScale = 1;
         let textSize = 0.18;
-        if (w < 480) { radius = isPortrait ? 2.2 : 2.6; baseScale = 0.5; textSize = 0.14; }
-        else if (w < 768) { radius = isPortrait ? 2.6 : 3.0; baseScale = 0.6; textSize = 0.15; }
-        else if (w < 1024) { radius = isPortrait ? 3.0 : 3.4; baseScale = 0.7; textSize = 0.16; }
-        else if (w <= 1366 || isPortrait) { radius = isPortrait ? 3.2 : 3.6; baseScale = 0.8; textSize = 0.17; }
+        if (w < 480) { radius = isPortrait ? 2.8 : 3.0; baseScale = 0.45; textSize = 0.13; }
+        else if (w < 768) { radius = isPortrait ? 3.2 : 3.4; baseScale = 0.55; textSize = 0.15; }
+        else if (w < 1024) { radius = isPortrait ? 3.4 : 3.6; baseScale = 0.65; textSize = 0.16; }
+        else if (w <= 1366 || isPortrait) { radius = isPortrait ? 3.6 : 3.8; baseScale = 0.75; textSize = 0.17; }
 
         const speed = -0.05;
         const angle = (index / total) * Math.PI * 2 + time * speed;
@@ -244,14 +244,43 @@ function OrbitingObjects({ clock }: { clock: RefObject<SharedClock> }) {
 }
 
 // ── Landing Page ────────────────────────────────────────────────────────────
+const AUTO_REDIRECT_SECONDS = 3.5;
+
 export default function Landing() {
     const navigate = useNavigate();
+    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const interacted = useRef(false);
 
     const sharedClock = useRef<SharedClock>({
         paused: false,
         effectiveTime: 0,
         lastRealTime: 0,
     });
+
+    const resetTimer = useCallback(() => {
+        interacted.current = true;
+        if (timerRef.current) clearTimeout(timerRef.current);
+        // Restart timer — if idle again for full duration, redirect
+        timerRef.current = setTimeout(() => {
+            navigate('/home');
+        }, AUTO_REDIRECT_SECONDS * 1000);
+    }, [navigate]);
+
+    useEffect(() => {
+        // Start initial auto-redirect countdown
+        timerRef.current = setTimeout(() => {
+            navigate('/home');
+        }, AUTO_REDIRECT_SECONDS * 1000);
+
+        // Any interaction resets the timer
+        const events = ['mousemove', 'mousedown', 'touchstart', 'keydown', 'scroll'];
+        events.forEach(e => window.addEventListener(e, resetTimer, { passive: true }));
+
+        return () => {
+            if (timerRef.current) clearTimeout(timerRef.current);
+            events.forEach(e => window.removeEventListener(e, resetTimer));
+        };
+    }, [navigate, resetTimer]);
 
     return (
         <div className="w-full h-screen bg-[#0a0a0a] relative overflow-hidden">
