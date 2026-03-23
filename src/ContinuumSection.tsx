@@ -93,7 +93,7 @@ export default function ContinuumSection() {
                     <h3 className="text-zinc-500 tracking-[0.2em] text-[10px] sm:text-xs font-bold uppercase mb-6">{content.label}</h3>
 
                     <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light mb-8 text-white max-w-xl leading-[1.15]">
-                        <span className="text-[#34002b] font-medium drop-shadow-sm">Growth</span> rarely happens in isolation.
+                        <span className="text-[#FFD700] font-medium">Growth</span> rarely happens in isolation.
                     </h2>
 
                     <p className="text-lg sm:text-xl text-zinc-400 mb-6 leading-relaxed max-w-lg font-light">

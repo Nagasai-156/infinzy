@@ -75,17 +75,16 @@ export function Typewriter({
     const renderText = () => {
         if (!highlightWords || highlightWords.length === 0) return displayText;
 
-        // Escape special regex characters in the words
+        // Split displayed text into words, preserving spaces
         const escapedWords = highlightWords.map(w => w.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
         const regex = new RegExp(`(${escapedWords.join('|')})`, 'gi');
         const parts = displayText.split(regex);
 
         return parts.map((part, i) => {
-            // Check if this part matches any of the highlight words
             const isHighlight = highlightWords.some(w => w.toLowerCase() === part.toLowerCase());
             if (isHighlight) {
                 return (
-                    <span key={i} className={highlightClass}>
+                    <span key={i} className={highlightClass} style={{ margin: '0 0.12em' }}>
                         {part}
                     </span>
                 );
@@ -95,7 +94,7 @@ export function Typewriter({
     };
 
     return (
-        <span className={className}>
+        <span className={className} style={{ wordSpacing: '0.05em' }}>
             {renderText()}
             <span className="animate-pulse">{cursor}</span>
         </span>

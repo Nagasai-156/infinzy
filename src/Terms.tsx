@@ -51,7 +51,7 @@ export default function Terms() {
 
     return (
         <div className="bg-black text-white font-sans min-h-screen">
-            <section className="pt-32 pb-16 px-6 lg:px-10">
+            <section className="pt-20 sm:pt-24 md:pt-32 pb-10 sm:pb-16 px-4 sm:px-6 lg:px-10">
                 <div className="max-w-3xl mx-auto">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}

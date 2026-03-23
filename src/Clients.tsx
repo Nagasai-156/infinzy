@@ -26,7 +26,7 @@ export default function Clients() {
             {/* ============================= */}
             {/* HERO — unchanged             */}
             {/* ============================= */}
-            <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <section className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0 opacity-40 mix-blend-screen pointer-events-none w-full h-full">
                     <FaultyTerminal
                         scale={1.5}
@@ -50,7 +50,7 @@ export default function Clients() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black pointer-events-none" />
                 </div>
 
-                <div className="relative z-10 px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl text-center w-full mt-20">
+                <div className="relative z-10 px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl text-center w-full mt-12 sm:mt-16 md:mt-20">
                     <motion.div initial="hidden" animate="visible" variants={containerVariants} className="max-w-4xl mx-auto">
                         <motion.h2 variants={itemVariants} className="text-sm font-bold tracking-[0.2em] text-[var(--color-brand-300)] uppercase mb-6 flex items-center justify-center gap-2 whitespace-nowrap">
                             <Star className="w-4 h-4" /> Trusted by thousands of businesses worldwide <Star className="w-4 h-4" />
@@ -65,8 +65,8 @@ export default function Clients() {
                             speed={70}
                             delay={2000}
                             highlightWords={["Partnerships", "Solving", "Engineered", "impact", "impactful"]}
-                            highlightClass="inline-block text-[#FFD700] drop-shadow-[0_0_15px_rgba(255,215,0,0.4)] animate-zoom-in-out"
-                            className="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white mb-8 block min-h-[160px]"
+                            highlightClass="text-[#FFD700] drop-shadow-[0_0_10px_rgba(255,215,0,0.3)]"
+                            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium tracking-tight text-white mb-6 sm:mb-8 block min-h-[100px] sm:min-h-[120px] md:min-h-[140px] lg:min-h-[160px]"
                         />
                     </motion.div>
                 </div>
@@ -84,22 +84,22 @@ export default function Clients() {
             {/* ============================= */}
             {/* INTRO SPLIT                   */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-5xl mx-auto">
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, margin: "-80px" }}
                         variants={containerVariants}
-                        className="grid md:grid-cols-2 gap-16 items-center"
+                        className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center"
                     >
                         <motion.div variants={itemVariants}>
-                            <p className="text-4xl md:text-5xl font-light text-white leading-snug">
+                            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white leading-snug">
                                 Trust is built through results.
                             </p>
                         </motion.div>
-                        <motion.div variants={itemVariants} className="border-l border-white/10 pl-10">
-                            <p className="text-2xl md:text-3xl font-bold text-white leading-snug">
+                        <motion.div variants={itemVariants} className="border-l border-white/10 pl-5 sm:pl-8 md:pl-10">
+                            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white leading-snug">
                                 Every partnership is a collaboration built on precision, commitment, and measurable impact.
                             </p>
                         </motion.div>
@@ -110,7 +110,7 @@ export default function Clients() {
             {/* ============================= */}
             {/* TESTIMONIALS — unchanged      */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5 overflow-hidden">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5 overflow-hidden">
                 <div className="max-w-7xl mx-auto relative">
                     <motion.div
                         initial="hidden"
@@ -122,7 +122,7 @@ export default function Clients() {
                         <motion.p variants={itemVariants} className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">
                             Impact Validation
                         </motion.p>
-                        <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-white">
+                        <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
                             Testimonials
                         </motion.h2>
                     </motion.div>
@@ -136,7 +136,7 @@ export default function Clients() {
             {/* ============================= */}
             {/* CTA                           */}
             {/* ============================= */}
-            <section className="relative py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
+            <section className="relative py-20 sm:py-28 md:py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
                 <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">
                     <span className="text-[clamp(5rem,18vw,14rem)] font-black text-[#222222] tracking-widest whitespace-nowrap leading-none">
                         INFINIZY
@@ -150,7 +150,7 @@ export default function Clients() {
                     variants={containerVariants}
                     className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl"
                 >
-                    <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">
+                    <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-4 sm:mb-6">
                         Partner With <span className="text-[#FFD700] drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]">US</span>
                     </motion.h2>
                     <motion.p variants={itemVariants} className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">

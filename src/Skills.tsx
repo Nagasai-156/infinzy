@@ -178,11 +178,11 @@ export default function Skills() {
             {/* ============================= */}
             {/* HERO — unchanged             */}
             {/* ============================= */}
-            <section className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center rounded-lg mt-0 pt-20">
+            <section className="relative min-h-[calc(100vh-4rem)] w-full overflow-hidden flex flex-col items-center justify-center rounded-lg mt-0">
                 <div className="absolute inset-0 w-full h-full bg-black z-0 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
                 <div className="absolute inset-0 z-0"><Boxes /></div>
                 <div className="absolute inset-0 bg-black/80 z-10 pointer-events-none" />
-                <main className="relative z-30 flex flex-col items-center justify-center px-4 w-full h-full sm:px-6 lg:px-8 mt-10">
+                <main className="relative z-30 flex flex-col items-center justify-center px-4 w-full sm:px-6 lg:px-8">
                     <motion.div variants={containerVariants} initial="hidden" animate="visible" className="flex w-full max-w-4xl flex-col items-center text-center">
                         <motion.div variants={itemVariants} className="mb-6">
                             <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-brand-500)]/30 bg-[var(--color-brand-900)]/20 px-4 py-1.5 backdrop-blur-md">
@@ -205,7 +205,7 @@ export default function Skills() {
                                                     transition: { duration: 1, ease: "easeInOut" }
                                                 }
                                             } : wordVariant}
-                                            className={`inline-block mr-[0.25em] ${word === "Capability" ? "text-[#34002b]" : ""}`}
+                                            className={`inline-block mr-[0.25em] ${word === "Capability" ? "text-[#FFD700]" : ""}`}
                                         >
                                             {word}
                                         </motion.span>
@@ -232,14 +232,14 @@ export default function Skills() {
             {/* ============================= */}
             {/* INTRO — 2-col split           */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-5xl mx-auto">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={containerVariants} className="grid md:grid-cols-2 gap-16 items-center">
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={containerVariants} className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
                         <motion.div variants={itemVariants}>
-                            <p className="text-4xl md:text-5xl font-light text-white leading-snug">Capability is not taught here.</p>
+                            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white leading-snug">Capability is not taught here.</p>
                         </motion.div>
-                        <motion.div variants={itemVariants} className="border-l border-white/10 pl-10">
-                            <p className="text-2xl md:text-3xl font-bold text-white leading-snug">
+                        <motion.div variants={itemVariants} className="border-l border-white/10 pl-5 sm:pl-8 md:pl-10">
+                            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white leading-snug">
                                 Every journey is structured to transform knowledge into performance and performance into sustained excellence.
                             </p>
                         </motion.div>
@@ -250,12 +250,12 @@ export default function Skills() {
             {/* ============================= */}
             {/* CAPABILITY AREAS — numbered   */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-6xl mx-auto">
                     <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="flex items-end justify-between mb-16 flex-wrap gap-6">
                         <div>
                             <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">Core Domains</p>
-                            <h2 className="text-4xl md:text-5xl font-bold text-white">Capability Areas</h2>
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">Capability Areas</h2>
                         </div>
                         <p className="text-zinc-500 text-sm font-light max-w-xs leading-relaxed">Five capability domains. Built to transform knowledge into performance.</p>
                     </motion.div>
@@ -268,7 +268,7 @@ export default function Skills() {
                                 whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                                 viewport={{ once: true, margin: "-40px" }}
                                 transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                className={`group relative bg-zinc-950 border border-white/5 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-500)]/40 ${idx < 2 ? 'md:col-span-3' : 'md:col-span-2'
+                                className={`group relative bg-zinc-950 border border-white/5 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10flex flex-col justify-between overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-500)]/40 ${idx < 2 ? 'md:col-span-3' : 'md:col-span-2'
                                     }`}
                             >
                                 {/* Glowing orb on hover */}
@@ -294,11 +294,11 @@ export default function Skills() {
             {/* ============================= */}
             {/* LEARNING PROGRESSION MODEL    */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-6xl mx-auto">
                     <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="mb-16">
                         <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">Methodology</p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">Learning Progression Model</h2>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">Learning Progression Model</h2>
                     </motion.div>
 
                     <div className="relative w-full max-w-5xl mx-auto mt-20 hidden md:flex items-start justify-center px-4 pb-12">
@@ -310,10 +310,10 @@ export default function Skills() {
                                     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                                     viewport={{ once: true, margin: "-100px" }}
                                     transition={{ duration: 0.8, delay: 0.2 + idx * 0.2, ease: [0.16, 1, 0.3, 1] }}
-                                    className="flex flex-col items-center w-[180px] cursor-default"
+                                    className="flex flex-col items-center w-[140px] lg:w-[180px] cursor-default"
                                 >
                                     {/* SVG Icon */}
-                                    <div className="w-[140px] h-[140px] flex items-center justify-center text-zinc-300 hover:text-white hover:-translate-y-2 transition-all duration-300 overflow-visible drop-shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:drop-shadow-[0_0_20px_var(--color-brand-500)]">
+                                    <div className="w-[100px] h-[100px] lg:w-[140px] lg:h-[140px] flex items-center justify-center text-zinc-300 hover:text-white hover:-translate-y-2 transition-all duration-300 overflow-visible drop-shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:drop-shadow-[0_0_20px_var(--color-brand-500)]">
                                         <step.icon className="w-full h-full overflow-visible" />
                                     </div>
 
@@ -333,7 +333,7 @@ export default function Skills() {
                                         whileInView={{ opacity: 1, scaleX: 1 }}
                                         viewport={{ once: true, margin: "-100px" }}
                                         transition={{ duration: 0.8, delay: 0.4 + idx * 0.2, ease: [0.16, 1, 0.3, 1] }}
-                                        className="h-[120px] w-[60px] lg:w-[100px] flex justify-center items-center origin-left"
+                                        className="h-[80px] lg:h-[120px] w-[40px] lg:w-[80px] xl:w-[100px] flex justify-center items-center origin-left"
                                     >
                                         <ArrowRight className="w-5 h-5 text-zinc-500 stroke-[1.5]" />
                                     </motion.div>
@@ -343,7 +343,7 @@ export default function Skills() {
                     </div>
 
                     {/* Mobile View - Vertical layout exact match style */}
-                    <div className="md:hidden flex flex-col gap-8 mt-16 relative items-center px-6">
+                    <div className="md:hidden flex flex-col gap-6 sm:gap-8 mt-10 sm:mt-16 relative items-center px-4 sm:px-6">
                         {progressionModel.map((step, idx) => (
                             <motion.div
                                 key={idx}
@@ -353,7 +353,7 @@ export default function Skills() {
                                 transition={{ duration: 0.5, delay: idx * 0.2 }}
                                 className="flex flex-col items-center group w-full text-center"
                             >
-                                <div className="w-[120px] h-[120px] text-zinc-300 flex items-center justify-center drop-shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                                <div className="w-[90px] h-[90px] sm:w-[120px] sm:h-[120px] text-zinc-300 flex items-center justify-center drop-shadow-[0_0_15px_rgba(255,255,255,0.05)]">
                                     <step.icon className="w-full h-full" />
                                 </div>
                                 <h3 className="text-2xl font-bold text-white mt-6 mb-3">{step.title}</h3>
@@ -372,11 +372,11 @@ export default function Skills() {
             {/* ============================= */}
             {/* INFINIZY EDGE — grid cards    */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-6xl mx-auto">
                     <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="mb-16">
                         <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">Differentiators</p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">The Infinizy Edge</h2>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">The Infinizy Edge</h2>
                     </motion.div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5 rounded-3xl overflow-hidden">
                         {differentiators.map((diff, idx) => (
@@ -408,16 +408,16 @@ export default function Skills() {
             {/* ============================= */}
             {/* CTA                           */}
             {/* ============================= */}
-            <section className="relative py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
+            <section className="relative py-20 sm:py-28 md:py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
                 <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">
                     <span className="text-[clamp(5rem,18vw,14rem)] font-black text-[#222222] tracking-widest whitespace-nowrap leading-none">INFINIZY</span>
                 </div>
                 <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants} className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl">
-                    <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">
-                        Elevate <span className="text-[#34002b]">Capability</span>
+                    <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-4 sm:mb-6">
+                        Elevate <span className="text-[#FFD700]">Capability</span>
                     </motion.h2>
                     <motion.p variants={itemVariants} className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">
-                        Start your custom <span className="text-[#34002b] font-medium">capability</span> journey and join the next generation of global performers.
+                        Start your custom <span className="text-[#FFD700] font-medium">capability</span> journey and join the next generation of global performers.
                     </motion.p>
                     <motion.div variants={itemVariants}>
                         <Link to="/contact" className="inline-flex items-center px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)]">

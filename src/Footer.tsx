@@ -32,13 +32,13 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="relative bg-[#050505] text-white pt-24 pb-12 overflow-hidden border-t border-white/5">
+        <footer className="relative bg-[#050505] text-white pt-14 sm:pt-18 md:pt-24 pb-8 sm:pb-12 overflow-hidden border-t border-white/5">
             {/* Ambient Background Glows */}
             <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[var(--color-brand-900)]/30 rounded-full blur-[120px] pointer-events-none opacity-50" />
             <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-[var(--color-brand-500)]/10 rounded-full blur-[100px] pointer-events-none opacity-30" />
 
-            <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 lg:gap-16 mb-16 sm:mb-20 md:mb-24">
                     {/* Logo & Statement Column */}
                     <div className="lg:col-span-1">
                         <Link to="/" className="flex items-center gap-3 mb-8 group cursor-pointer">
@@ -136,7 +136,7 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-16 border-t border-white/5 flex flex-col md:row items-center justify-between gap-8">
+                <div className="pt-10 sm:pt-16 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
                     <div className="flex gap-8 text-[11px] font-medium uppercase tracking-[0.2em] text-zinc-500">
                         <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
                         <Link to="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link>

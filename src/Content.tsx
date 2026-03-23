@@ -34,14 +34,14 @@ export default function Content() {
             {/* ============================= */}
             {/* HERO — unchanged             */}
             {/* ============================= */}
-            <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black">
+            <section className="relative min-h-[calc(100vh-4rem)] w-full flex flex-col items-center justify-center overflow-hidden bg-black">
                 {/* 3D Animation Background */}
                 <div className="absolute inset-0 z-0 opacity-80 pointer-events-auto">
                     <GalaxyBackground />
                 </div>
                 <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/80 via-black/40 to-black pointer-events-none" />
 
-                <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 sm:px-10 w-full max-w-5xl mx-auto mt-20">
+                <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-10 w-full max-w-5xl mx-auto mt-12 sm:mt-16 md:mt-20">
                     <div className="h-32 mb-10 mt-6 flex justify-center items-center">
                         <Typewriter
                             text={[
@@ -52,7 +52,7 @@ export default function Content() {
                             cursor=""
                             className="text-5xl sm:text-6xl md:text-7xl lg:text-[80px] font-bold tracking-tight text-white leading-[1.1]"
                             highlightWords={["Ideas", "move"]}
-                            highlightClass="text-[#34002b] inline-block drop-shadow-[0_0_15px_rgba(52,0,43,0.5)] animate-zoom-in-out"
+                            highlightClass="text-[#FFD700] font-bold drop-shadow-[0_0_10px_rgba(255,215,0,0.3)]"
                         />
                     </div>
 
@@ -69,16 +69,16 @@ export default function Content() {
             {/* ============================= */}
             {/* INTRO — 2-col split           */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-5xl mx-auto">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={containerVariants} className="grid md:grid-cols-2 gap-16 items-center">
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={containerVariants} className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
                         <motion.div variants={itemVariants}>
-                            <p className="text-4xl md:text-5xl font-light text-white leading-snug">
-                                <span className="text-[#34002b] font-medium">Content</span> is not produced here.
+                            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white leading-snug">
+                                <span className="text-[var(--color-brand-300)] font-medium">Content</span> is not produced here.
                             </p>
                         </motion.div>
-                        <motion.div variants={itemVariants} className="border-l border-white/10 pl-10">
-                            <p className="text-2xl md:text-3xl font-bold text-white leading-snug">
+                        <motion.div variants={itemVariants} className="border-l border-white/10 pl-5 sm:pl-8 md:pl-10">
+                            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white leading-snug">
                                 It is engineered — to inform, influence, and sustain engagement.
                             </p>
                         </motion.div>
@@ -89,12 +89,12 @@ export default function Content() {
             {/* ============================= */}
             {/* CONTENT SERVICES — numbered   */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-6xl mx-auto">
                     <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="flex items-end justify-between mb-16 flex-wrap gap-6">
                         <div>
                             <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">Structural Solutions</p>
-                            <h2 className="text-4xl md:text-5xl font-bold text-white">Content Services</h2>
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">Content Services</h2>
                         </div>
                         <p className="text-zinc-500 text-sm font-light max-w-xs leading-relaxed">Six disciplines. One purpose — content that drives transformation.</p>
                     </motion.div>
@@ -107,7 +107,7 @@ export default function Content() {
                                 whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                                 viewport={{ once: true, margin: "-40px" }}
                                 transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                className="group relative bg-zinc-950 border border-white/5 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-500)]/40 md:col-span-2"
+                                className="group relative bg-zinc-950 border border-white/5 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10flex flex-col justify-between overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-500)]/40 md:col-span-2"
                             >
                                 {/* Glowing orb on hover */}
                                 <div className="absolute -top-24 -right-24 w-60 h-60 bg-gradient-to-br from-[var(--color-brand-400)] to-[var(--color-brand-800)] rounded-full blur-[80px] opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none" />
@@ -148,7 +148,7 @@ export default function Content() {
                         className="relative flex flex-col items-center text-center space-y-8"
                     >
                         {/* Quote mark ornament */}
-                        <div className="text-[120px] leading-none text-[var(--color-brand-500)]/20 font-serif absolute -top-16 -left-8 md:left-10 select-none pointer-events-none">
+                        <div className="text-[120px] leading-none text-[var(--color-brand-500)]/20 font-black absolute -top-16 -left-8 md:left-10 select-none pointer-events-none">
                             "
                         </div>
 
@@ -176,12 +176,12 @@ export default function Content() {
             {/* ============================= */}
             {/* CTA                           */}
             {/* ============================= */}
-            <section className="relative py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
+            <section className="relative py-20 sm:py-28 md:py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
                 <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">
                     <span className="text-[clamp(5rem,18vw,14rem)] font-black text-[#222222] tracking-widest whitespace-nowrap leading-none">INFINIZY</span>
                 </div>
                 <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants} className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl">
-                    <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">Architect Your Content</motion.h2>
+                    <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-4 sm:mb-6"><span className="text-[#FFD700]">Architect</span> Your Content</motion.h2>
                     <motion.p variants={itemVariants} className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">Engineer communications that inform, influence, and sustain transformation.</motion.p>
                     <motion.div variants={itemVariants}>
                         <Link to="/contact" className="inline-flex items-center px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)]">

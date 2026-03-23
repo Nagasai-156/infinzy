@@ -50,11 +50,11 @@ export default function About() {
             {/* ============================= */}
             {/* HERO — unchanged             */}
             {/* ============================= */}
-            <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+            <section className="relative min-h-[calc(100vh-4rem)] w-full flex flex-col items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0 opacity-50 mix-blend-screen pointer-events-none">
                     <About3D />
                 </div>
-                <main className="relative z-10 flex flex-col items-center justify-center px-4 w-full h-full sm:px-6 lg:px-8 mt-20">
+                <main className="relative z-10 flex flex-col items-center justify-center px-4 w-full h-full sm:px-6 lg:px-8 mt-12 sm:mt-16 md:mt-20">
                     <motion.div variants={containerVariants} initial="hidden" animate="visible" className="flex w-full max-w-3xl flex-col items-center text-center">
                         <motion.div variants={itemVariants} className="mb-6">
                             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 backdrop-blur-md">
@@ -72,7 +72,7 @@ export default function About() {
                                 speed={15}
                                 delay={400}
                                 highlightWords={["Infinizy\u00A0Continuum"]}
-                                highlightClass="text-[#34002b]"
+                                highlightClass="text-[#FFD700] font-bold"
                                 className="text-gradient-premium relative z-20 text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl md:leading-[1.15] text-center block min-h-[120px]"
                             />
                         </motion.div>
@@ -83,14 +83,14 @@ export default function About() {
             {/* ============================= */}
             {/* ORIGIN STORY                  */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5 overflow-hidden">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5 overflow-hidden">
                 <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[var(--color-brand-500)]/5 rounded-full blur-[100px] pointer-events-none" />
                 <div className="max-w-4xl mx-auto relative z-10">
                     <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={containerVariants} className="flex flex-col gap-12">
                         <motion.p variants={itemVariants} className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase">Origin Story</motion.p>
 
                         <motion.div variants={itemVariants} className="flex flex-col items-center text-center">
-                            <p className="text-xl md:text-2xl font-light text-zinc-400 mb-8 font-serif italic">
+                            <p className="text-xl md:text-2xl font-light text-zinc-400 mb-8 italic">
                                 Every transformation begins with a question.
                             </p>
                             <div className="relative w-full flex flex-col items-center justify-center min-h-[300px] md:min-h-[400px] px-10">
@@ -123,7 +123,7 @@ export default function About() {
                                     }}
                                     className="relative inline-block mt-8"
                                 >
-                                    <span className="absolute -top-8 left-0 text-7xl text-white/10 font-serif leading-none">"</span>
+                                    <span className="absolute -top-8 left-0 text-7xl text-white/10 font-black leading-none">"</span>
                                     <motion.h3
                                         key={originQuestionIndex}
                                         initial={{ opacity: 0, y: 10, filter: 'blur(6px)' }}
@@ -133,7 +133,7 @@ export default function About() {
                                     >
                                         {originQuestions[originQuestionIndex]}
                                     </motion.h3>
-                                    <span className="absolute -bottom-16 right-0 text-7xl text-white/10 font-serif leading-none">"</span>
+                                    <span className="absolute -bottom-16 right-0 text-7xl text-white/10 font-black leading-none">"</span>
                                 </motion.div>
                             </div>
                         </motion.div>
@@ -167,7 +167,7 @@ export default function About() {
             {/* ============================= */}
             {/* CORE BELIEF                   */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-6xl mx-auto">
                     <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="mb-16">
                         <p className="text-sm font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-4">Core Belief</p>
@@ -205,7 +205,7 @@ export default function About() {
             {/* ============================= */}
             {/* INTELLIGENCE WITHOUT BOUNDS   */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <motion.div initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="relative w-full rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/3] group border border-white/10 hover:border-white/20 transition-all duration-300">
                         <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-brand-900)]/40 to-transparent z-10 mix-blend-overlay" />
@@ -254,7 +254,7 @@ export default function About() {
                         </motion.div>
 
                         <motion.div className="lg:col-span-7 flex flex-col justify-center relative mt-10 lg:mt-0" initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}>
-                            <div className="absolute -top-16 lg:-top-24 -left-6 lg:-left-12 text-[150px] lg:text-[220px] leading-none font-serif font-black text-white/[0.03] pointer-events-none select-none">"</div>
+                            <div className="absolute -top-16 lg:-top-24 -left-6 lg:-left-12 text-[150px] lg:text-[220px] leading-none font-black text-white/[0.03] pointer-events-none select-none">"</div>
                             <div className="relative z-10">
                                 <div className="inline-flex items-center gap-4 mb-10">
                                     <div className="px-3 py-1 rounded-full border border-[var(--color-brand-500)]/30 bg-[var(--color-brand-500)]/10 text-[10px] font-bold tracking-[0.2em] text-[var(--color-brand-400)] uppercase">Founder's Message</div>
@@ -279,7 +279,7 @@ export default function About() {
             {/* ============================= */}
             {/* VISION & MISSION              */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5 overflow-hidden">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5 overflow-hidden">
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
                 <div className="max-w-7xl mx-auto relative z-10">
                     <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="mb-16">
@@ -330,12 +330,12 @@ export default function About() {
             {/* ============================= */}
             {/* CORE VALUES — numbered rows   */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-6xl mx-auto">
                     <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="flex items-end justify-between mb-16 flex-wrap gap-6">
                         <div>
                             <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">Pillars</p>
-                            <h2 className="text-4xl md:text-5xl font-bold text-white">Our Core Values</h2>
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">Our Core Values</h2>
                         </div>
                         <p className="text-zinc-500 text-sm font-light max-w-xs leading-relaxed">The principles that define every partnership and project.</p>
                     </motion.div>
@@ -356,7 +356,7 @@ export default function About() {
                                     whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)" }}
                                     viewport={{ once: true, margin: "-40px" }}
                                     transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                    className={`group relative bg-zinc-950 border border-white/5 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-500)]/40 ${idx < 2 ? 'md:col-span-3' : 'md:col-span-2'
+                                    className={`group relative bg-zinc-950 border border-white/5 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10flex flex-col justify-between overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-500)]/40 ${idx < 2 ? 'md:col-span-3' : 'md:col-span-2'
                                         }`}
                                 >
                                     {/* Glowing orb on hover */}
@@ -384,12 +384,12 @@ export default function About() {
             {/* ============================= */}
             {/* CTA                           */}
             {/* ============================= */}
-            <section className="relative py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
+            <section className="relative py-20 sm:py-28 md:py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
                 <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">
                     <span className="text-[clamp(5rem,18vw,14rem)] font-black text-[#222222] tracking-widest whitespace-nowrap leading-none">INFINIZY</span>
                 </div>
                 <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants} className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl">
-                    <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">Enter the Continuum</motion.h2>
+                    <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-4 sm:mb-6">Enter the <span className="text-[#FFD700]">Continuum</span></motion.h2>
                     <motion.p variants={itemVariants} className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">A living space where capability expands, talent aligns, and transformation becomes measurable.</motion.p>
                     <motion.div variants={itemVariants}>
                         <Link to="/contact" className="inline-flex items-center px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)]">

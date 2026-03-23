@@ -38,9 +38,9 @@ export default function Approach() {
             {/* ============================= */}
             {/* HERO — unchanged             */}
             {/* ============================= */}
-            <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+            <section className="relative min-h-[calc(100vh-4rem)] w-full flex flex-col items-center justify-center overflow-hidden">
                 <Approach3D />
-                <main className="relative z-10 flex flex-col items-center justify-center px-4 w-full h-full sm:px-6 lg:px-8 mt-20">
+                <main className="relative z-10 flex flex-col items-center justify-center px-4 w-full h-full sm:px-6 lg:px-8 mt-12 sm:mt-16 md:mt-20">
                     <motion.div
                         variants={containerVariants}
                         initial="hidden"
@@ -60,7 +60,7 @@ export default function Approach() {
                             speed={8}
                             delay={200}
                             highlightWords={["Transformation", "Architecture", "approach"]}
-                            highlightClass="text-[#FFD700] font-bold drop-shadow-[0_0_15px_rgba(255,215,0,0.6)]"
+                            highlightClass="text-[#FFD700] font-bold drop-shadow-[0_0_10px_rgba(255,215,0,0.3)]"
                             className="text-gradient-premium relative z-20 text-5xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl md:leading-[1.15] text-center block min-h-[140px]"
                         />
                     </motion.div>
@@ -78,7 +78,7 @@ export default function Approach() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-white mb-20 md:mb-32 text-center"
+                        className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-10 sm:mb-14 md:mb-16"
                     >
                         Achieving <span className="text-[#FFD700]">Transformation</span>
                     </motion.h2>
@@ -95,7 +95,7 @@ export default function Approach() {
                                 style={{
                                     '--stair-offset': `${idx * 8}%`,
                                 } as any}
-                                className="relative flex items-center justify-between w-full md:w-[50%] p-6 md:p-8 rounded-[1.5rem] bg-zinc-950 border border-white/10 shadow-lg transition-all duration-300 hover:border-[#FFD700]/50 hover:bg-zinc-900 group md:ml-[var(--stair-offset)]"
+                                className="relative flex items-center justify-between w-full md:w-[50%] p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-zinc-950 border border-white/10 shadow-lg transition-all duration-300 hover:border-[#FFD700]/50 hover:bg-zinc-900 group md:ml-[var(--stair-offset)]"
                             >
                                 <div className="flex flex-col sm:flex-row md:flex-row items-start sm:items-center gap-6 w-full">
                                     <div className="flex items-center gap-4 shrink-0">
@@ -131,7 +131,7 @@ export default function Approach() {
             {/* ============================= */}
             {/* AI-ENHANCED                   */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5 overflow-hidden">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5 overflow-hidden">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[var(--color-brand-900)]/20 rounded-full blur-[100px] pointer-events-none" />
 
                 <div className="max-w-5xl mx-auto relative z-10">
@@ -140,7 +140,7 @@ export default function Approach() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-80px" }}
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        className="grid md:grid-cols-2 gap-16 items-start"
+                        className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-start"
                     >
                         {/* Left */}
                         <div>
@@ -196,23 +196,23 @@ export default function Approach() {
             {/* ============================= */}
             {/* CONTINUOUS IMPROVEMENT        */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-5xl mx-auto">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-80px" }}
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        className="grid md:grid-cols-2 gap-16 items-center"
+                        className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center"
                     >
                         <div>
                             <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">Continuous Improvement</p>
-                            <p className="text-4xl md:text-5xl font-light text-white leading-snug">
-                                <span className="text-[#34002b] font-medium drop-shadow-[0_0_15px_rgba(52,0,43,0.5)]">Growth</span> is sustained.
+                            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white leading-snug">
+                                <span className="text-[#FFD700] font-medium">Growth</span> is sustained.
                             </p>
                         </div>
-                        <div className="border-l border-white/10 pl-10">
-                            <p className="text-2xl md:text-3xl font-bold text-white leading-snug">
+                        <div className="border-l border-white/10 pl-5 sm:pl-8 md:pl-10">
+                            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white leading-snug">
                                 Through reinforcement, monitoring, and evolution.
                             </p>
                         </div>
@@ -223,7 +223,7 @@ export default function Approach() {
             {/* ============================= */}
             {/* CTA                           */}
             {/* ============================= */}
-            <section className="relative py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
+            <section className="relative py-20 sm:py-28 md:py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
                 <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">
                     <span className="text-[clamp(5rem,18vw,14rem)] font-black text-[#222222] tracking-widest whitespace-nowrap leading-none">
                         INFINIZY
@@ -237,8 +237,8 @@ export default function Approach() {
                     variants={containerVariants}
                     className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl"
                 >
-                    <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">
-                        Start Transformation
+                    <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-4 sm:mb-6">
+                        Start <span className="text-[#FFD700]">Transformation</span>
                     </motion.h2>
                     <motion.p variants={itemVariants} className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">
                         A structured, intelligent, and human-led path to lasting change.

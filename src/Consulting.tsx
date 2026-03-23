@@ -73,7 +73,7 @@ export default function Consulting() {
     const opacity3D = useTransform(scrollYProgress, [0, 0.5], [0.8, 0]);
 
     return (
-        <main ref={containerRef} className="bg-[#050505] text-white min-h-screen selection:bg-brand-500 selection:text-white overflow-x-hidden pt-20">
+        <main ref={containerRef} className="bg-[#050505] text-white min-h-screen selection:bg-brand-500 selection:text-white overflow-x-hidden">
 
             {/* Background 3D Anime Grid */}
             <div className="fixed inset-0 z-0 pointer-events-none">
@@ -83,7 +83,7 @@ export default function Consulting() {
             </div>
 
             {/* HERO SECTION */}
-            <section className="relative min-h-[80vh] md:min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden">
+            <section className="relative min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden">
                 <div className="relative z-10 max-w-5xl mx-auto w-full text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -92,8 +92,7 @@ export default function Consulting() {
                     >
                         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight mb-6 mx-auto">
                             <span className="block">
-                                <span className="text-[#FFD700]">Strategy</span> determines the{' '}
-                                <span className="text-[#FFD700]">future</span>.
+                                <span className="text-[#FFD700]">Strategy</span> determines the future.
                             </span>
                             <span className="block pt-3 text-white/80 italic">
                                 Execution merely follows.
@@ -108,21 +107,21 @@ export default function Consulting() {
 
             <div className="relative z-10 bg-black/80 backdrop-blur-xl">
                 {/* INTRO SECTION */}
-                <section className="py-32 px-6 lg:px-12 border-t border-white/5">
+                <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 border-t border-white/5">
                     <div className="max-w-6xl mx-auto">
                         <motion.div
                             variants={containerVariants}
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true }}
-                            className="grid lg:grid-cols-2 gap-24 items-center"
+                            className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center"
                         >
                             <motion.div variants={itemVariants} className="space-y-6">
                                 <h2 className="text-4xl md:text-5xl font-black leading-tight">
                                     Growth without direction <br />
                                     <span className="text-zinc-600">creates activity.</span> <br />
                                     Growth with architecture <br />
-                                    <span className="growth-gradient italic block pt-2">creates dominance.</span>
+                                    <span className="text-[#FFD700] italic block pt-2">creates dominance.</span>
                                 </h2>
                             </motion.div>
                             <motion.div variants={itemVariants} className="space-y-6 text-lg md:text-xl text-zinc-400 font-light leading-relaxed">
@@ -144,20 +143,20 @@ export default function Consulting() {
                 </section>
 
                 {/* L&D CONSULTING SECTION */}
-                <section className="py-32 px-6 bg-zinc-950/20">
+                <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-zinc-950/20">
                     <div className="max-w-7xl mx-auto">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="mb-20"
+                            className="mb-10 sm:mb-14 md:mb-16"
                         >
                             <span className="text-brand-500 font-bold tracking-[0.2em] uppercase text-sm mb-4 block">L&D Consulting</span>
-                            <h2 className="text-4xl md:text-6xl font-black mb-8">
+                            <h2 className="text-4xl md:text-5xl font-black mb-6">
                                 Architecting Enterprise <br />
                                 Learning for Performance
                             </h2>
-                            <p className="text-xl text-zinc-400 max-w-3xl leading-relaxed">
+                            <p className="text-base sm:text-lg md:text-xl text-zinc-400 max-w-3xl leading-relaxed">
                                 Learning must be directly accountable to business outcomes. Infinizy designs enterprise-level Learning & Development strategies that integrate leadership capability, workforce readiness, and measurable performance improvement.
                             </p>
                         </motion.div>
@@ -182,11 +181,11 @@ export default function Consulting() {
                                         // Balanced spans: 4 cards on row 1 (3+3+3+3), 3 cards on row 2 (4+4+4).
                                         idx <= 3 ? "lg:col-span-3" : "lg:col-span-4",
                                         // Shape variety
-                                        idx % 3 === 0 ? "rounded-[2.25rem]" : idx % 3 === 1 ? "rounded-[3rem]" : "rounded-[2.75rem]",
+                                        "rounded-2xl sm:rounded-3xl",
                                         // Height variety (subtle)
                                         idx % 2 === 0 ? "min-h-[140px] md:min-h-[170px]" : "min-h-[160px] md:min-h-[190px]",
                                         // Base styling
-                                        "relative overflow-hidden p-8 md:p-9 bg-zinc-900/40 border border-white/5 hover:border-brand-500/30 transition-all group flex flex-col justify-between"
+                                        "relative overflow-hidden p-6 sm:p-8 md:p-10 bg-zinc-900/40 border border-white/5 hover:border-brand-500/30 transition-all group flex flex-col justify-between"
                                     ].join(' ')}
                                 >
                                     {/* Ambient corner glow */}
@@ -220,14 +219,14 @@ export default function Consulting() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="bg-brand-950/10 border border-brand-500/20 p-12 rounded-[3.5rem]"
+                            className="bg-brand-950/10 border border-brand-500/20 p-8 sm:p-10 md:p-12 rounded-2xl sm:rounded-3xl"
                         >
                             <div className="grid lg:grid-cols-2 gap-12 items-center">
                                 <div>
                                     <p className="text-brand-500 font-bold mb-4">Sailaja Akkala’s strategic position:</p>
                                     <h3 className="text-3xl md:text-4xl font-black text-white italic">
                                         "Learning is not a support function. <br />
-                                        <span className="growth-gradient">It is a competitive advantage.</span>"
+                                        <span className="text-[#FFD700]">It is a competitive advantage.</span>"
                                     </h3>
                                 </div>
                                 <p className="text-lg text-zinc-400 font-light leading-relaxed">
@@ -239,20 +238,20 @@ export default function Consulting() {
                 </section>
 
                 {/* IT CONSULTING SECTION */}
-                <section className="py-32 px-6">
+                <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10">
                     <div className="max-w-7xl mx-auto">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-right mb-20"
+                            className="mb-10 sm:mb-14 md:mb-16"
                         >
                             <span className="text-[#FFD700] font-bold tracking-[0.2em] uppercase text-sm mb-4 block">IT Consulting</span>
-                            <h2 className="text-4xl md:text-6xl font-black mb-8">
+                            <h2 className="text-4xl md:text-5xl font-black mb-6">
                                 Designing Intelligent, <br />
                                 Scalable Digital Foundations
                             </h2>
-                            <p className="text-xl text-zinc-400 max-w-3xl ml-auto leading-relaxed">
+                            <p className="text-base sm:text-lg md:text-xl text-zinc-400 max-w-3xl leading-relaxed">
                                 Technology without strategic intent dilutes resources. Technology with architectural precision accelerates enterprise value. Infinizy IT Consulting supports executive decision-making across digital transformation and intelligent system integration.
                             </p>
                         </motion.div>
@@ -277,11 +276,11 @@ export default function Consulting() {
                                         // Balanced spans: 4 cards on row 1 (3+3+3+3), 3 cards on row 2 (4+4+4).
                                         idx <= 3 ? "lg:col-span-3" : "lg:col-span-4",
                                         // Shape variety
-                                        idx % 3 === 0 ? "rounded-[2.25rem]" : idx % 3 === 1 ? "rounded-[3rem]" : "rounded-[2.75rem]",
+                                        "rounded-2xl sm:rounded-3xl",
                                         // Height variety (subtle)
                                         idx % 2 === 0 ? "min-h-[140px] md:min-h-[170px]" : "min-h-[160px] md:min-h-[190px]",
                                         // Base styling
-                                        "relative overflow-hidden p-8 md:p-9 bg-zinc-900/40 border border-white/5 hover:border-[#FFD700]/30 transition-all group flex flex-col justify-between"
+                                        "relative overflow-hidden p-6 sm:p-8 md:p-10 bg-zinc-900/40 border border-white/5 hover:border-[#FFD700]/30 transition-all group flex flex-col justify-between"
                                     ].join(' ')}
                                 >
                                     {/* Ambient corner glow */}
@@ -323,7 +322,7 @@ export default function Consulting() {
                 </section>
 
                 {/* HI x AI SECTION */}
-                <section className="py-32 px-6 bg-zinc-950/20">
+                <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-zinc-950/20">
                     <div className="max-w-6xl mx-auto text-center">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
@@ -331,9 +330,9 @@ export default function Consulting() {
                             viewport={{ once: true }}
                         >
                             <h2 className="text-4xl md:text-7xl font-black mb-12">
-                                <span className="growth-gradient">HUMAN</span> INTELLIGENCE <br />
-                                <span className="text-brand-500">×</span> <br />
-                                <span className="growth-gradient">ARTIFICIAL</span> INTELLIGENCE
+                                <span className="text-[#FFD700]">HUMAN</span> INTELLIGENCE <br />
+                                <span className="text-[#FFD700]/60">×</span> <br />
+                                <span className="text-[#FFD700]">ARTIFICIAL</span> INTELLIGENCE
                             </h2>
                             <p className="text-xl text-zinc-400 max-w-3xl mx-auto mb-20 leading-relaxed">
                                 The future belongs to organizations that master integration. Artificial intelligence delivers data precision, pattern recognition, and predictive modeling. Human intelligence ensures contextual judgment, ethical oversight, and strategic foresight.
@@ -343,7 +342,7 @@ export default function Consulting() {
                                 Infinizy Consulting integrates both — deliberately and structurally.
                             </p>
 
-                            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
                                 {[
                                     "Make informed executive decisions",
                                     "Reduce transformation risk",
@@ -361,30 +360,30 @@ export default function Consulting() {
                 </section>
 
                 {/* WHY INFINIZY CONSULTING IS DISTINCT */}
-                <section className="py-32 px-6">
+                <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10">
                     <div className="max-w-5xl mx-auto">
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-center mb-20"
+                            className="text-center mb-10 sm:mb-14 md:mb-20"
                         >
                             <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight">
                                 Why Infinizy Consulting <br />
-                                <span className="growth-gradient italic">Is Distinct</span>
+                                <span className="text-[#FFD700] italic">Is Distinct</span>
                             </h2>
                             <p className="text-2xl text-zinc-300 font-light mb-4">We do not operate in advisory silos.</p>
                             <p className="text-lg text-zinc-500">Within the Infinizy Continuum, consulting is directly connected to execution:</p>
                         </motion.div>
 
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-20">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 md:gap-8 mb-10 sm:mb-14 md:mb-20">
                             {["Skills", "Talent", "Content", "Experiences"].map((item, i) => (
                                 <motion.div
                                     key={i}
                                     initial={{ opacity: 0, scale: 0.9 }}
                                     whileInView={{ opacity: 1, scale: 1 }}
                                     transition={{ delay: i * 0.1 }}
-                                    className="group text-center rounded-3xl border border-white/10 bg-zinc-900/30 backdrop-blur-sm px-6 py-8 md:px-7 md:py-10 hover:border-brand-500/30 hover:bg-zinc-900/40 transition-all"
+                                    className="group text-center rounded-2xl sm:rounded-3xl border border-white/10 bg-zinc-900/30 backdrop-blur-sm px-4 py-5 sm:px-6 sm:py-8 md:px-7 md:py-10 hover:border-brand-500/30 hover:bg-zinc-900/40 transition-all"
                                 >
                                     <p className="text-xl md:text-2xl font-black italic tracking-tighter uppercase group-hover:text-brand-500 transition-colors">
                                         {item}
@@ -394,15 +393,15 @@ export default function Consulting() {
                         </div>
 
                         <div className="text-center space-y-4">
-                            <p className="text-3xl font-light text-zinc-400">Nothing remains conceptual.</p>
-                            <p className="text-3xl font-black text-white italic">Everything becomes implementable.</p>
+                            <p className="text-xl sm:text-2xl md:text-3xl font-light text-zinc-400">Nothing remains conceptual.</p>
+                            <p className="text-xl sm:text-2xl md:text-3xl font-black text-white italic">Everything becomes implementable.</p>
                             <p className="text-lg text-zinc-500 uppercase tracking-widest pt-8">That continuity is what differentiates Infinizy.</p>
                         </div>
                     </div>
                 </section>
 
                 {/* CTA SECTION */}
-                <section className="relative py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
+                <section className="relative py-20 sm:py-28 md:py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
                     <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">
                         <span className="text-[clamp(5rem,18vw,14rem)] font-black text-[#222222] tracking-widest whitespace-nowrap leading-none">
                             INFINIZY
@@ -414,7 +413,7 @@ export default function Consulting() {
                         viewport={{ once: true }}
                         className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl"
                     >
-                        <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-4 sm:mb-6">
                             Architect Enterprise <span className="text-[#FFD700] drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]">Transformation</span>
                         </h2>
                         <p className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">
@@ -422,7 +421,7 @@ export default function Consulting() {
                         </p>
                         <Link
                             to="/contact"
-                            className="inline-flex items-center gap-6 px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)] group"
+                            className="inline-flex items-center gap-3 px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)] group"
                         >
                             Start Transformation
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />

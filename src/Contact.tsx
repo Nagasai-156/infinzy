@@ -60,7 +60,7 @@ export default function Contact() {
 
 
             {/* HERO SECTION */}
-            <section className="relative min-h-[60vh] lg:min-h-[70vh] flex flex-col items-center justify-center pt-32 pb-20 px-6 text-center z-10 overflow-hidden">
+            <section className="relative min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 text-center z-10 overflow-hidden">
                 {/* Animated Interactive Background */}
                 <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
                     <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_100%_50%_at_50%_50%,#000_30%,transparent_100%)]"></div>
@@ -88,7 +88,7 @@ export default function Contact() {
                     />
                 </div>
 
-                <motion.div initial="hidden" animate="visible" variants={containerVariants} className="relative z-10 max-w-4xl mx-auto flex flex-col items-center mt-10">
+                <motion.div initial="hidden" animate="visible" variants={containerVariants} className="relative z-10 max-w-4xl mx-auto flex flex-col items-center mt-12 sm:mt-16 md:mt-20">
                     <motion.h1
                         initial={{ opacity: 0, scale: 0.8, filter: "blur(20px)" }}
                         animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
@@ -101,8 +101,8 @@ export default function Contact() {
             </section>
 
             {/* MAIN CONTENT SPLIT */}
-            <section className="relative z-10 py-16 lg:py-24 px-6 lg:px-10 max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-20">
 
                     {/* LEFT COLUMN: CONTACT FORM / SELECTOR */}
                     <div className="lg:col-span-7 relative min-h-[500px]">
@@ -122,26 +122,26 @@ export default function Contact() {
                                     <div className="flex flex-col gap-5">
                                         <button
                                             onClick={() => setFormType('partnership')}
-                                            className="group relative flex items-center justify-between p-8 rounded-2xl bg-zinc-900/60 border border-white/5 hover:border-[#FFD700]/40 transition-all duration-500 overflow-hidden shadow-lg hover:shadow-[0_0_30px_rgba(255,215,0,0.1)] focus:outline-none focus:ring-2 focus:ring-[#FFD700]/50 text-left"
+                                            className="group relative flex items-center justify-between p-5 sm:p-6 md:p-8 rounded-2xl bg-zinc-900/60 border border-white/5 hover:border-[#FFD700]/40 transition-all duration-500 overflow-hidden shadow-lg hover:shadow-[0_0_30px_rgba(255,215,0,0.1)] focus:outline-none focus:ring-2 focus:ring-[#FFD700]/50 text-left"
                                         >
                                             <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                                            <span className="relative z-10 text-xl md:text-2xl font-semibold text-white group-hover:text-[#FFD700] transition-colors duration-300">
+                                            <span className="relative z-10 text-base sm:text-lg md:text-2xl font-semibold text-white group-hover:text-[#FFD700] transition-colors duration-300">
                                                 Are you looking for partnership?
                                             </span>
-                                            <div className="relative z-10 w-12 h-12 rounded-full bg-black/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#FFD700]/20 transition-all duration-300 border border-white/5">
+                                            <div className="relative z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/50 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-[#FFD700]/20 transition-all duration-300 border border-white/5">
                                                 <ArrowRight className="w-5 h-5 text-zinc-400 group-hover:text-[#FFD700] transition-colors" />
                                             </div>
                                         </button>
 
                                         <button
                                             onClick={() => setFormType('learn')}
-                                            className="group relative flex items-center justify-between p-8 rounded-2xl bg-zinc-900/60 border border-white/5 hover:border-[var(--color-brand-400)]/40 transition-all duration-500 overflow-hidden shadow-lg hover:shadow-[0_0_30px_rgba(var(--color-brand-400),0.1)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-500)] text-left"
+                                            className="group relative flex items-center justify-between p-5 sm:p-6 md:p-8 rounded-2xl bg-zinc-900/60 border border-white/5 hover:border-[var(--color-brand-400)]/40 transition-all duration-500 overflow-hidden shadow-lg hover:shadow-[0_0_30px_rgba(var(--color-brand-400),0.1)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-500)] text-left"
                                         >
                                             <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-brand-500)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                                            <span className="relative z-10 text-xl md:text-2xl font-semibold text-white group-hover:text-[var(--color-brand-300)] transition-colors duration-300">
+                                            <span className="relative z-10 text-base sm:text-lg md:text-2xl font-semibold text-white group-hover:text-[var(--color-brand-300)] transition-colors duration-300">
                                                 Are you looking to learn?
                                             </span>
-                                            <div className="relative z-10 w-12 h-12 rounded-full bg-black/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-[var(--color-brand-500)]/20 transition-all duration-300 border border-white/5">
+                                            <div className="relative z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/50 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-[var(--color-brand-500)]/20 transition-all duration-300 border border-white/5">
                                                 <ArrowRight className="w-5 h-5 text-zinc-400 group-hover:text-[var(--color-brand-300)] transition-colors" />
                                             </div>
                                         </button>
@@ -274,8 +274,8 @@ export default function Contact() {
                                                 value={formData.message}
                                                 onChange={handleChange}
                                                 required
-                                                rows={5}
-                                                className="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-4 py-4 text-[15px] text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-[var(--color-brand-500)] focus:border-[var(--color-brand-500)] transition-all font-light resize-none"
+                                                rows={3}
+                                                className="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-4 py-4 text-[15px] text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-[var(--color-brand-500)] focus:border-[var(--color-brand-500)] transition-all font-light resize-none sm:min-h-[140px] md:min-h-[160px]"
                                                 placeholder={formType === 'partnership' ? "Tell us about your organization's challenges..." : "What are you looking to achieve?"}
                                             />
                                         </div>
@@ -297,7 +297,7 @@ export default function Contact() {
 
                     {/* RIGHT COLUMN: OFFICE INFO */}
                     <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={containerVariants} className="lg:col-span-5 flex flex-col space-y-6 lg:mt-5">
-                        <motion.div variants={itemVariants} className="bg-[#150a11]/60 p-8 sm:p-10 rounded-[2rem] border border-white/5 shadow-xl backdrop-blur-md">
+                        <motion.div variants={itemVariants} className="bg-[#150a11]/60 p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl border border-white/5 shadow-xl backdrop-blur-md">
                             <div className="space-y-10">
                                 <div className="flex gap-5 items-start">
                                     <div className="w-12 h-12 rounded-xl bg-[var(--color-brand-900)]/50 flex flex-shrink-0 items-center justify-center text-[var(--color-brand-400)] border border-[var(--color-brand-500)]/20 shadow-inner mt-1">
@@ -339,7 +339,7 @@ export default function Contact() {
                             </div>
                         </motion.div>
 
-                        <motion.div variants={itemVariants} className="bg-zinc-900/40 rounded-[2rem] border border-white/5 shadow-xl overflow-hidden h-56 relative group">
+                        <motion.div variants={itemVariants} className="bg-zinc-900/40 rounded-2xl sm:rounded-3xl border border-white/5 shadow-xl overflow-hidden h-40 sm:h-48 md:h-56 relative group">
                             <iframe
                                 title="Infinizy Global Innovations Pvt Ltd Location"
                                 src="https://www.google.com/maps?q=17.4372589,78.3982636&z=17&output=embed"
@@ -347,7 +347,7 @@ export default function Contact() {
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
                             />
-                            <div className="absolute inset-0 border border-white/10 rounded-[2rem] pointer-events-none"></div>
+                            <div className="absolute inset-0 border border-white/10 rounded-2xl sm:rounded-3xl pointer-events-none"></div>
 
                             <a
                                 href="https://www.google.com/maps/place/Infinizy+Global+Innovations+Pvt.+Ltd./@17.4372589,78.3956887,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb9148019e338f:0xeb98cb442f3536c3!8m2!3d17.4372589!4d78.3982636!16s%2Fg%2F11ff1w3wn2?entry=ttu&g_ep=EgoyMDI2MDMxMS4wIKXMDSoASAFQAw%3D%3D"

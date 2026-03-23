@@ -17,6 +17,7 @@ import Privacy from './Privacy';
 import CursorStars from './components/CursorStars';
 import { CookieConsent } from './components/CookieConsent';
 import ScrollToTop from './components/ScrollToTop';
+import Breadcrumb from './components/Breadcrumb';
 import AnimeConcept from './AnimeConcept';
 import { OfflineGame } from './components/OfflineGame';
 
@@ -29,6 +30,7 @@ export default function App() {
         <CookieConsent />
         <ScrollToTop />
         <Navbar />
+        <Breadcrumb />
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/new" element={<AnimeConcept />} />

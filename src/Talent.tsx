@@ -47,9 +47,9 @@ export default function Talent() {
             {/* ============================= */}
             {/* HERO — unchanged             */}
             {/* ============================= */}
-            <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+            <section className="relative min-h-[calc(100vh-4rem)] w-full flex flex-col items-center justify-center overflow-hidden">
                 <Talent3D />
-                <main className="relative z-10 flex flex-col items-center justify-center px-4 w-full h-full sm:px-6 lg:px-8 mt-20">
+                <main className="relative z-10 flex flex-col items-center justify-center px-4 w-full h-full sm:px-6 lg:px-8 mt-12 sm:mt-16 md:mt-20">
                     <motion.div variants={containerVariants} initial="hidden" animate="visible" className="flex w-full max-w-4xl flex-col items-center text-center">
                         <motion.div variants={itemVariants} className="mb-8">
                             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 backdrop-blur-md">
@@ -60,7 +60,7 @@ export default function Talent() {
                         <motion.h1 variants={heroTitleContainer} initial="hidden" animate="visible" className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-bold tracking-tight text-white leading-[1.15] text-center mb-6">
                             <span className="block mb-2">
                                 {["Talent", "is", "not", "hired", "here."].map((word, idx) => (
-                                    <motion.span key={idx} variants={wordVariant} className={`inline-block mr-[0.25em] ${word === "Talent" ? "text-[#34002b]" : ""}`}>{word}</motion.span>
+                                    <motion.span key={idx} variants={wordVariant} className={`inline-block mr-[0.25em] ${word === "Talent" ? "text-[#FFD700]" : ""}`}>{word}</motion.span>
                                 ))}
                             </span>
                             <span className="block">
@@ -76,16 +76,16 @@ export default function Talent() {
             {/* ============================= */}
             {/* INTRO — 2-col split           */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-5xl mx-auto">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={containerVariants} className="grid md:grid-cols-2 gap-16 items-center">
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={containerVariants} className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
                         <motion.div variants={itemVariants}>
-                            <p className="text-4xl md:text-5xl font-light text-white leading-snug">
+                            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white leading-snug">
                                 Organizations do not need more people.
                             </p>
                         </motion.div>
-                        <motion.div variants={itemVariants} className="border-l border-white/10 pl-10">
-                            <p className="text-2xl md:text-3xl font-bold text-white leading-snug">
+                        <motion.div variants={itemVariants} className="border-l border-white/10 pl-5 sm:pl-8 md:pl-10">
+                            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white leading-snug">
                                 They need aligned capability — positioned where it creates the greatest momentum.
                             </p>
                         </motion.div>
@@ -96,12 +96,12 @@ export default function Talent() {
             {/* ============================= */}
             {/* TALENT SERVICES — numbered    */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-6xl mx-auto">
                     <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="flex items-end justify-between mb-16 flex-wrap gap-6">
                         <div>
                             <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">Structural Solutions</p>
-                            <h2 className="text-4xl md:text-5xl font-bold text-white">Talent Services</h2>
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">Talent Services</h2>
                         </div>
                         <p className="text-zinc-500 text-sm font-light max-w-xs leading-relaxed">Six structured pathways. One objective — aligned capability.</p>
                     </motion.div>
@@ -114,7 +114,7 @@ export default function Talent() {
                                 whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                                 viewport={{ once: true, margin: "-40px" }}
                                 transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                className="group relative bg-zinc-950 border border-white/5 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-500)]/40"
+                                className="group relative bg-zinc-950 border border-white/5 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10flex flex-col justify-between overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-500)]/40"
                             >
                                 {/* Glowing orb on hover */}
                                 <div className="absolute -top-24 -right-24 w-60 h-60 bg-gradient-to-br from-[var(--color-brand-400)] to-[var(--color-brand-800)] rounded-full blur-[80px] opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none" />
@@ -139,11 +139,11 @@ export default function Talent() {
             {/* ============================= */}
             {/* OUTCOMES — 2×2 animated tiles */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-6xl mx-auto">
                     <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="mb-16">
                         <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">The Result</p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">Outcomes</h2>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">Outcomes</h2>
                     </motion.div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -155,7 +155,7 @@ export default function Talent() {
                                 viewport={{ once: true, margin: "-40px" }}
                                 transition={{ duration: 0.7, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
                                 whileHover={{ scale: 1.02 }}
-                                className="group relative bg-zinc-950 border border-white/5 rounded-3xl p-10 flex flex-col gap-6 overflow-hidden cursor-default min-h-[180px] hover:border-[var(--color-brand-800)] transition-colors duration-500"
+                                className="group relative bg-zinc-950 border border-white/5 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col gap-6 overflow-hidden cursor-default min-h-[160px] sm:min-h-[180px] hover:border-[var(--color-brand-800)] transition-colors duration-500"
                             >
                                 <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[var(--color-brand-900)]/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                                 <div className="flex items-center justify-between">
@@ -177,12 +177,12 @@ export default function Talent() {
             {/* ============================= */}
             {/* CTA                           */}
             {/* ============================= */}
-            <section className="relative py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
+            <section className="relative py-20 sm:py-28 md:py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
                 <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">
                     <span className="text-[clamp(5rem,18vw,14rem)] font-black text-[#222222] tracking-widest whitespace-nowrap leading-none">INFINIZY</span>
                 </div>
                 <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants} className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl">
-                    <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">Align Your Workforce</motion.h2>
+                    <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-4 sm:mb-6">Align Your <span className="text-[#FFD700]">Workforce</span></motion.h2>
                     <motion.p variants={itemVariants} className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">Position the right capability where it creates the greatest momentum.</motion.p>
                     <motion.div variants={itemVariants}>
                         <Link to="/contact" className="inline-flex items-center px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)]">

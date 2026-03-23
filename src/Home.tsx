@@ -42,7 +42,7 @@ export default function Home() {
       {/* ----------------------------- */}
       {/* SECTION 1: HERO */}
       {/* ----------------------------- */}
-      <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+      <section className="relative min-h-[calc(100vh-4rem)] w-full flex flex-col items-center justify-center overflow-hidden">
 
         {/* Background WebGL Animation ONLY for Hero */}
         <div className="absolute inset-0 z-0 opacity-50 mix-blend-screen pointer-events-none">
@@ -58,7 +58,7 @@ export default function Home() {
         </div>
 
         {/* Main Hero Content */}
-        <main className="relative z-10 flex flex-col items-center justify-center px-4 w-full h-full sm:px-6 lg:px-8 mt-20">
+        <main className="relative z-10 flex flex-col items-center justify-center px-4 w-full h-full sm:px-6 lg:px-8 mt-12 sm:mt-16 md:mt-20">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -117,7 +117,7 @@ export default function Home() {
 
                 <div className="flex justify-center w-full px-4">
                   <motion.span
-                    className="inline-block pb-2 text-[1.75rem] xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.10em] sm:tracking-widest uppercase font-serif"
+                    className="inline-block pb-2 text-[1.75rem] xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-[0.10em] sm:tracking-widest uppercase"
                     initial={{ opacity: 0, scale: 25, filter: 'blur(30px)', color: '#FFD700' }}
                     animate={{ opacity: 1, scale: 1, filter: 'blur(0px)', color: '#ffffff' }}
                     transition={{
@@ -177,7 +177,7 @@ export default function Home() {
                 <span className="text-lg sm:text-xl font-semibold tracking-wide text-[#FFD700]">
                   Sailaja Akkala
                 </span>
-                <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
                   Visionary Architect
                 </span>
               </div>

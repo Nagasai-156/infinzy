@@ -42,7 +42,7 @@ export default function CorporateExperiences() {
             {/* ----------------------------- */}
             {/* SECTION 1: HERO (Adapted from provided reference design) */}
             {/* ----------------------------- */}
-            <section className="pt-32 pb-12 bg-black sm:pb-16 lg:pb-20 xl:pb-24 min-h-screen flex flex-col justify-center">
+            <section className="pt-20 sm:pt-24 md:pt-32 pb-10 sm:pb-12 bg-black md:pb-16 lg:pb-20 xl:pb-24 min-h-[calc(100vh-4rem)] flex flex-col justify-center">
                 <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl w-full">
                     <div className="relative">
                         <motion.div
@@ -64,8 +64,8 @@ export default function CorporateExperiences() {
                                 speed={70}
                                 delay={2000}
                                 highlightWords={["Transformation", "experience", "experience.", "Experience", "thinking"]}
-                                highlightClass="text-[#34002b] font-bold"
-                                className="mt-6 block text-4xl font-normal text-white sm:mt-10 sm:text-5xl lg:text-6xl xl:text-7xl leading-tight min-h-[140px]"
+                                highlightClass="text-[#FFD700] font-bold"
+                                className="mt-4 sm:mt-6 block text-3xl sm:text-4xl font-normal text-white md:mt-10 md:text-5xl lg:text-6xl xl:text-7xl leading-tight min-h-[90px] sm:min-h-[110px] md:min-h-[140px]"
                             />
                             <motion.p variants={itemVariants} className="max-w-xl mt-6 text-xl font-light text-zinc-400 sm:mt-8">
                                 These are not events. They are environments designed to shift thinking, behavior, and culture.
@@ -83,7 +83,7 @@ export default function CorporateExperiences() {
                             initial={{ opacity: 0, scale: 0.9, x: 20 }}
                             animate={{ opacity: 1, scale: 1, x: 0 }}
                             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                            className="mt-12 md:absolute md:mt-0 md:top-0 md:bottom-0 md:right-0 md:w-1/2 min-h-[500px] z-0 pointer-events-none flex items-center justify-center"
+                            className="mt-8 sm:mt-12 md:absolute md:mt-0 md:top-0 md:bottom-0 md:right-0 md:w-1/2 min-h-[280px] sm:min-h-[380px] md:min-h-[500px] z-0 pointer-events-none flex items-center justify-center"
                         >
                             <div className="relative w-full h-full max-w-sm mx-auto lg:max-w-lg xl:max-w-xl">
                                 <CorporateExperiences3D />
@@ -96,22 +96,22 @@ export default function CorporateExperiences() {
             {/* ============================= */}
             {/* SECTION 2: INTRO             */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-5xl mx-auto">
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, margin: "-80px" }}
                         variants={containerVariants}
-                        className="grid md:grid-cols-2 gap-16 items-center"
+                        className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center"
                     >
                         <motion.div variants={itemVariants}>
-                            <p className="text-4xl md:text-5xl font-light text-white leading-snug">
+                            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white leading-snug">
                                 These are not events.
                             </p>
                         </motion.div>
-                        <motion.div variants={itemVariants} className="border-l border-white/10 pl-10">
-                            <p className="text-2xl md:text-3xl font-bold text-white leading-snug">
+                        <motion.div variants={itemVariants} className="border-l border-white/10 pl-5 sm:pl-8 md:pl-10">
+                            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white leading-snug">
                                 They are environments designed to shift thinking, behavior, and culture.
                             </p>
                         </motion.div>
@@ -122,7 +122,7 @@ export default function CorporateExperiences() {
             {/* ============================= */}
             {/* SECTION 3: EXPERIENCE TYPES  */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-6xl mx-auto">
 
                     {/* Section header */}
@@ -135,7 +135,7 @@ export default function CorporateExperiences() {
                     >
                         <div>
                             <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">Structural Solutions</p>
-                            <h2 className="text-4xl md:text-5xl font-bold text-white">Experience Types</h2>
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">Experience Types</h2>
                         </div>
                         <p className="text-zinc-500 text-sm font-light max-w-xs leading-relaxed">Five distinct environments. One common outcome — transformation.</p>
                     </motion.div>
@@ -149,7 +149,7 @@ export default function CorporateExperiences() {
                                 whileHover="hover"
                                 viewport={{ once: true, margin: "-40px" }}
                                 transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                className={`group relative bg-zinc-950 border border-white/5 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default transition-colors duration-500 hover:border-white/20 hover:bg-black/40 ${idx < 2 ? 'md:col-span-3' : 'md:col-span-2'
+                                className={`group relative bg-zinc-950 border border-white/5 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10flex flex-col justify-between overflow-hidden cursor-default transition-colors duration-500 hover:border-white/20 hover:bg-black/40 ${idx < 2 ? 'md:col-span-3' : 'md:col-span-2'
                                     }`}
                             >
                                 {/* Glowing orb on hover */}
@@ -178,7 +178,7 @@ export default function CorporateExperiences() {
             {/* ============================= */}
             {/* SECTION 4: OUTCOMES          */}
             {/* ============================= */}
-            <section className="relative z-10 py-28 px-6 lg:px-10 bg-black border-t border-white/5">
+            <section className="relative z-10 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-black border-t border-white/5">
                 <div className="max-w-6xl mx-auto">
 
                     <motion.div
@@ -189,7 +189,7 @@ export default function CorporateExperiences() {
                         className="mb-16"
                     >
                         <p className="text-xs font-bold tracking-[0.3em] text-[var(--color-brand-500)] uppercase mb-3">The Result</p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">Outcome</h2>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">Outcome</h2>
                     </motion.div>
 
                     {/* 2×2 large tiles */}
@@ -202,7 +202,7 @@ export default function CorporateExperiences() {
                                 viewport={{ once: true, margin: "-40px" }}
                                 transition={{ duration: 0.7, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
                                 whileHover={{ scale: 1.02 }}
-                                className="group relative bg-zinc-950 border border-white/5 rounded-3xl p-10 flex flex-col gap-6 overflow-hidden cursor-default min-h-[180px] hover:border-[var(--color-brand-800)] transition-colors duration-500"
+                                className="group relative bg-zinc-950 border border-white/5 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col gap-6 overflow-hidden cursor-default min-h-[160px] sm:min-h-[180px] hover:border-[var(--color-brand-800)] transition-colors duration-500"
                             >
                                 {/* Animated corner glow */}
                                 <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[var(--color-brand-900)]/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
@@ -240,7 +240,7 @@ export default function CorporateExperiences() {
             {/* ============================= */}
             {/* CTA                          */}
             {/* ============================= */}
-            <section className="relative py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
+            <section className="relative py-20 sm:py-28 md:py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
                 {/* Ghost text */}
                 <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">
                     <span className="text-[clamp(5rem,18vw,14rem)] font-black text-[#222222] tracking-widest whitespace-nowrap leading-none">
@@ -255,8 +255,8 @@ export default function CorporateExperiences() {
                     variants={containerVariants}
                     className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl"
                 >
-                    <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">
-                        Design Experience
+                    <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-4 sm:mb-6">
+                        <span className="text-[#FFD700]">Design</span> Experience
                     </motion.h2>
                     <motion.p variants={itemVariants} className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">
                         Create environments that shift thinking, behavior, and culture at scale.

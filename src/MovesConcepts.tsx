@@ -25,7 +25,7 @@ export default function MovesConcepts() {
                     </span>
                     <h2 className="text-4xl sm:text-5xl md:text-6xl font-light text-white tracking-tight leading-tight whitespace-nowrap">
                         How Transformation{" "}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FCE38A] to-[#FFD700] italic font-serif font-medium">Moves</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FCE38A] to-[#FFD700] italic font-semibold">Moves</span>
                     </h2>
                     <div className="w-24 h-px bg-gradient-to-r from-transparent via-[#FFD700]/50 to-transparent mt-6" />
                 </motion.div>
