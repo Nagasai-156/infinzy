@@ -26,9 +26,9 @@ function ClockDriver({ clock }: { clock: RefObject<SharedClock> }) {
         const w = state.size.width;
         const cam = state.camera as THREE.PerspectiveCamera;
         let fov = 60;
-        if (w < 480) fov = 68;
-        else if (w < 768) fov = 65;
-        else if (w < 1024) fov = 62;
+        if (w < 480) fov = 75;
+        else if (w < 768) fov = 68;
+        else if (w < 1024) fov = 63;
         if (cam.fov !== fov) {
             cam.fov = fov;
             cam.updateProjectionMatrix();
@@ -53,14 +53,14 @@ function CenterSphere({ clock }: { clock: RefObject<SharedClock> }) {
         meshRef.current.rotation.y = rotRef.current.y;
         meshRef.current.rotation.x = rotRef.current.x;
 
-        // Responsive scaling — balanced globe size
+        // Responsive scaling
         const w = state.size.width;
         const isPortrait = w < state.size.height;
         let scale = 1;
-        if (w < 480) scale = 0.55;
-        else if (w < 768) scale = 0.6;
-        else if (w < 1024) scale = 0.7;
-        else if (w <= 1366 || isPortrait) scale = 0.8;
+        if (w < 480) scale = 0.45;
+        else if (w < 768) scale = 0.5;
+        else if (w < 1024) scale = 0.65;
+        else if (w <= 1366 || isPortrait) scale = 0.75;
         meshRef.current.scale.set(scale, scale, scale);
     });
 
@@ -103,10 +103,10 @@ function OrbitItem({
         let radius = 4.2;
         let baseScale = 1;
         let textSize = 0.18;
-        if (w < 480) { radius = isPortrait ? 2.8 : 3.0; baseScale = 0.45; textSize = 0.13; }
-        else if (w < 768) { radius = isPortrait ? 3.2 : 3.4; baseScale = 0.55; textSize = 0.15; }
-        else if (w < 1024) { radius = isPortrait ? 3.4 : 3.6; baseScale = 0.65; textSize = 0.16; }
-        else if (w <= 1366 || isPortrait) { radius = isPortrait ? 3.6 : 3.8; baseScale = 0.75; textSize = 0.17; }
+        if (w < 480) { radius = isPortrait ? 1.8 : 2.2; baseScale = 0.55; textSize = 0.12; }
+        else if (w < 768) { radius = isPortrait ? 2.2 : 2.6; baseScale = 0.6; textSize = 0.14; }
+        else if (w < 1024) { radius = isPortrait ? 3.0 : 3.2; baseScale = 0.7; textSize = 0.16; }
+        else if (w <= 1366 || isPortrait) { radius = isPortrait ? 3.4 : 3.6; baseScale = 0.8; textSize = 0.17; }
 
         const speed = -0.05;
         const angle = (index / total) * Math.PI * 2 + time * speed;
