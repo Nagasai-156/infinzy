@@ -171,7 +171,7 @@ export default function Home() {
                 <img src="/image.png" alt="Sailaja Akkala" className="w-full h-full object-cover" />
               </div>
               <div className="flex flex-col items-center gap-1.5">
-                <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] text-[#FFD700]">
+                <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] text-white">
                   Founded by
                 </span>
                 <span className="text-lg sm:text-xl font-semibold tracking-wide text-[#FFD700]">

@@ -1,434 +1,420 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, CheckCircle2, Cpu } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, BookOpen, Cpu, Brain, Zap, Target, Users, BarChart3, Shield, Layers, Lightbulb } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Consulting3D from './Consulting3D';
 import Footer from './Footer';
 import { usePageMeta } from './lib/usePageMeta';
-import { useRef } from 'react';
+import Particles from './components/Particles';
 
-const containerVariants = {
+/* ─── Animation Variants ─── */
+const fadeUp = {
+    initial: { opacity: 0, y: 28 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-80px" } as const,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
+};
+
+const stagger = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
-        transition: {
-            staggerChildren: 0.1,
-            delayChildren: 0.2
-        }
-    }
+        transition: { staggerChildren: 0.08, delayChildren: 0.15 },
+    },
 };
 
-const itemVariants = {
+const fadeItem = {
     hidden: { opacity: 0, y: 20 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
-    }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } },
 };
 
-const toDisplayTitle = (input: string) => {
-    // Support inputs like:
-    // - "Enterprise digital transformation strategy"
-    // - "EnterpriseDigitalTransformationStrategy"
-    // - "AI-integrated learning ecosystems"
-    // - "TechnologyRoiModelingAndGovernance"
-    const spaced = input
-        .replace(/_/g, ' ')
-        .replace(/-/g, ' ')
-        .replace(/([a-z])([A-Z])/g, '$1 $2')
-        .replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2')
-        .replace(/\s+/g, ' ')
-        .trim();
+/* ─── Data ─── */
+const ldItems = [
+    { icon: BookOpen, title: "Enterprise Learning Transformation", desc: "Design roadmaps that align learning strategy with business growth objectives." },
+    { icon: Users, title: "Leadership Competency Architecture", desc: "Build frameworks that develop leaders at every level of the organization." },
+    { icon: Target, title: "Organizational Capability Mapping", desc: "Identify gaps and create structured paths to workforce excellence." },
+    { icon: BarChart3, title: "Performance-Linked Development", desc: "Connect learning outcomes directly to measurable performance improvement." },
+    { icon: Brain, title: "Culture & Behavioral Alignment", desc: "Shift organizational mindset through strategic behavioral interventions." },
+    { icon: Zap, title: "AI-Integrated Learning Ecosystems", desc: "Leverage AI to personalize, scale, and optimize learning delivery." },
+];
 
-    const acronyms = new Set(['AI', 'IT', 'ROI', 'L&D', 'Roi']);
+const itItems = [
+    { icon: Cpu, title: "Digital Transformation Strategy", desc: "Enterprise-wide roadmaps for technology-driven business evolution." },
+    { icon: Layers, title: "Technology Stack Rationalization", desc: "Evaluate, consolidate, and optimize your technology portfolio." },
+    { icon: Brain, title: "AI Readiness Assessment", desc: "Determine organizational readiness for artificial intelligence integration." },
+    { icon: Zap, title: "Automation & Process Optimization", desc: "Streamline operations through intelligent automation frameworks." },
+    { icon: Shield, title: "IT Governance & Architecture", desc: "Build resilient system architecture with strong governance models." },
+    { icon: BarChart3, title: "Technology ROI Modeling", desc: "Quantify technology investments with rigorous ROI frameworks." },
+];
 
-    return spaced
-        .split(' ')
-        .map((raw) => {
-            const word = raw.trim();
-            if (!word) return '';
-            if (acronyms.has(word) || acronyms.has(word.toUpperCase())) return word.toUpperCase();
-            if (word.toLowerCase() === 'and') return 'and';
-            if (word.toLowerCase() === 'with') return 'with';
-            if (word.toLowerCase() === 'for') return 'for';
-            if (word.toLowerCase() === 'to') return 'to';
-            if (word.toLowerCase() === 'of') return 'of';
-            if (word.toLowerCase() === 'in') return 'in';
-            if (word.toLowerCase() === 'on') return 'on';
-            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-        })
-        .filter(Boolean)
-        .join(' ');
-};
+const differentiators = [
+    { label: "Skills", desc: "Capability development programs built from consulting insights" },
+    { label: "Talent", desc: "Workforce alignment driven by strategic talent frameworks" },
+    { label: "Content", desc: "Knowledge systems designed from organizational intelligence" },
+    { label: "Experiences", desc: "Corporate transformation programs rooted in strategy" },
+];
 
 export default function Consulting() {
     usePageMeta('Consulting', 'Strategic architecture for enterprise transformation.');
-    const containerRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end start"]
-    });
-
-    const y3D = useTransform(scrollYProgress, [0, 1], [0, 400]);
-    const opacity3D = useTransform(scrollYProgress, [0, 0.5], [0.8, 0]);
 
     return (
-        <main ref={containerRef} className="bg-[#050505] text-white min-h-screen selection:bg-brand-500 selection:text-white overflow-x-hidden">
+        <main className="bg-[#050505] text-white min-h-screen overflow-x-hidden font-sans">
 
-            {/* Background 3D Anime Grid */}
-            <div className="fixed inset-0 z-0 pointer-events-none">
-                <motion.div style={{ y: y3D, opacity: opacity3D }} className="absolute inset-0">
-                    <Consulting3D />
-                </motion.div>
-            </div>
+            {/* ═══════════════════════════════════ */}
+            {/* HERO SECTION — Particles Background */}
+            {/* ═══════════════════════════════════ */}
+            <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+                {/* Particles BG */}
+                <div className="absolute inset-0 z-0">
+                    <Particles
+                        particleColors={['#ffffff', '#be2891', '#FFD700']}
+                        particleCount={250}
+                        particleSpread={10}
+                        speed={0.08}
+                        particleBaseSize={120}
+                        moveParticlesOnHover
+                        alphaParticles
+                        disableRotation={false}
+                        sizeRandomness={1.2}
+                        cameraDistance={20}
+                        pixelRatio={1}
+                    />
+                </div>
 
-            {/* HERO SECTION */}
-            <section className="relative min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden">
-                <div className="relative z-10 max-w-5xl mx-auto w-full text-center">
+                {/* Dark overlay for readability */}
+                <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/40 via-transparent to-black/80" />
+
+                {/* Hero Content */}
+                <div className="relative z-10 max-w-5xl mx-auto text-center px-4 sm:px-6">
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                        initial={{ opacity: 0, y: 40, filter: "blur(20px)" }}
+                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                     >
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight mb-6 mx-auto">
-                            <span className="block">
-                                <span className="text-[#FFD700]">Strategy</span> determines the future.
-                            </span>
-                            <span className="block pt-3 text-white/80 italic">
-                                Execution merely follows.
-                            </span>
-                        </h1>
-                        <p className="text-base sm:text-lg md:text-xl font-light text-zinc-400 max-w-3xl mx-auto leading-relaxed mt-4">
-                            Inside the Infinizy Continuum, Consulting is where transformation is engineered at its highest level.
+                        <p className="text-[var(--color-brand-400)] font-semibold tracking-[0.3em] uppercase text-xs sm:text-sm mb-6 sm:mb-8">
+                            Strategic Consulting
                         </p>
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] mb-6 sm:mb-8">
+                            <span className="text-[#FFD700]">Strategy</span> determines
+                            <br className="hidden sm:block" />{' '}the future.
+                        </h1>
+                        <p className="text-base sm:text-lg md:text-xl text-zinc-400 font-light max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-12">
+                            Inside the Infinizy Continuum, Consulting is where transformation is engineered at its highest level — where vision becomes architecture.
+                        </p>
+                        <Link
+                            to="/contact"
+                            className="inline-flex items-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-full text-sm font-bold tracking-widest text-[#FFD700] uppercase hover:bg-[#FFD700]/20 transition-all duration-300 hover:scale-105 active:scale-95 group"
+                        >
+                            Begin Transformation
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </Link>
                     </motion.div>
                 </div>
+
+                {/* Scroll indicator */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 2, duration: 1 }}
+                    className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+                >
+                    <span className="text-[10px] uppercase tracking-[0.3em] text-zinc-600">Scroll</span>
+                    <motion.div
+                        animate={{ y: [0, 8, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                        className="w-px h-8 bg-gradient-to-b from-zinc-600 to-transparent"
+                    />
+                </motion.div>
             </section>
 
-            <div className="relative z-10 bg-black/80 backdrop-blur-xl">
-                {/* INTRO SECTION */}
-                <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 border-t border-white/5">
-                    <div className="max-w-6xl mx-auto">
-                        <motion.div
-                            variants={containerVariants}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center"
-                        >
-                            <motion.div variants={itemVariants} className="space-y-6">
-                                <h2 className="text-4xl md:text-5xl font-black leading-tight">
-                                    Growth without direction <br />
-                                    <span className="text-zinc-600">creates activity.</span> <br />
-                                    Growth with architecture <br />
-                                    <span className="text-[#FFD700] italic block pt-2">creates dominance.</span>
-                                </h2>
-                            </motion.div>
-                            <motion.div variants={itemVariants} className="space-y-6 text-lg md:text-xl text-zinc-400 font-light leading-relaxed">
+            {/* ═══════════════════════════════════ */}
+            {/* INTRO — Growth Architecture         */}
+            {/* ═══════════════════════════════════ */}
+            <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-10 border-t border-white/5">
+                <div className="max-w-6xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-start">
+                        {/* Left: Statement */}
+                        <motion.div {...fadeUp}>
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
+                                Growth without direction
+                                <span className="block text-zinc-600 mt-1">creates activity.</span>
+                                Growth with architecture
+                                <span className="block text-[#FFD700] mt-1">creates dominance.</span>
+                            </h2>
+                        </motion.div>
+
+                        {/* Right: Description */}
+                        <motion.div {...fadeUp} transition={{ delay: 0.1, duration: 0.8 }}>
+                            <div className="space-y-5 text-base sm:text-lg text-zinc-400 font-light leading-relaxed">
                                 <p>
                                     Under the strategic leadership of <span className="text-white font-medium">Sailaja Akkala</span>, Infinizy Consulting partners with executive teams to design structured, measurable, and future-ready transformation frameworks.
                                 </p>
                                 <p>
                                     We operate at the intersection of organizational intelligence and technological advancement — aligning people, systems, and digital capability into one coherent growth strategy.
                                 </p>
-                                <div className="pt-6 border-t border-zinc-900">
-                                    <p className="italic text-zinc-300">
-                                        This is not advisory in theory. <br />
+                                <div className="pt-5 border-t border-zinc-800">
+                                    <p className="text-zinc-300 font-medium italic">
+                                        This is not advisory in theory.
+                                        <br />
                                         This is strategic architecture in action.
                                     </p>
                                 </div>
-                            </motion.div>
+                            </div>
                         </motion.div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                {/* L&D CONSULTING SECTION */}
-                <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-zinc-950/20">
-                    <div className="max-w-7xl mx-auto">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="mb-10 sm:mb-14 md:mb-16"
-                        >
-                            <span className="text-brand-500 font-bold tracking-[0.2em] uppercase text-sm mb-4 block">L&D Consulting</span>
-                            <h2 className="text-4xl md:text-5xl font-black mb-6">
-                                Architecting Enterprise <br />
-                                Learning for Performance
-                            </h2>
-                            <p className="text-base sm:text-lg md:text-xl text-zinc-400 max-w-3xl leading-relaxed">
-                                Learning must be directly accountable to business outcomes. Infinizy designs enterprise-level Learning & Development strategies that integrate leadership capability, workforce readiness, and measurable performance improvement.
-                            </p>
-                        </motion.div>
+            {/* ═══════════════════════════════════ */}
+            {/* L&D CONSULTING                      */}
+            {/* ═══════════════════════════════════ */}
+            <section className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-10 bg-zinc-950/50 border-t border-white/5">
+                <div className="max-w-7xl mx-auto">
+                    {/* Section Header */}
+                    <motion.div {...fadeUp} className="mb-10 sm:mb-14 lg:mb-16 max-w-3xl">
+                        <span className="text-[var(--color-brand-400)] font-bold tracking-[0.2em] uppercase text-xs sm:text-sm mb-3 sm:mb-4 block">
+                            L&D Consulting
+                        </span>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
+                            Architecting Enterprise
+                            <br />
+                            <span className="text-[#FFD700]">Learning</span> for Performance
+                        </h2>
+                        <p className="text-sm sm:text-base md:text-lg text-zinc-400 leading-relaxed">
+                            Learning must be directly accountable to business outcomes. Infinizy designs enterprise-level L&D strategies that integrate leadership capability, workforce readiness, and measurable performance improvement.
+                        </p>
+                    </motion.div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 mb-20">
-                            {[
-                                "Enterprise learning transformation roadmaps",
-                                "Leadership competency architecture",
-                                "Organizational capability mapping",
-                                "Succession and talent acceleration frameworks",
-                                "Culture and behavioral alignment strategy",
-                                "AI-integrated learning ecosystems",
-                                "Performance-linked development systems"
-                            ].map((item, idx) => (
-                                <motion.div
-                                    key={idx}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: idx * 0.05 }}
-                                    className={[
-                                        // Balanced spans: 4 cards on row 1 (3+3+3+3), 3 cards on row 2 (4+4+4).
-                                        idx <= 3 ? "lg:col-span-3" : "lg:col-span-4",
-                                        // Shape variety
-                                        "rounded-2xl sm:rounded-3xl",
-                                        // Height variety (subtle)
-                                        idx % 2 === 0 ? "min-h-[140px] md:min-h-[170px]" : "min-h-[160px] md:min-h-[190px]",
-                                        // Base styling
-                                        "relative overflow-hidden p-6 sm:p-8 md:p-10 bg-zinc-900/40 border border-white/5 hover:border-brand-500/30 transition-all group flex flex-col justify-between"
-                                    ].join(' ')}
-                                >
-                                    {/* Ambient corner glow */}
-                                    <div className="absolute -top-20 -right-20 w-56 h-56 bg-[var(--color-brand-500)]/10 blur-[70px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-
-                                    <div className="relative z-10 flex items-start gap-5">
-                                        <CheckCircle2 className="w-8 h-8 text-brand-500 shrink-0 mt-0.5" />
-                                        <p className="text-lg md:text-xl font-medium text-zinc-200 leading-snug">
-                                        {toDisplayTitle(item).split(' ').map((word, i) => (
-                                            <motion.span
-                                                key={i}
-                                                className="inline-block mr-[0.25em]"
-                                                initial={{ opacity: 0, y: 8 }}
-                                                whileInView={{ opacity: 1, y: 0 }}
-                                                viewport={{ once: true }}
-                                                transition={{ duration: 0.4, delay: idx * 0.05 + i * 0.03 }}
-                                            >
-                                                {word}
-                                            </motion.span>
-                                        ))}
-                                    </p>
+                    {/* Bento Grid */}
+                    <motion.div
+                        variants={stagger}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-60px" }}
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 mb-12 sm:mb-16"
+                    >
+                        {ldItems.map((item, idx) => (
+                            <motion.div
+                                key={idx}
+                                variants={fadeItem}
+                                className="group relative rounded-2xl border border-white/5 bg-zinc-900/30 p-5 sm:p-6 lg:p-7 hover:border-[var(--color-brand-500)]/30 hover:bg-zinc-900/50 transition-all duration-500 overflow-hidden"
+                            >
+                                <div className="absolute -top-16 -right-16 w-40 h-40 bg-[var(--color-brand-500)]/8 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                                <div className="relative z-10">
+                                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-black border border-white/10 group-hover:border-[var(--color-brand-500)]/40 flex items-center justify-center mb-4 sm:mb-5 transition-colors duration-500">
+                                        <item.icon className="w-5 h-5 text-zinc-500 group-hover:text-[var(--color-brand-300)] transition-colors duration-500" />
                                     </div>
-
-                                    {/* Bottom line accent */}
-                                    <div className="relative z-10 mt-6 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                                </motion.div>
-                            ))}
-                        </div>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="bg-brand-950/10 border border-brand-500/20 p-8 sm:p-10 md:p-12 rounded-2xl sm:rounded-3xl"
-                        >
-                            <div className="grid lg:grid-cols-2 gap-12 items-center">
-                                <div>
-                                    <p className="text-brand-500 font-bold mb-4">Sailaja Akkala’s strategic position:</p>
-                                    <h3 className="text-3xl md:text-4xl font-black text-white italic">
-                                        "Learning is not a support function. <br />
-                                        <span className="text-[#FFD700]">It is a competitive advantage.</span>"
-                                    </h3>
+                                    <h3 className="text-sm sm:text-base font-bold text-white mb-2">{item.title}</h3>
+                                    <p className="text-xs sm:text-sm text-zinc-500 leading-relaxed">{item.desc}</p>
                                 </div>
-                                <p className="text-lg text-zinc-400 font-light leading-relaxed">
-                                    We ensure your learning investments drive leadership maturity, workforce agility, and sustainable enterprise growth.
-                                </p>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+
+                    {/* Quote */}
+                    <motion.div
+                        {...fadeUp}
+                        className="rounded-2xl border border-[var(--color-brand-500)]/20 bg-[var(--color-brand-950)]/10 p-6 sm:p-8 lg:p-10"
+                    >
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
+                            <div>
+                                <p className="text-[var(--color-brand-400)] font-bold text-xs sm:text-sm mb-3 sm:mb-4">Sailaja Akkala's strategic position:</p>
+                                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white italic leading-snug">
+                                    "Learning is not a support function.
+                                    <br />
+                                    <span className="text-[#FFD700]">It is a competitive advantage.</span>"
+                                </h3>
                             </div>
-                        </motion.div>
-                    </div>
-                </section>
-
-                {/* IT CONSULTING SECTION */}
-                <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10">
-                    <div className="max-w-7xl mx-auto">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="mb-10 sm:mb-14 md:mb-16"
-                        >
-                            <span className="text-[#FFD700] font-bold tracking-[0.2em] uppercase text-sm mb-4 block">IT Consulting</span>
-                            <h2 className="text-4xl md:text-5xl font-black mb-6">
-                                Designing Intelligent, <br />
-                                Scalable Digital Foundations
-                            </h2>
-                            <p className="text-base sm:text-lg md:text-xl text-zinc-400 max-w-3xl leading-relaxed">
-                                Technology without strategic intent dilutes resources. Technology with architectural precision accelerates enterprise value. Infinizy IT Consulting supports executive decision-making across digital transformation and intelligent system integration.
+                            <p className="text-sm sm:text-base lg:text-lg text-zinc-400 font-light leading-relaxed">
+                                We ensure your learning investments drive leadership maturity, workforce agility, and sustainable enterprise growth.
                             </p>
-                        </motion.div>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 mb-20">
+            {/* ═══════════════════════════════════ */}
+            {/* IT CONSULTING                       */}
+            {/* ═══════════════════════════════════ */}
+            <section className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-10 border-t border-white/5">
+                <div className="max-w-7xl mx-auto">
+                    {/* Section Header */}
+                    <motion.div {...fadeUp} className="mb-10 sm:mb-14 lg:mb-16 max-w-3xl">
+                        <span className="text-[#FFD700] font-bold tracking-[0.2em] uppercase text-xs sm:text-sm mb-3 sm:mb-4 block">
+                            IT Consulting
+                        </span>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
+                            Designing Intelligent,
+                            <br />
+                            Scalable <span className="text-[#FFD700]">Digital</span> Foundations
+                        </h2>
+                        <p className="text-sm sm:text-base md:text-lg text-zinc-400 leading-relaxed">
+                            Technology without strategic intent dilutes resources. Technology with architectural precision accelerates enterprise value.
+                        </p>
+                    </motion.div>
+
+                    {/* Bento Grid */}
+                    <motion.div
+                        variants={stagger}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-60px" }}
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 mb-12 sm:mb-16"
+                    >
+                        {itItems.map((item, idx) => (
+                            <motion.div
+                                key={idx}
+                                variants={fadeItem}
+                                className="group relative rounded-2xl border border-white/5 bg-zinc-900/30 p-5 sm:p-6 lg:p-7 hover:border-[#FFD700]/30 hover:bg-zinc-900/50 transition-all duration-500 overflow-hidden"
+                            >
+                                <div className="absolute -top-16 -right-16 w-40 h-40 bg-[#FFD700]/8 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                                <div className="relative z-10">
+                                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-black border border-white/10 group-hover:border-[#FFD700]/40 flex items-center justify-center mb-4 sm:mb-5 transition-colors duration-500">
+                                        <item.icon className="w-5 h-5 text-zinc-500 group-hover:text-[#FFD700] transition-colors duration-500" />
+                                    </div>
+                                    <h3 className="text-sm sm:text-base font-bold text-white mb-2">{item.title}</h3>
+                                    <p className="text-xs sm:text-sm text-zinc-500 leading-relaxed">{item.desc}</p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+
+                    {/* Statement */}
+                    <motion.div {...fadeUp} className="text-center py-8 sm:py-10 lg:py-12 border-y border-white/5">
+                        <p className="text-base sm:text-lg md:text-xl text-zinc-400 font-light leading-relaxed max-w-3xl mx-auto">
+                            We do not recommend tools.
+                            <br />
+                            <span className="text-white font-semibold mt-2 block">
+                                We design systems aligned with long-term enterprise direction.
+                            </span>
+                        </p>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* ═══════════════════════════════════ */}
+            {/* HI × AI CONVERGENCE                 */}
+            {/* ═══════════════════════════════════ */}
+            <section className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-10 bg-zinc-950/50 border-t border-white/5">
+                <div className="max-w-5xl mx-auto text-center">
+                    <motion.div {...fadeUp}>
+                        <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 lg:mb-12 leading-tight">
+                            <span className="text-[#FFD700]">Human</span> Intelligence
+                            <br />
+                            <span className="text-zinc-600 text-lg sm:text-2xl md:text-4xl">×</span>
+                            <br />
+                            <span className="text-[#FFD700]">Artificial</span> Intelligence
+                        </h2>
+                        <p className="text-sm sm:text-base md:text-lg text-zinc-400 max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16 leading-relaxed">
+                            The future belongs to organizations that master integration. AI delivers precision and pattern recognition. Human intelligence ensures contextual judgment and strategic foresight.
+                        </p>
+
+                        <p className="text-[var(--color-brand-400)] font-bold uppercase tracking-[0.15em] sm:tracking-widest text-xs sm:text-sm mb-8 sm:mb-10">
+                            Infinizy Consulting integrates both — deliberately and structurally.
+                        </p>
+
+                        <motion.div
+                            variants={stagger}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4"
+                        >
                             {[
-                                "Enterprise digital transformation strategy",
-                                "Technology stack rationalization and evaluation",
-                                "AI integration and readiness assessment",
-                                "Automation and process optimization frameworks",
-                                "IT capability alignment with business objectives",
-                                "System architecture and infrastructure advisory",
-                                "Technology ROI modeling and governance"
-                            ].map((item, idx) => (
-                                <motion.div
-                                    key={idx}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: idx * 0.05 }}
-                                    className={[
-                                        // Balanced spans: 4 cards on row 1 (3+3+3+3), 3 cards on row 2 (4+4+4).
-                                        idx <= 3 ? "lg:col-span-3" : "lg:col-span-4",
-                                        // Shape variety
-                                        "rounded-2xl sm:rounded-3xl",
-                                        // Height variety (subtle)
-                                        idx % 2 === 0 ? "min-h-[140px] md:min-h-[170px]" : "min-h-[160px] md:min-h-[190px]",
-                                        // Base styling
-                                        "relative overflow-hidden p-6 sm:p-8 md:p-10 bg-zinc-900/40 border border-white/5 hover:border-[#FFD700]/30 transition-all group flex flex-col justify-between"
-                                    ].join(' ')}
-                                >
-                                    {/* Ambient corner glow */}
-                                    <div className="absolute -top-20 -right-20 w-56 h-56 bg-[#FFD700]/10 blur-[70px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-
-                                    <div className="relative z-10 flex items-start gap-5">
-                                        <Cpu className="w-8 h-8 text-[#FFD700] shrink-0 mt-0.5" />
-                                        <p className="text-lg md:text-xl font-medium text-zinc-200 leading-snug">
-                                            {toDisplayTitle(item).split(' ').map((word, i) => (
-                                                <motion.span
-                                                    key={i}
-                                                    className="inline-block mr-[0.25em]"
-                                                    initial={{ opacity: 0, y: 8 }}
-                                                    whileInView={{ opacity: 1, y: 0 }}
-                                                    viewport={{ once: true }}
-                                                    transition={{ duration: 0.4, delay: idx * 0.05 + i * 0.03 }}
-                                                >
-                                                    {word}
-                                                </motion.span>
-                                            ))}
-                                        </p>
-                                    </div>
-
-                                    {/* Bottom line accent */}
-                                    <div className="relative z-10 mt-6 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                                </motion.div>
-                            ))}
-                        </div>
-
-                        <div className="text-center p-12 border-y border-white/5">
-                            <p className="text-xl md:text-2xl text-zinc-400 font-light leading-relaxed max-w-3xl mx-auto">
-                                We do not recommend tools. <br />
-                                <span className="text-white font-semibold mt-2 block">
-                                    We design systems aligned with long-term enterprise direction.
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* HI x AI SECTION */}
-                <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10 bg-zinc-950/20">
-                    <div className="max-w-6xl mx-auto text-center">
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                        >
-                            <h2 className="text-4xl md:text-7xl font-black mb-12">
-                                <span className="text-[#FFD700]">HUMAN</span> INTELLIGENCE <br />
-                                <span className="text-[#FFD700]/60">×</span> <br />
-                                <span className="text-[#FFD700]">ARTIFICIAL</span> INTELLIGENCE
-                            </h2>
-                            <p className="text-xl text-zinc-400 max-w-3xl mx-auto mb-20 leading-relaxed">
-                                The future belongs to organizations that master integration. Artificial intelligence delivers data precision, pattern recognition, and predictive modeling. Human intelligence ensures contextual judgment, ethical oversight, and strategic foresight.
-                            </p>
-
-                            <p className="text-brand-500 font-bold uppercase tracking-widest text-sm mb-12">
-                                Infinizy Consulting integrates both — deliberately and structurally.
-                            </p>
-
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
-                                {[
-                                    "Make informed executive decisions",
-                                    "Reduce transformation risk",
-                                    "Increase implementation speed",
-                                    "Build adaptive digital maturity",
-                                    "Scale with confidence"
-                                ].map((point, i) => (
-                                    <div key={i} className="px-6 py-4 rounded-2xl border border-white/5 text-sm font-medium text-zinc-300 bg-black/40">
-                                        {point}
-                                    </div>
-                                ))}
-                            </div>
-                        </motion.div>
-                    </div>
-                </section>
-
-                {/* WHY INFINIZY CONSULTING IS DISTINCT */}
-                <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-10">
-                    <div className="max-w-5xl mx-auto">
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-center mb-10 sm:mb-14 md:mb-20"
-                        >
-                            <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight">
-                                Why Infinizy Consulting <br />
-                                <span className="text-[#FFD700] italic">Is Distinct</span>
-                            </h2>
-                            <p className="text-2xl text-zinc-300 font-light mb-4">We do not operate in advisory silos.</p>
-                            <p className="text-lg text-zinc-500">Within the Infinizy Continuum, consulting is directly connected to execution:</p>
-                        </motion.div>
-
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 md:gap-8 mb-10 sm:mb-14 md:mb-20">
-                            {["Skills", "Talent", "Content", "Experiences"].map((item, i) => (
+                                { icon: Lightbulb, text: "Informed executive decisions" },
+                                { icon: Shield, text: "Reduced transformation risk" },
+                                { icon: Zap, text: "Increased implementation speed" },
+                                { icon: Layers, text: "Adaptive digital maturity" },
+                                { icon: Target, text: "Scale with confidence" },
+                            ].map((point, i) => (
                                 <motion.div
                                     key={i}
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    transition={{ delay: i * 0.1 }}
-                                    className="group text-center rounded-2xl sm:rounded-3xl border border-white/10 bg-zinc-900/30 backdrop-blur-sm px-4 py-5 sm:px-6 sm:py-8 md:px-7 md:py-10 hover:border-brand-500/30 hover:bg-zinc-900/40 transition-all"
+                                    variants={fadeItem}
+                                    className="flex flex-col items-center gap-2 sm:gap-3 px-4 sm:px-5 py-4 sm:py-5 rounded-xl border border-white/5 bg-black/40 hover:border-white/15 transition-all"
                                 >
-                                    <p className="text-xl md:text-2xl font-black italic tracking-tighter uppercase group-hover:text-brand-500 transition-colors">
-                                        {item}
-                                    </p>
+                                    <point.icon className="w-5 h-5 text-[#FFD700]" />
+                                    <span className="text-xs sm:text-sm font-medium text-zinc-300 text-center">{point.text}</span>
                                 </motion.div>
                             ))}
-                        </div>
-
-                        <div className="text-center space-y-4">
-                            <p className="text-xl sm:text-2xl md:text-3xl font-light text-zinc-400">Nothing remains conceptual.</p>
-                            <p className="text-xl sm:text-2xl md:text-3xl font-black text-white italic">Everything becomes implementable.</p>
-                            <p className="text-lg text-zinc-500 uppercase tracking-widest pt-8">That continuity is what differentiates Infinizy.</p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* CTA SECTION */}
-                <section className="relative py-20 sm:py-28 md:py-36 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
-                    <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">
-                        <span className="text-[clamp(5rem,18vw,14rem)] font-black text-[#222222] tracking-widest whitespace-nowrap leading-none">
-                            INFINIZY
-                        </span>
-                    </div>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl"
-                    >
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-4 sm:mb-6">
-                            Architect Enterprise <span className="text-[#FFD700] drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]">Transformation</span>
-                        </h2>
-                        <p className="text-base text-zinc-400 font-light leading-relaxed mb-12 max-w-lg">
-                            Strategic architecture for measurable, sustainable enterprise growth.
-                        </p>
-                        <Link
-                            to="/contact"
-                            className="inline-flex items-center gap-3 px-10 py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)] group"
-                        >
-                            Start Transformation
-                            <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                        </Link>
+                        </motion.div>
                     </motion.div>
-                </section>
-            </div>
+                </div>
+            </section>
+
+            {/* ═══════════════════════════════════ */}
+            {/* WHY INFINIZY IS DISTINCT             */}
+            {/* ═══════════════════════════════════ */}
+            <section className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-10 border-t border-white/5">
+                <div className="max-w-5xl mx-auto">
+                    <motion.div {...fadeUp} className="text-center mb-10 sm:mb-14 lg:mb-16">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
+                            Why Infinizy Consulting
+                            <br />
+                            <span className="text-[#FFD700]">Is Distinct</span>
+                        </h2>
+                        <p className="text-base sm:text-lg md:text-xl text-zinc-300 font-light mb-2">We do not operate in advisory silos.</p>
+                        <p className="text-sm sm:text-base text-zinc-500">Within the Infinizy Continuum, consulting is directly connected to execution:</p>
+                    </motion.div>
+
+                    {/* Connected pillars */}
+                    <motion.div
+                        variants={stagger}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-10 sm:mb-14 lg:mb-16"
+                    >
+                        {differentiators.map((item, i) => (
+                            <motion.div
+                                key={i}
+                                variants={fadeItem}
+                                className="group text-center rounded-2xl border border-white/10 bg-zinc-900/30 backdrop-blur-sm p-4 sm:p-6 lg:p-8 hover:border-[var(--color-brand-500)]/30 hover:bg-zinc-900/40 transition-all"
+                            >
+                                <p className="text-base sm:text-lg md:text-xl font-bold italic tracking-tight uppercase group-hover:text-[var(--color-brand-400)] transition-colors mb-2 sm:mb-3">
+                                    {item.label}
+                                </p>
+                                <p className="text-[10px] sm:text-xs text-zinc-500 leading-relaxed">{item.desc}</p>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+
+                    {/* Closing statement */}
+                    <motion.div {...fadeUp} className="text-center space-y-3 sm:space-y-4">
+                        <p className="text-base sm:text-lg md:text-xl text-zinc-400 font-light">Nothing remains conceptual.</p>
+                        <p className="text-base sm:text-lg md:text-xl font-bold text-white italic">Everything becomes implementable.</p>
+                        <p className="text-xs sm:text-sm text-zinc-600 uppercase tracking-widest pt-4 sm:pt-6">
+                            That continuity is what differentiates Infinizy.
+                        </p>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* ═══════════════════════════════════ */}
+            {/* CTA                                 */}
+            {/* ═══════════════════════════════════ */}
+            <section className="relative py-16 sm:py-24 lg:py-32 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 bg-black">
+                <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">
+                    <span className="text-[clamp(3rem,15vw,12rem)] font-black text-zinc-900/50 tracking-widest whitespace-nowrap leading-none">
+                        INFINIZY
+                    </span>
+                </div>
+                <motion.div
+                    {...fadeUp}
+                    className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 max-w-2xl"
+                >
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-3 sm:mb-5 leading-tight">
+                        <span className="text-[#FFD700]">Design</span> My Transformation
+                    </h2>
+                    <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed mb-8 sm:mb-10 max-w-lg">
+                        Strategic architecture for measurable, sustainable enterprise growth.
+                    </p>
+                    <Link
+                        to="/contact"
+                        className="inline-flex items-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 bg-[#34002b] hover:bg-[#4a003e] rounded-full text-xs sm:text-sm font-bold tracking-widest text-white uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(52,0,43,0.4)] hover:shadow-[0_0_60px_rgba(52,0,43,0.6)] group"
+                    >
+                        Start <span className="text-[#FFD700]">Transformation</span>
+                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform" />
+                    </Link>
+                </motion.div>
+            </section>
 
             <Footer />
         </main>

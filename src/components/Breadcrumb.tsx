@@ -30,7 +30,7 @@ export default function Breadcrumb() {
     return (
         <nav
             aria-label="Breadcrumb"
-            className="w-full bg-zinc-950/60 backdrop-blur-sm border-b border-white/5"
+            className="w-full bg-zinc-950/60 backdrop-blur-sm border-b border-white/5 md:hidden"
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center gap-1.5 text-xs overflow-x-auto">
                 {/* Home root */}
