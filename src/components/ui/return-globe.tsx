@@ -56,16 +56,16 @@ export function ReturnGlobe() {
                         right: 40,
                         scale: 1,
                         borderRadius: "9999px",
-                        width: 140,
-                        height: 140,
-                        backgroundColor: "rgba(0, 0, 0, 0.4)"
+                        width: 50,
+                        height: 50,
+                        backgroundColor: "transparent"
                     }
             }
             transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
         >
             {/* The Globe Core */}
             <motion.div
-                className="absolute inset-0 flex items-center justify-center pointer-events-none scale-[0.65]"
+                className="absolute inset-0 flex items-center justify-center pointer-events-none scale-[0.28]"
                 animate={{ opacity: isExiting ? 0 : 1 }}
             >
                 {/* Central Sphere / Earth */}

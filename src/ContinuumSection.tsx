@@ -1,6 +1,5 @@
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 import { Layers, Zap, Brain, Briefcase } from 'lucide-react';
+import Stack from './components/ui/Stack';
 
 const content = {
     label: "What You Just Stepped Into",
@@ -39,51 +38,6 @@ const content = {
 };
 
 export default function ContinuumSection() {
-    const [active, setActive] = useState(0);
-    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
-
-    // Auto-rotate the pillars & listen to resize
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setActive(prev => (prev + 1) % 4);
-        }, 4000);
-
-        const handleResize = () => setWindowWidth(window.innerWidth);
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            clearInterval(interval);
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
-    const isMobile = windowWidth < 640;
-    const isTablet = windowWidth >= 640 && windowWidth < 1024;
-
-    // Calculate responsive position on the curved path
-    const getPosition = (i: number) => {
-        const diff = (i - active + 4) % 4;
-
-        // Responsive curve offsets
-        const yOffset = isMobile ? 130 : isTablet ? 180 : 220;
-        const xOffset = isMobile ? 20 : isTablet ? 50 : 80;
-        const scaleDown = isMobile ? 0.85 : 0.75;
-        const zRotate = isMobile ? 3 : 6;
-        const blurAmount = isMobile ? '3px' : '5px';
-
-        if (diff === 0) {
-            return { y: 0, x: 0, scale: 1, opacity: 1, filter: 'blur(0px)', zIndex: 30, rotateZ: 0 };
-        }
-        if (diff === 1) {
-            return { y: yOffset, x: xOffset, scale: scaleDown, opacity: 0.3, filter: `blur(${blurAmount})`, zIndex: 20, rotateZ: zRotate };
-        }
-        if (diff === 3) {
-            return { y: -yOffset, x: xOffset, scale: scaleDown, opacity: 0.3, filter: `blur(${blurAmount})`, zIndex: 20, rotateZ: -zRotate };
-        }
-        // Hidden wrapping card
-        return { y: 0, x: xOffset * 2, scale: scaleDown - 0.2, opacity: 0, filter: 'blur(10px)', zIndex: 10, rotateZ: 0 };
-    };
-
     return (
         <section className="min-h-screen py-32 px-4 sm:px-6 lg:px-12 relative overflow-hidden flex items-center border-t border-white/5">
             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-8 w-full items-center">
@@ -111,75 +65,41 @@ export default function ContinuumSection() {
                     </p>
                 </div>
 
-                {/* Right Curved Rotating Carousel */}
-                <div className="lg:w-1/2 w-full h-[500px] sm:h-[600px] relative flex flex-col justify-center items-center overflow-visible gap-6">
-                    {content.pillars.map((pillar, i) => {
-                        const pos = getPosition(i);
-                        const isActive = active === i;
+                {/* Right Stack Cards */}
+                <div className="lg:w-1/2 w-full flex items-center justify-center">
+                    <div className="w-[280px] h-[350px] sm:w-[380px] sm:h-[450px]">
+                        <Stack
+                            randomRotation={false}
+                            sensitivity={200}
+                            sendToBackOnClick={true}
+                            autoplay={true}
+                            autoplayDelay={4000}
+                            pauseOnHover={true}
+                            cards={content.pillars.map((pillar, i) => (
+                                <div
+                                    key={i}
+                                    className="relative w-full h-full rounded-2xl overflow-hidden bg-zinc-900 border border-white/10 shadow-2xl flex flex-col justify-end p-6 sm:p-8 select-none"
+                                >
+                                    <div
+                                        style={{ backgroundImage: `url(${pillar.bg})` }}
+                                        className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-screen"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
 
-                        return (
-                            <motion.div
-                                key={i}
-                                initial={false}
-                                animate={{
-                                    y: pos.y,
-                                    x: pos.x,
-                                    scale: pos.scale,
-                                    opacity: pos.opacity,
-                                    filter: pos.filter,
-                                    zIndex: pos.zIndex,
-                                    rotateZ: pos.rotateZ
-                                }}
-                                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                                onClick={() => setActive(i)}
-                                className="absolute w-full max-w-[320px] sm:max-w-md aspect-[4/3] rounded-3xl overflow-hidden cursor-pointer bg-zinc-900 border border-white/10 shadow-2xl flex flex-col justify-end p-6 sm:p-8 select-none"
-                            >
-                                {/* Decorative background image for each card */}
-                                <motion.div
-                                    animate={{ opacity: isActive ? 0.4 : 0.08 }}
-                                    style={{ backgroundImage: `url(${pillar.bg})` }}
-                                    className="absolute inset-0 bg-cover bg-center mix-blend-screen transition-opacity duration-1000"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
-
-                                <div className="relative z-10">
-                                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-white/20 bg-white/5 backdrop-blur-md flex items-center justify-center mb-5 text-white">
-                                        {pillar.icon}
-                                    </div>
-                                    <h3 className="text-2xl sm:text-3xl font-semibold mb-2 sm:mb-3 text-white tracking-tight">
-                                        {pillar.title}
-                                    </h3>
-                                    <motion.div
-                                        initial={false}
-                                        animate={{ height: isActive ? 'auto' : 0, opacity: isActive ? 1 : 0 }}
-                                        className="overflow-hidden"
-                                        transition={{ duration: 0.5 }}
-                                    >
-                                        <p className="text-zinc-400 text-sm sm:text-base leading-relaxed mt-2">
+                                    <div className="relative z-10">
+                                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-white/20 bg-white/5 backdrop-blur-md flex items-center justify-center mb-5 text-white">
+                                            {pillar.icon}
+                                        </div>
+                                        <h3 className="text-2xl sm:text-3xl font-semibold mb-2 sm:mb-3 text-white tracking-tight">
+                                            {pillar.title}
+                                        </h3>
+                                        <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
                                             {pillar.desc}
                                         </p>
-                                    </motion.div>
+                                    </div>
                                 </div>
-                            </motion.div>
-                        )
-                    })}
-
-                    {/* Manual controls for rotation (in addition to click) */}
-                    <div className="relative z-20 mt-auto flex items-center justify-center gap-4">
-                        <button
-                            type="button"
-                            onClick={() => setActive((prev) => (prev + 3) % 4)}
-                            className="px-3 py-1.5 text-xs uppercase tracking-[0.25em] rounded-full border border-white/20 text-zinc-300 hover:bg-white/10 transition"
-                        >
-                            Prev
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => setActive((prev) => (prev + 1) % 4)}
-                            className="px-3 py-1.5 text-xs uppercase tracking-[0.25em] rounded-full border border-white/20 text-zinc-300 hover:bg-white/10 transition"
-                        >
-                            Next
-                        </button>
+                            ))}
+                        />
                     </div>
                 </div>
             </div>

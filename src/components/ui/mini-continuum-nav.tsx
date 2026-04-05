@@ -28,38 +28,18 @@ function CenterSphere({ isHovered }: { isHovered: boolean }) {
     );
 }
 
-const navGroups = [
-    {
-        label: 'Explore',
-        items: [
-            { name: 'Home', path: '/home' },
-            { name: 'About', path: '/about' },
-            { name: 'Approach', path: '/approach' },
-        ],
-    },
-    {
-        label: 'Services',
-        items: [
-            { name: 'Skills', path: '/skills' },
-            { name: 'Talent', path: '/talent' },
-            { name: 'Content', path: '/content' },
-            { name: 'Corporate Experiences', path: '/corporate-experiences' },
-        ],
-    },
-    {
-        label: 'Solutions',
-        items: [
-            { name: 'Consulting', path: '/consulting' },
-            { name: 'Custom Solutions', path: '/custom-solutions' },
-        ],
-    },
-    {
-        label: 'Connect',
-        items: [
-            { name: 'Clients', path: '/clients' },
-            { name: 'Contact', path: '/contact' },
-        ],
-    },
+const navItems = [
+    { name: 'Home', path: '/home' },
+    { name: 'About', path: '/about' },
+    { name: 'Approach', path: '/approach' },
+    { name: 'Skills', path: '/skills' },
+    { name: 'Talent', path: '/talent' },
+    { name: 'Content', path: '/content' },
+    { name: 'Corporate Experiences', path: '/corporate-experiences' },
+    { name: 'Consulting', path: '/consulting' },
+    { name: 'Custom Solutions', path: '/custom-solutions' },
+    { name: 'Clients', path: '/clients' },
+    { name: 'Contact', path: '/contact' },
 ];
 
 interface MiniContinuumNavProps {
@@ -184,45 +164,29 @@ export function MiniContinuumNav({ onSearchOpen }: MiniContinuumNavProps) {
                             <span>Search pages...</span>
                         </button>
 
-                        {/* Grouped nav items */}
-                        {navGroups.map((group, gi) => (
-                            <motion.div
-                                key={group.label}
-                                initial={{ opacity: 0, y: -8 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: gi * 0.06, duration: 0.3 }}
-                                className="mb-3 last:mb-0"
-                            >
-                                <p className="text-[9px] font-bold uppercase tracking-[0.25em] text-[var(--color-brand-500)] mb-1.5 px-1">
-                                    {group.label}
-                                </p>
-                                <div className="flex flex-col">
-                                    {group.items.map((item, ii) => (
-                                        <motion.button
-                                            key={item.path}
-                                            initial={{ opacity: 0, x: -6 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{
-                                                delay: gi * 0.06 + ii * 0.03,
-                                                duration: 0.25,
-                                            }}
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                navigate(item.path);
-                                                setIsHovered(false);
-                                            }}
-                                            className={`text-left px-3 py-1.5 rounded-lg text-[11px] font-semibold tracking-wide transition-all duration-200 ${
-                                                isActive(item.path)
-                                                    ? 'text-white bg-white/10 border-l-2 border-[var(--color-brand-500)]'
-                                                    : 'text-zinc-400 hover:text-white hover:bg-white/5 border-l-2 border-transparent'
-                                            }`}
-                                        >
-                                            {item.name}
-                                        </motion.button>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        ))}
+                        {/* Nav items */}
+                        <div className="flex flex-col">
+                            {navItems.map((item, i) => (
+                                <motion.button
+                                    key={item.path}
+                                    initial={{ opacity: 0, x: -6 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: i * 0.03, duration: 0.25 }}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        navigate(item.path);
+                                        setIsHovered(false);
+                                    }}
+                                    className={`text-left px-3 py-1.5 rounded-lg text-[11px] font-semibold tracking-wide transition-all duration-200 ${
+                                        isActive(item.path)
+                                            ? 'text-white bg-white/10 border-l-2 border-[var(--color-brand-500)]'
+                                            : 'text-zinc-400 hover:text-white hover:bg-white/5 border-l-2 border-transparent'
+                                    }`}
+                                >
+                                    {item.name}
+                                </motion.button>
+                            ))}
+                        </div>
 
                         {/* CTA */}
                         <motion.div

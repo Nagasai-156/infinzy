@@ -5,41 +5,19 @@ import { useState, useEffect } from 'react';
 import { MiniContinuumNav } from './components/ui/mini-continuum-nav';
 import SearchOverlay from './components/SearchOverlay';
 
-const navGroups = [
-    {
-        label: 'Explore',
-        items: [
-            { name: 'Home', path: '/home' },
-            { name: 'About', path: '/about' },
-            { name: 'Approach', path: '/approach' },
-        ],
-    },
-    {
-        label: 'Services',
-        items: [
-            { name: 'Skills', path: '/skills' },
-            { name: 'Talent', path: '/talent' },
-            { name: 'Content', path: '/content' },
-            { name: 'Corporate Experiences', path: '/corporate-experiences' },
-        ],
-    },
-    {
-        label: 'Solutions',
-        items: [
-            { name: 'Consulting', path: '/consulting' },
-            { name: 'Custom Solutions', path: '/custom-solutions' },
-        ],
-    },
-    {
-        label: 'Connect',
-        items: [
-            { name: 'Clients', path: '/clients' },
-            { name: 'Contact', path: '/contact' },
-        ],
-    },
+const navItems = [
+    { name: 'Home', path: '/home' },
+    { name: 'About', path: '/about' },
+    { name: 'Approach', path: '/approach' },
+    { name: 'Skills', path: '/skills' },
+    { name: 'Talent', path: '/talent' },
+    { name: 'Content', path: '/content' },
+    { name: 'Corporate Experiences', path: '/corporate-experiences' },
+    { name: 'Consulting', path: '/consulting' },
+    { name: 'Custom Solutions', path: '/custom-solutions' },
+    { name: 'Clients', path: '/clients' },
+    { name: 'Contact', path: '/contact' },
 ];
-
-const allNavItems = navGroups.flatMap(g => g.items);
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -128,42 +106,28 @@ export default function Navbar() {
                         className="fixed inset-0 z-[99] bg-black/98 backdrop-blur-2xl md:hidden overflow-y-auto"
                     >
                         <div className="pt-24 pb-12 px-6">
-                            {/* Grouped Navigation */}
-                            {navGroups.map((group, gi) => (
-                                <motion.div
-                                    key={group.label}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: gi * 0.08 }}
-                                    className="mb-8"
-                                >
-                                    <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--color-brand-500)] mb-3">
-                                        {group.label}
-                                    </p>
-                                    <div className="flex flex-col gap-1">
-                                        {group.items.map((item, ii) => (
-                                            <motion.div
-                                                key={item.path}
-                                                initial={{ opacity: 0, x: -10 }}
-                                                animate={{ opacity: 1, x: 0 }}
-                                                transition={{ delay: gi * 0.08 + ii * 0.04 }}
-                                            >
-                                                <Link
-                                                    to={item.path}
-                                                    onClick={() => setMenuOpen(false)}
-                                                    className={`block py-3 px-4 rounded-lg text-lg transition-all duration-200 ${
-                                                        isActive(item.path)
-                                                            ? 'text-white font-bold bg-white/10 border-l-2 border-[var(--color-brand-500)]'
-                                                            : 'text-zinc-400 hover:text-white hover:bg-white/5 font-light border-l-2 border-transparent'
-                                                    }`}
-                                                >
-                                                    {item.name}
-                                                </Link>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-                                </motion.div>
-                            ))}
+                            <div className="flex flex-col gap-1">
+                                {navItems.map((item, i) => (
+                                    <motion.div
+                                        key={item.path}
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: i * 0.04 }}
+                                    >
+                                        <Link
+                                            to={item.path}
+                                            onClick={() => setMenuOpen(false)}
+                                            className={`block py-3 px-4 rounded-lg text-lg transition-all duration-200 ${
+                                                isActive(item.path)
+                                                    ? 'text-white font-bold bg-white/10 border-l-2 border-[var(--color-brand-500)]'
+                                                    : 'text-zinc-400 hover:text-white hover:bg-white/5 font-light border-l-2 border-transparent'
+                                            }`}
+                                        >
+                                            {item.name}
+                                        </Link>
+                                    </motion.div>
+                                ))}
+                            </div>
 
                             {/* Mobile CTA */}
                             <motion.div
@@ -189,7 +153,7 @@ export default function Navbar() {
             <SearchOverlay
                 isOpen={searchOpen}
                 onClose={() => setSearchOpen(false)}
-                navItems={allNavItems}
+                navItems={navItems}
             />
 
             {/* Spacer for mobile fixed header */}

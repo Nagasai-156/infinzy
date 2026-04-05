@@ -1,4 +1,4 @@
-import { useRef, useMemo, useEffect, useCallback, type RefObject } from 'react';
+import { useRef, useMemo, useEffect, type RefObject } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Stars, Text } from '@react-three/drei';
 import * as THREE from 'three';
@@ -57,8 +57,8 @@ function CenterSphere({ clock }: { clock: RefObject<SharedClock> }) {
         const w = state.size.width;
         const isPortrait = w < state.size.height;
         let scale = 1;
-        if (w < 480) scale = 0.45;
-        else if (w < 768) scale = 0.5;
+        if (w < 480) scale = 0.65;
+        else if (w < 768) scale = 0.65;
         else if (w < 1024) scale = 0.65;
         else if (w <= 1366 || isPortrait) scale = 0.75;
         meshRef.current.scale.set(scale, scale, scale);
@@ -103,8 +103,8 @@ function OrbitItem({
         let radius = 4.2;
         let baseScale = 1;
         let textSize = 0.18;
-        if (w < 480) { radius = isPortrait ? 1.8 : 2.2; baseScale = 0.55; textSize = 0.12; }
-        else if (w < 768) { radius = isPortrait ? 2.2 : 2.6; baseScale = 0.6; textSize = 0.14; }
+        if (w < 480) { radius = isPortrait ? 2.6 : 2.8; baseScale = 0.75; textSize = 0.16; }
+        else if (w < 768) { radius = isPortrait ? 2.8 : 3.0; baseScale = 0.8; textSize = 0.16; }
         else if (w < 1024) { radius = isPortrait ? 3.0 : 3.2; baseScale = 0.7; textSize = 0.16; }
         else if (w <= 1366 || isPortrait) { radius = isPortrait ? 3.4 : 3.6; baseScale = 0.8; textSize = 0.17; }
 
@@ -244,11 +244,9 @@ function OrbitingObjects({ clock }: { clock: RefObject<SharedClock> }) {
 }
 
 // ── Landing Page ────────────────────────────────────────────────────────────
-const AUTO_REDIRECT_SECONDS = 3.5;
 
 export default function Landing() {
     const navigate = useNavigate();
-    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const interacted = useRef(false);
 
     const sharedClock = useRef<SharedClock>({
@@ -257,30 +255,15 @@ export default function Landing() {
         lastRealTime: 0,
     });
 
-    const resetTimer = useCallback(() => {
-        interacted.current = true;
-        if (timerRef.current) clearTimeout(timerRef.current);
-        // Restart timer — if idle again for full duration, redirect
-        timerRef.current = setTimeout(() => {
-            navigate('/home');
-        }, AUTO_REDIRECT_SECONDS * 1000);
-    }, [navigate]);
-
     useEffect(() => {
-        // Start initial auto-redirect countdown
-        timerRef.current = setTimeout(() => {
-            navigate('/home');
-        }, AUTO_REDIRECT_SECONDS * 1000);
-
-        // Any interaction resets the timer
+        const markInteracted = () => { interacted.current = true; };
         const events = ['mousemove', 'mousedown', 'touchstart', 'keydown', 'scroll'];
-        events.forEach(e => window.addEventListener(e, resetTimer, { passive: true }));
+        events.forEach(e => window.addEventListener(e, markInteracted, { passive: true }));
 
         return () => {
-            if (timerRef.current) clearTimeout(timerRef.current);
-            events.forEach(e => window.removeEventListener(e, resetTimer));
+            events.forEach(e => window.removeEventListener(e, markInteracted));
         };
-    }, [navigate, resetTimer]);
+    }, []);
 
     return (
         <div className="w-full h-screen bg-[#0a0a0a] relative overflow-hidden">
@@ -305,7 +288,7 @@ export default function Landing() {
                     initial={{ opacity: 0, y: 20, filter: "blur(20px)" }}
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-[var(--color-brand-500)] text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter cursor-pointer pointer-events-auto transition-transform hover:scale-105 duration-1000 select-none drop-shadow-[0_0_40px_rgba(190,40,145,0.2)]"
+                    className="text-[#8B008B] text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter cursor-pointer pointer-events-auto transition-transform hover:scale-105 duration-1000 select-none drop-shadow-[0_0_40px_rgba(139,0,139,0.3)]"
                     onClick={() => navigate('/home')}
                 >
                     Infinizy.
